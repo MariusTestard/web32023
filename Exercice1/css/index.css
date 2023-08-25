@@ -1,0 +1,17 @@
+html {
+    background-color: black;
+}
+
+p {
+    text-align: justify;
+    margin: 20px;
+}
+
+img {
+    border: solid 1px black;
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin-top: 20px;
+}
