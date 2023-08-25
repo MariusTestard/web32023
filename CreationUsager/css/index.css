@@ -1,0 +1,13 @@
+label {
+    margin: 5px 0px 5px 0px;
+}
+
+input {
+    max-width: 240px;
+    margin-bottom: 10px;
+}
+
+span {
+    color: red;
+}
+
