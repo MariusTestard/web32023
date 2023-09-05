@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +8,6 @@
     <link rel="stylesheet" href="css/indexAjouter.css">
     <title>modifier.php</title>
 </head>
-
 <body>
     <?php
     $nomJeu = $type = $dateSortie = $url = "";
@@ -23,7 +21,7 @@
     $servername = "localhost";
     $username = "root";
     $password = "root";
-    $bd = "jeuxvideo";
+    $bd = "phpbd";
 
     //  Create connection
     $conn = new mysqli($servername, $username, $password, $bd);
@@ -74,7 +72,7 @@
             $erreurURL = "Le lien de l'image est requis ↑";
             $erreur = true;
         } else {
-            $imgAvatar = $_POST['url'];
+            $imgAvatar = test_input($_POST['url']);
         }
 
         // Inserer dans la base de données
@@ -82,7 +80,7 @@
             $servername = "localhost";
             $username = "root";
             $password = "root";
-            $bd = "jeuxvideo";
+            $bd = "phpbd";
 
             //  Create connection
             $conn = new mysqli($servername, $username, $password, $bd);
@@ -96,14 +94,14 @@
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
-            $sql = "UPDATE jeuxvideo SET nom = $nomJeu , type = $type, dateSortie = $dateSortie, url = $url WHERE jeuxvideo.id = $id";
+            $sql = "UPDATE jeuxvideo SET nom = '$nomJeu', type = '$type', dateSortie = '$dateSortie', url = '$url' WHERE jeuxvideo.id = '$id'";
             $conn->query('SET NAMES utf8');
             if (mysqli_query($conn, $sql)) {
                 echo "Enregistrement réussi";
             } else {
                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             }
-           // header("Location: index.php");
+            header("Location: index.php");
             mysqli_close($conn);
     ?>
 
@@ -133,6 +131,10 @@
                     <label for="url">Lien vers une url</label>
                     <input type="url" class="form-control" placeholder="Lien vers une url" name="url" value="<?php echo $url; ?>">
                     <span><?php echo $erreurURL; ?></span>
+                </div>
+                <div class=" form-group">
+                    <label>ID</label>
+                    <input type="text" class="form-control field left" name="id" value="<?php echo $id; ?>" readonly>
                 </div>
                 <button type=" submit" class="btn btn-primary mt-2">Submit</button>
                     <a href="index.php" class="btn btn-primary" role="button">Revenir</a>

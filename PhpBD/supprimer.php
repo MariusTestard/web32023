@@ -14,7 +14,7 @@
         $servername = "localhost";
         $username = "root";
         $password = "root";
-        $bd = "jeuxvideo";
+        $bd = "phpbd";
     
         //  Create connection
         $conn = new mysqli($servername, $username, $password, $bd);

@@ -1,3 +1,7 @@
+a {
+    margin: 3px 0px -5px 0px; 
+}
+
 label {
     margin: 5px 0px 5px 0px;
 }
@@ -11,12 +15,11 @@ span {
     color: red;
 }
 
-a {
-    margin: 3px 0px -5px 0px; 
+td, th{
+    vertical-align: middle !important;
 }
 
-.btnCenter {
-    display: block;
-    margin: auto;
+img {
+    height: 150px;
+    width: 150px;
 }
-

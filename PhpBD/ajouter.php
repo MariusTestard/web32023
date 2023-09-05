@@ -45,7 +45,7 @@
             $erreurURL = "Le lien de l'image est requis ↑";
             $erreur = true;
         } else {
-            $imgAvatar = $_POST['url'];
+            $imgAvatar = test_input($_POST['url']);
         }
 
         // Inserer dans la base de données
@@ -70,6 +70,7 @@
             } else {
                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             }
+            header("Location: index.php");
             mysqli_close($conn);         
     ?>
 

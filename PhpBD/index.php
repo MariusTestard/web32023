@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/indexAjouter.css">
     <title>index.php</title>
 </head>
 
@@ -36,6 +37,7 @@
                 <th scope="col">Type</th>
                 <th scope="col">Date</th>
                 <th scope="col">Image</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <?php
@@ -49,7 +51,11 @@
                         <td><?php echo "Type: " . $row["type"] ?></td>
                         <td><?php echo "Date de sortie: " . $row["dateSortie"] ?></td>
                         <td><img src="<?php echo $row['url'] ?>" alt="Image du jeux"></td>
-                    </tr>
+                        <td>
+                            <a href="modifier.php?id=<?php echo $row["id"] ?>" class="btn btn-warning" type="button">Modifier</a>
+                            <a href="supprimer.php?id=<?php echo $row["id"] ?>" class="btn btn-danger" type="button">Supprimer</a>
+                        </td>
+                    </tr> 
                 </tbody>
         <?php
             }
