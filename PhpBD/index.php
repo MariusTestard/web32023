@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,7 +58,7 @@
                             <a href="modifier.php?id=<?php echo $row["id"] ?>" class="btn btn-warning" type="button">Modifier</a>
                             <a href="supprimer.php?id=<?php echo $row["id"] ?>" class="btn btn-danger" type="button">Supprimer</a>
                         </td>
-                    </tr> 
+                    </tr>
                 </tbody>
         <?php
             }
@@ -65,8 +68,9 @@
         $conn->close();
         ?>
         <table>
-        <a href="ajouter.php" class="btn btn-primary" role="button">Ajouter</a>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+            <a href="ajouter.php" class="btn btn-primary" role="button">Ajouter</a>
+            <a href="deconnexion.php" class="btn btn-danger" role="button">Sign Out</a>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>
