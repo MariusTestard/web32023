@@ -1,0 +1,12 @@
+html, body {
+    height: 100%;
+}
+
+.mainText {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.rows {
+    height: 33%;
+}
