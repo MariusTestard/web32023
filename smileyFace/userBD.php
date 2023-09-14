@@ -28,7 +28,10 @@
             <div class="col-2 p-0">
                 <button class="btn buttonNav" id="butUser" onclick="window.location.href='eventBD.php'">Événement</button>
             </div>
-            <div class="col-10 p-0 text-end">
+            <div class="col-8 p-2 text-center">
+               <p>Table des utilisateurs</p>
+            </div>
+            <div class="col-2 p-0 text-end">
                 <button class="btn buttonNav" id="butCreate" onclick="window.location.href='create.php'">Création</button>
                 <button class="btn buttonNav" id="butSignOut" onclick="window.location.href='connexion.php'">Déconnexion</button>
             </div>
@@ -53,19 +56,13 @@
                     <tbody>
                         <tr>
                             <th scope="row"><?php echo $row["numEmploye"] ?></th>
-                            <td><?php echo "Password: " . $row["password"] ?></td>
-                            <td><?php echo "Prénom: " . $row["prenom"] ?></td>
-                            <td><?php echo "Nom: " . $row["nom"] ?></td>
-                            <td><?php echo "Recover Email: " . $row["recoverEmail"] ?></td>
+                            <td><?php echo $row["password"] ?></td>
+                            <td><?php echo $row["prenom"] ?></td>
+                            <td><?php echo $row["nom"] ?></td>
+                            <td><?php echo $row["recoverEmail"] ?></td>
                             <td>
-                                <button class="btn btn-danger" id="butRemove">&#10060;</button>
+                                <a href="supprimer.php?id=<?php echo $row["numEmploye"] ?>?EoU=<?php echo 1?>" class="btn btn-danger" type="button" id="butRemove">&#10060;</a>
                             </td>
-                            <!--
-                            <td>
-                                <a href="modifier.php?id=<?php echo $row["id"] ?>" class="btn btn-warning" type="button">Modifier</a>
-                                <a href="supprimer.php?id=<?php echo $row["id"] ?>" class="btn btn-danger" type="button">Supprimer</a>
-                            </td>
-                        -->
                         </tr>
                     </tbody>
                 <?php

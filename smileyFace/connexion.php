@@ -47,6 +47,7 @@ session_start();
                 $usernameBD = "root";
                 $passwordBD = "root";
                 $bd = "smileyFace";
+                $passwd = sha1($passwd, false);
 
                 $conn = new mysqli($servername, $usernameBD, $passwordBD, $bd);
                 if ($conn->connect_error) {

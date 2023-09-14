@@ -28,7 +28,10 @@
             <div class="col-2 p-0">
                 <button class="btn buttonNav" id="butUser" onclick="window.location.href='userBD.php'">Utilisateur</button>
             </div>
-            <div class="col-10 p-0 text-end">
+            <div class="col-8 p-2 text-center">
+               <p>Table des évènements</p>
+            </div>
+            <div class="col-2 p-0 text-end">
                 <button class="btn buttonNav" id="butCreate" onclick="window.location.href='create.php'">Création</button>
                 <button class="btn buttonNav" id="butSignOut" onclick="window.location.href='connexion.php'">Déconnexion</button>
             </div>
@@ -43,23 +46,32 @@
                             <th scope="col">Département</th>
                             <th scope="col">Lieu</th>
                             <th scope="col">Date</th>
+                            
+                            <!--
+                            <th scope="col">Date</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Date</th>
+                            -->
+
+
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
                 <?php
+                // IL FAUT RAJOUTER DES CHAMPS DANS LE TABLEAU POUR CONCATÉNER LA TABLE "SATISFACTION" ----------------------------------------------------
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                     ?>
                     <tbody>
                         <tr>
                             <th scope="row"><?php echo $row["idEvent"] ?></th>
-                            <td><?php echo "Nom: " . $row["nom"] ?></td>
-                            <td><?php echo "Departement: " . $row["departement"] ?></td>
-                            <td><?php echo "Lieu: " . $row["lieu"] ?></td>
-                            <td><?php echo "Date: " . $row["date"] ?></td>
+                            <td><?php echo $row["nom"] ?></td>
+                            <td><?php echo $row["departement"] ?></td>
+                            <td><?php echo $row["lieu"] ?></td>
+                            <td><?php echo $row["date"] ?></td>
                             <td>
                                 <button class="btn btn-warning" id="butModify">&#128221;</button>
-                                <button class="btn btn-danger" id="butRemove">&#10060;</button>
+                                <a href="supprimer.php?id=<?php echo $row["idEvent"] ?>?EoU=<?php echo 0?>" class="btn btn-danger" type="button" id="butRemove">&#10060;</a>
                             </td>
                         </tr>
                     </tbody>

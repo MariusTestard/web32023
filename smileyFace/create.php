@@ -85,8 +85,7 @@
          <div class="container-fluid h-100 d-flex flex-column">
             <div class="row top-left test1">
                 <div class="col-1 p-0 m-0">
-                   
-                   <button type="button" class="btn" id="ButBack" onclick="window.location.href='eventBD.php'">Revenir</button>
+                   <button type="button" class="btn" id="butBack" onclick="window.location.href='eventBD.php'">Revenir</button>
                 </div>
             </div>
             <div class="row middle test99 flex-grow-1 d-flex">

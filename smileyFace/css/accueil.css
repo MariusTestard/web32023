@@ -14,16 +14,21 @@ html, body {
     height: 90%;
 }
 
+p {
+    font-weight: bold;
+    font-size: 18px;
+}
+
 #butUser {
     background-color: lightblue;
-    border: solid black 2px;
+    border: solid black 1px;
 } #butUser:hover {
     background-color: lightsalmon;
 }
 
 #butCreate {
     background-color: lightgreen;
-    border: solid black 2px;
+    border: solid black 1px;
 } 
 
 #butCreate:hover {
@@ -32,7 +37,7 @@ html, body {
 
 #butSignOut {
     background-color: indianred;
-    border: solid black 2px;
+    border: solid black 1px;
 } 
 
 #butSignOut:hover {

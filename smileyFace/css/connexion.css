@@ -55,15 +55,16 @@ input{
     height: auto;
 }
 
-#ButBack {
+#butBack {
     background-color: lightgrey;
+    border: solid black 1px;
 }
 
-#ButBack:hover {
+#butBack:hover {
     background-color: grey;
 }
 
-#ButBack a {
+#butBack a {
     text-decoration: none; 
     color: black; 
 }
