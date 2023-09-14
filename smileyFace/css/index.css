@@ -9,4 +9,9 @@ html, body {
 
 .rows {
     height: 33%;
+    justify-content: space-evenly;
+}
+
+img {
+    margin: 15px;
 }

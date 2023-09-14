@@ -14,7 +14,6 @@ session_start();
     <link rel="stylesheet" href="css/connexion.css">
     <title>connexion.php</title>
 </head>
-
 <body>
     <?php
     /*
@@ -23,35 +22,27 @@ session_start();
     }
     if ($_SESSION["connexion"] == false) {
         */
-        //On crée les variables du formulaire vide
         $numEmplo = $passwd = "";
-
-        //On crée les variables d'erreurs vides
         $errorNumEplo = $errorPasswd = "";
-
-        //La variable qui permet de savoir s'il y a au moins une erreur dans le formulaire
         $erreur = false;
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             //Si on entre, on est dans l'envoie du formulaire 
-            if (empty($_POST['numEmploye'])) {
-                $errorNumEplo = "Le numéro d'employé est manquant ↑";
+            if (empty($_POST['numEmplo'])) {
+                $errorNumEplo = "N° employé manquant";
                 $erreur = true;
             } else {
-                $numEmplo = test_input($_POST["numEmploye"]);
+                $numEmplo = test_input($_POST["numEmplo"]);
             }
-            if (empty($_POST['password'])) {
-                $errorPasswd = "Le mot de passe est manquant ↑";
+            if (empty($_POST['passwd'])) {
+                $errorPasswd = "Mot de passe manquant";
                 $erreur = true;
             } else {
-                $passwd = test_input($_POST["password"]);
+                $passwd = test_input($_POST["passwd"]);
             }
 
             // Inserer dans la base de données
             if ($erreur != true) {
-                $passwd = $_POST['passsword'];
-                $passwd = sha1($passwd, false);
-
                 $servername = "localhost";
                 $usernameBD = "root";
                 $passwordBD = "root";
@@ -69,25 +60,25 @@ session_start();
                     $row = $result->fetch_assoc();
                     echo "<h1>Connecté</h1>";
                     $_SESSION["connexion"] = true;
-                    //header("Location: index.php");
+                    header("Location: eventBD.php");
                 } else {
                         $erreur = true;
                         $numEmplo = "";
-                        $errorPasswd = "N° Employé or password invalide";
+                        $errorPasswd = "N° Employé ou mot de passe invalide";
                     }
                     $conn->close();
     ?>
-            <?php
+        <?php
                 }
             }
         if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
-            ?>
-           <div class="container-fluid h-100">
+        ?>
+        <div class="container-fluid h-100">
             <div class="row middle h-100">
                 <div class="col-2">
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="form-group">
-                            <label for="username">N° Employé</label>
+                            <label for="numEmplo">N° Employé</label>
                             <input type="text" class="form-control" placeholder="N° Employé" name="numEmplo">
                             <span><?php echo $errorNumEplo; ?></span>
                         </div>
@@ -115,5 +106,4 @@ session_start();
     ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
-
 </html>

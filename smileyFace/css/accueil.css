@@ -1,0 +1,45 @@
+html, body {
+    height: 100%;
+}
+
+.navBar {
+    height: 10%;
+}
+
+.buttonNav {
+    height: max-content;
+}
+
+.mainWindow {
+    height: 90%;
+}
+
+#butUser {
+    background-color: lightblue;
+    border: solid black 2px;
+} #butUser:hover {
+    background-color: lightsalmon;
+}
+
+#butCreate {
+    background-color: lightgreen;
+    border: solid black 2px;
+} #butCreate:hover {
+    background-color: lightsalmon;
+}
+
+#butSignOut {
+    background-color: indianred;
+    border: solid black 2px;
+} #butSignOut:hover {
+    background-color: lightsalmon;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+th, td {
+    vertical-align: middle;
+}
