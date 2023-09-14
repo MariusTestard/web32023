@@ -30,7 +30,7 @@
             $passwd = test_input($_POST["passwd"]);
         }
         if (empty($_POST['passwd'])) {
-            $errorRecoverEmail = "Email de backup manquant";
+            $errorRecoverEmail = "Email de récupération manquant";
             $erreur = true;
         } else {
             $recoverEmail = test_input($_POST["recoverEmail"]);
@@ -82,9 +82,15 @@
         }
     if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
         ?>
-         <div class="container-fluid h-100">
-            <div class="row middle h-100">
-                <div class="col-2">
+         <div class="container-fluid h-100 d-flex flex-column">
+            <div class="row top-left test1">
+                <div class="col-1 p-0 m-0">
+                   
+                   <button type="button" class="btn" id="ButBack" onclick="window.location.href='eventBD.php'">Revenir</button>
+                </div>
+            </div>
+            <div class="row middle test99 flex-grow-1 d-flex">
+                <div class="col-2 my-form-container">
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="form-group">
                             <label for="numEmplo">N° Employé</label>
@@ -93,7 +99,7 @@
                         </div>
                         <div class="form-group">
                             <label for="recoverEmail">Recovery Email</label>
-                            <input type="text" class="form-control" placeholder="Recovery Email" name="recoverEmail">
+                            <input type="text" class="form-control" placeholder="Email de récupération" name="recoverEmail">
                             <span><?php echo $errorRecoverEmail; ?></span>
                         </div>
                         <div class="form-group">
@@ -108,11 +114,11 @@
                         </div>
                         <div class="form-group">
                             <label for="passwd">Mot de passe</label>
-                            <input type="password" class="form-control" placeholder="Password" name="passwd">
+                            <input type="password" class="form-control" placeholder="Mot de passe" name="passwd">
                             <span><?php echo $errorPasswd; ?></span>
                         </div>
                         <div class="middle">
-                        <button type="submit" class="btn btn-success mt-2 maxlargeur">Create</button>
+                        <button type="submit" class="btn btn-success mt-2 maxlargeur">Créer</button>
                         </div>
                     </form>
                 </div>

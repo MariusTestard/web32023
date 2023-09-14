@@ -19,18 +19,18 @@
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "SELECT numEmploye, passwd, prenom, nom, recoverEmail FROM user";
+        $sql = "SELECT numEmploye, password, prenom, nom, recoverEmail FROM user";
         $conn->query('SET NAMES utf8');
         $result = $conn->query($sql);
     ?>
     <div class="container-fluid h-100">   
         <div class="row navBar">
             <div class="col-2 p-0">
-                <button class="buttonNav" id="butUser"><a href="EventBD.php">Event</a></button>
+                <button class="btn buttonNav" id="butUser" onclick="window.location.href='eventBD.php'">Événement</button>
             </div>
             <div class="col-10 p-0 text-end">
-                <button class="buttonNav" id="butCreate"><a href="create.php">Create</a></button>
-                <button class="buttonNav" id="butSignOut"><a href="index.php">Sign Out</a></button>
+                <button class="btn buttonNav" id="butCreate" onclick="window.location.href='create.php'">Création</button>
+                <button class="btn buttonNav" id="butSignOut" onclick="window.location.href='connexion.php'">Déconnexion</button>
             </div>
         </div>
         <div class="row mainWindow">
@@ -43,6 +43,7 @@
                             <th scope="col">Prenom</th>
                             <th scope="col">Nom</th>
                             <th scope="col">Recover Email</th>
+                            <th scope="col">Actions</th>
                         </tr>
                     </thead>
                 <?php
@@ -56,6 +57,9 @@
                             <td><?php echo "Prénom: " . $row["prenom"] ?></td>
                             <td><?php echo "Nom: " . $row["nom"] ?></td>
                             <td><?php echo "Recover Email: " . $row["recoverEmail"] ?></td>
+                            <td>
+                                <button class="btn btn-danger" id="butRemove">&#10060;</button>
+                            </td>
                             <!--
                             <td>
                                 <a href="modifier.php?id=<?php echo $row["id"] ?>" class="btn btn-warning" type="button">Modifier</a>

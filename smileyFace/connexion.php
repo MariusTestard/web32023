@@ -84,7 +84,7 @@ session_start();
                         </div>
                         <div class="form-group">
                             <label for="passwd">Mot de passe</label>
-                            <input type="password" class="form-control" placeholder="Password" name="passwd">
+                            <input type="password" class="form-control" placeholder="Mot de passe" name="passwd">
                             <span><?php echo $errorPasswd; ?></span>
                         </div>
                         <div class="middle">

@@ -24,14 +24,18 @@ html, body {
 #butCreate {
     background-color: lightgreen;
     border: solid black 2px;
-} #butCreate:hover {
+} 
+
+#butCreate:hover {
     background-color: lightsalmon;
 }
 
 #butSignOut {
     background-color: indianred;
     border: solid black 2px;
-} #butSignOut:hover {
+} 
+
+#butSignOut:hover {
     background-color: lightsalmon;
 }
 
@@ -43,3 +47,39 @@ a {
 th, td {
     vertical-align: middle;
 }
+
+#butModify {
+    /*background-color: #ffc107;*/
+   /* border: solid black 2px;*/
+     background-color: white;
+    border: solid lightgrey 2px;
+} 
+
+#butModify:hover {
+    /*background-color: #be950c;*/
+    background-color: lightgrey;
+    border: solid lightgrey 2px;
+}
+
+#butRemove {
+    /*background-color: #dc3545;*/
+    /* border: solid black 2px;*/
+    background-color: white;
+    border: solid lightgrey 2px;
+} 
+
+#butRemove:hover {
+   /* background-color: #6f1d25;*/
+   background-color: lightgrey;
+    border: solid lightgrey 2px;
+}
+
+/*
+128578  --high
+128528 --mid
+128577 --low
+
+8592 --back
+8656 --back
+8701 --back
+*/

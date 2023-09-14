@@ -26,11 +26,11 @@
     <div class="container-fluid h-100">   
         <div class="row navBar">
             <div class="col-2 p-0">
-                <button class="buttonNav" id="butUser"><a href="userBD.php">User</a></button>
+                <button class="btn buttonNav" id="butUser" onclick="window.location.href='userBD.php'">Utilisateur</button>
             </div>
             <div class="col-10 p-0 text-end">
-                <button class="buttonNav" id="butCreate"><a href="create.php">Create</a></button>
-                <button class="buttonNav" id="butSignOut"><a href="index.php">Sign Out</a></button>
+                <button class="btn buttonNav" id="butCreate" onclick="window.location.href='create.php'">Création</button>
+                <button class="btn buttonNav" id="butSignOut" onclick="window.location.href='connexion.php'">Déconnexion</button>
             </div>
         </div>
         <div class="row mainWindow">
@@ -40,7 +40,7 @@
                         <tr>
                             <th scope="col">idEvent</th>
                             <th scope="col">Nom</th>
-                            <th scope="col">Departement</th>
+                            <th scope="col">Département</th>
                             <th scope="col">Lieu</th>
                             <th scope="col">Date</th>
                             <th scope="col">Actions</th>
@@ -58,8 +58,8 @@
                             <td><?php echo "Lieu: " . $row["lieu"] ?></td>
                             <td><?php echo "Date: " . $row["date"] ?></td>
                             <td>
-                                <a class="btn btn-warning" type="button">Modifier</a>
-                                <a class="btn btn-danger" type="button">Supprimer</a>
+                                <button class="btn btn-warning" id="butModify">&#128221;</button>
+                                <button class="btn btn-danger" id="butRemove">&#10060;</button>
                             </td>
                         </tr>
                     </tbody>
@@ -74,6 +74,16 @@
             </div>
         </div>
     </div>
+
+    <?php
+    function calc($high,$mid,$low){
+        $moyennehigh = $high*100;
+        $moyennemid = $mid*50;
+        $moyennelow = $low*0;
+        $moyenne=($moyennehigh + $moyennemid + $moyennelow)/($high + $mid + $low);
+        return $moyenne;
+    }
+    ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

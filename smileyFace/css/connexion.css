@@ -33,3 +33,38 @@ th, td {
 .maxlargeur{
     width: 100%;
 }
+
+.top-left{
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-start;
+    height: auto;
+}
+
+input{
+    max-width: 100%;
+}
+
+.test99{
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.test1{
+    height: auto;
+}
+
+#ButBack {
+    background-color: lightgrey;
+}
+
+#ButBack:hover {
+    background-color: grey;
+}
+
+#ButBack a {
+    text-decoration: none; 
+    color: black; 
+}
+
