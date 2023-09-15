@@ -63,7 +63,7 @@ session_start();
                             <td><?php echo $row["nom"] ?></td>
                             <td><?php echo $row["recoverEmail"] ?></td>
                             <td>
-                                <a href="supprimer.php?id=<?php echo $row["numEmploye"] ?>&eoU=<?php echo 1?>" class="btn btn-danger" type="button" id="butRemove">&#10060;</a>
+                                <a href="supprimer.php?id=<?php echo $row["numEmploye"] ?>&eoU=<?php echo 1?>" class="btn btn-danger" type="button" id="butRemove" title="Supprimer">&#10060;</a>
                             </td>
                         </tr>
                     </tbody>
@@ -76,6 +76,7 @@ session_start();
                 ?>
                 <table>
                 <button class="btn buttonNav" id="butCreate" onclick="window.location.href='create.php'">Création</button>
+                <h3><h4>Connecté en tant que: <?php echo $_SESSION["prenom"] . " " . $_SESSION["nom"] ?></h4></h3>
             </div>
         </div>
     </div>

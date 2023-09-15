@@ -24,6 +24,11 @@ session_start();
                 <img class="img-fluid" src="img/smiley_bad.png" width="300px" height="300px">
             </div>
         </div>
+        <div class="row rows align-items-end">
+            <div class="col-12 d-flex justify-content-end">
+                <a href="connexion.php" class="btn btn-warning" type="button">Page de connexion</a>
+            </div>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>

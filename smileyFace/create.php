@@ -27,13 +27,8 @@ session_start();
         } else {
             $numEmplo = test_input($_POST["numEmplo"]);
         }
-        if (empty($_POST['passwd'])) {
-            $errorPasswd = "Mot de passe manquant";
-            $erreur = true;
-        } else {
-            $passwd = test_input($_POST["passwd"]);
-        }
-        if (empty($_POST['passwd'])) {
+
+        if (empty($_POST['recoverEmail'])) {
             $errorRecoverEmail = "Email de récupération manquant";
             $erreur = true;
         } else {
@@ -55,10 +50,9 @@ session_start();
         if ($erreur != true) {
             $numEmplo = $_POST['numEmplo'];
             $recoverEmail = $_POST['recoverEmail'];
-            $passwd = $_POST['passwd'];
+            $passwd = $_POST['numEmplo'];
             $prenom = $_POST['prenom'];
             $nom = $_POST['nom'];
-            $passwd = sha1($passwd, false);
 
             $servername = "localhost";
             $usernameBD = "root";
@@ -113,11 +107,6 @@ session_start();
                             <label for="nom">Nom</label>
                             <input type="text" class="form-control" placeholder="Nom" name="nom">
                             <span><?php echo $errorNom; ?></span>
-                        </div>
-                        <div class="form-group">
-                            <label for="passwd">Mot de passe</label>
-                            <input type="password" class="form-control" placeholder="Mot de passe" name="passwd">
-                            <span><?php echo $errorPasswd; ?></span>
                         </div>
                         <div class="middle">
                         <button type="submit" class="btn btn-success mt-2 maxlargeur">Créer</button>

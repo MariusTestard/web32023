@@ -38,19 +38,30 @@ session_start();
                 $passwd = test_input($_POST["passwd"]);
             }
 
-            // Inserer dans la base de données
             if ($erreur != true) {
                 $servername = "localhost";
                 $usernameBD = "root";
                 $passwordBD = "root";
                 $bd = "smileyFace";
-                $passwd = sha1($passwd, false);
-
+                
                 $conn = new mysqli($servername, $usernameBD, $passwordBD, $bd);
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
                 }
 
+                // SI NUM ET MDP SAME   
+                /*
+                if($numEmplo == $password){
+                    //$sql = "SELECT * FROM user WHERE numEmploye = '$numEmplo' AND password = '$passwd'";
+                    //POP-UP
+                    $prompt_msg = "Veuillez changez votre mot de passe par défaut.";
+                    $passwd = sha1(prompt($prompt_msg), false);
+                    $sql = "UPDATE user SET password = '$passwd' WHERE numEmploye = '$numEmplo'";
+                    $conn->query($sql);
+                    //header("Location: connexion.php");
+                }
+                */
+                $passwd = sha1($passwd, false);
                 $sql = "SELECT * FROM user WHERE numEmploye = '$numEmplo' AND password = '$passwd'";
                 $result = $conn->query($sql);
 
@@ -58,7 +69,11 @@ session_start();
                     $row = $result->fetch_assoc();
                     echo "<h1>Connecté</h1>";
                     $_SESSION["connexion"] = true;
+                    $_SESSION["nom"] = $row['nom'];
+                    $_SESSION["prenom"] = $row['prenom'];
+
                     header("Location: eventBD.php");
+                    
                 } else {
                         $erreur = true;
                         $numEmplo = "";
@@ -108,6 +123,12 @@ session_start();
         $data = addslashes($data);
         $data = htmlspecialchars($data);
         return $data;
+    }
+    function prompt($prompt_msg){
+        echo("<script type='text/javascript'> var answer = prompt('".$prompt_msg."'); </script>");
+
+        $answer = "<script type='text/javascript'> document.write(answer); </script>";
+        return($answer);
     }
     ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

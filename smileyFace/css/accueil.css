@@ -56,24 +56,18 @@ th, td {
 #butModify {
     /*background-color: #ffc107;*/
    /* border: solid black 2px;*/
-     background-color: white;
+    background-color: white;
     border: solid lightgrey 2px;
-} 
-
-#butModify:hover {
+} #butModify:hover {
     /*background-color: #be950c;*/
     background-color: lightgrey;
     border: solid lightgrey 2px;
-}
-
-#butRemove {
+} #butRemove {
     /*background-color: #dc3545;*/
     /* border: solid black 2px;*/
     background-color: white;
     border: solid lightgrey 2px;
-} 
-
-#butRemove:hover {
+} #butRemove:hover {
    /* background-color: #6f1d25;*/
    background-color: lightgrey;
     border: solid lightgrey 2px;
@@ -84,6 +78,25 @@ th, td {
     border: solid black 1px;
 }
 
+#butLaunch {
+   transform: rotate(-180deg);
+    border: solid lightgrey 2px;
+} #butLaunch:hover {
+    /* background-color: #6f1d25;*/
+    background-color: lightgrey;
+     border: solid lightgrey 2px;
+ }
+
+#butStop {
+    border: solid lightgrey 2px;
+} #butStop:hover {
+    /* background-color: #6f1d25;*/
+    background-color: lightgrey;
+     border: solid lightgrey 2px;
+ } 
+
+
+
 /*
 128578  --high
 128528 --mid
@@ -92,4 +105,15 @@ th, td {
 8592 --back
 8656 --back
 8701 --back
+
+
+
+
+127758-Terre
+128100-Étudiant
+128197-Date
+128202-Statistiques
+128640 -- Fusée
+128721-Stopper
+9989-lancer
 */
