@@ -9,8 +9,9 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://www.cegeptr.qc.ca/wp-content/themes/acolyte-2_1_5/assets/icons/favicon-96x96.png">
     <link rel="stylesheet" href="css/connexion.css">
-    <title>create.php</title>
+    <title>Création - Cégep de Trois-Rivières</title>
 </head>
 
 <body>
@@ -99,7 +100,7 @@ session_start();
                             <span><?php echo $errorNumEplo; ?></span>
                         </div>
                         <div class="form-group">
-                            <label for="recoverEmail">Recovery Email</label>
+                            <label for="recoverEmail">Email de récupération</label>
                             <input type="text" class="form-control" placeholder="Email de récupération" name="recoverEmail">
                             <span><?php echo $errorRecoverEmail; ?></span>
                         </div>

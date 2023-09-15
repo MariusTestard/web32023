@@ -7,8 +7,9 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://www.cegeptr.qc.ca/wp-content/themes/acolyte-2_1_5/assets/icons/favicon-96x96.png">
     <link rel="stylesheet" href="css/accueil.css">
-    <title>userBD.php</title>
+    <title>Utilisateurs - Cégep de Trois-Rivières</title>
 </head>
 <body>
     <?php
@@ -35,7 +36,7 @@ session_start();
                <p>Table des utilisateurs</p>
             </div>
             <div class="col-2 p-0 text-end">
-                <button class="btn buttonNav" id="butCreate" onclick="window.location.href='create.php'">Création</button>
+                
                 <button class="btn buttonNav" id="butSignOut" onclick="window.location.href='deconnexion.php'">Déconnexion</button>
             </div>
         </div>
@@ -44,11 +45,10 @@ session_start();
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">numEmploye</th>
-                            <th scope="col">Password</th>
+                            <th scope="col">N° Employé</th>
                             <th scope="col">Prenom</th>
                             <th scope="col">Nom</th>
-                            <th scope="col">Recover Email</th>
+                            <th scope="col">Email de récupération</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -59,7 +59,6 @@ session_start();
                     <tbody>
                         <tr>
                             <th scope="row"><?php echo $row["numEmploye"] ?></th>
-                            <td><?php echo $row["password"] ?></td>
                             <td><?php echo $row["prenom"] ?></td>
                             <td><?php echo $row["nom"] ?></td>
                             <td><?php echo $row["recoverEmail"] ?></td>
@@ -76,6 +75,7 @@ session_start();
                     $conn->close();
                 ?>
                 <table>
+                <button class="btn buttonNav" id="butCreate" onclick="window.location.href='create.php'">Création</button>
             </div>
         </div>
     </div>

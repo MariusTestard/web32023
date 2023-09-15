@@ -9,8 +9,9 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://www.cegeptr.qc.ca/wp-content/themes/acolyte-2_1_5/assets/icons/favicon-96x96.png">
     <link rel="stylesheet" href="css/connexion.css">
-    <title>ajouter.php</title>
+    <title>Ajouter  - Cégep de Trois-Rivières</title>
 </head>
 
 <body>
@@ -95,12 +96,12 @@ session_start();
                             <span><?php echo $errorDepartement; ?></span>
                         </div>
                         <div class="form-group">
-                            <label for="lieu">Prénom</label>
+                            <label for="lieu">Lieu</label>
                             <input type="text" class="form-control" placeholder="Lieu" name="lieu">
                             <span><?php echo $errorLieu; ?></span>
                         </div>
                         <div class="form-group">
-                            <label for="nom">Date</label>
+                            <label for="nom">Date et heure</label>
                             <input type="datetime-local" class="form-control" placeholder="Date" name="date">
                             <span><?php echo $errorDate; ?></span>
                         </div>

@@ -7,8 +7,9 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://www.cegeptr.qc.ca/wp-content/themes/acolyte-2_1_5/assets/icons/favicon-96x96.png">
     <link rel="stylesheet" href="css/accueil.css">
-    <title>eventBD.php</title>
+    <title>Événements - Cégep de Trois-Rivières</title>
 </head>
 <body>
     <?php
@@ -35,7 +36,7 @@ session_start();
                <p>Table des évènements</p>
             </div>
             <div class="col-2 p-0 text-end">
-                <button class="btn buttonNav" id="butCreate" onclick="window.location.href='create.php'">Création</button>
+
                 <button class="btn buttonNav" id="butSignOut" onclick="window.location.href='deconnexion.php'">Déconnexion</button>
             </div>
         </div>
@@ -49,7 +50,7 @@ session_start();
                             <th scope="col">Département</th>
                             <th scope="col">Lieu</th>
                             <th scope="col">Date</th>
-                            
+                            <th scope="col">Satisfaction</th>
                             <!--
                             <th scope="col">Date</th>
                             <th scope="col">Date</th>
@@ -71,6 +72,7 @@ session_start();
                             <td><?php echo $row["departement"] ?></td>
                             <td><?php echo $row["lieu"] ?></td>
                             <td><?php echo $row["date"] ?></td>
+                            <td></td>
                             <td>
                                 <button class="btn btn-warning" id="butModify">&#128221;</button>
                                 <a href="supprimer.php?id=<?php echo $row["idEvent"] ?>&eoU=<?php echo 0?>" class="btn btn-danger" type="button" id="butRemove">&#10060;</a>
