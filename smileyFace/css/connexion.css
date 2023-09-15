@@ -56,12 +56,12 @@ input{
 }
 
 #butBack {
-    background-color: lightgrey;
+    background-color: lightcoral;
     border: solid black 1px;
 }
 
 #butBack:hover {
-    background-color: grey;
+    background-color: lightsalmon;
 }
 
 #butBack a {

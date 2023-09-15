@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +36,7 @@
             </div>
             <div class="col-2 p-0 text-end">
                 <button class="btn buttonNav" id="butCreate" onclick="window.location.href='create.php'">Création</button>
-                <button class="btn buttonNav" id="butSignOut" onclick="window.location.href='connexion.php'">Déconnexion</button>
+                <button class="btn buttonNav" id="butSignOut" onclick="window.location.href='deconnexion.php'">Déconnexion</button>
             </div>
         </div>
         <div class="row mainWindow">
@@ -53,7 +56,6 @@
                             <th scope="col">Date</th>
                             -->
 
-
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -71,18 +73,19 @@
                             <td><?php echo $row["date"] ?></td>
                             <td>
                                 <button class="btn btn-warning" id="butModify">&#128221;</button>
-                                <a href="supprimer.php?id=<?php echo $row["idEvent"] ?>?EoU=<?php echo 0?>" class="btn btn-danger" type="button" id="butRemove">&#10060;</a>
+                                <a href="supprimer.php?id=<?php echo $row["idEvent"] ?>&eoU=<?php echo 0?>" class="btn btn-danger" type="button" id="butRemove">&#10060;</a>
                             </td>
                         </tr>
                     </tbody>
                 <?php
                     }
                     } else {
-                        echo "0 results";
+                        echo "Aucun résultats";
                     }
                     $conn->close();
                 ?>
                 <table>
+                <a href="ajouter.php" class="btn btn-primary" role="button" id="butAjouter">Ajouter</a>
             </div>
         </div>
     </div>

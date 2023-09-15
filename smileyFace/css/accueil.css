@@ -79,6 +79,11 @@ th, td {
     border: solid lightgrey 2px;
 }
 
+#butAjouter {
+    background-color: rgb(62, 138, 185);
+    border: solid black 1px;
+}
+
 /*
 128578  --high
 128528 --mid

@@ -14,4 +14,7 @@ html, body {
 
 img {
     margin: 15px;
+    max-width: 200px; 
+    height: auto; 
+
 }

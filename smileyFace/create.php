@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,7 +51,6 @@
             $nom = test_input($_POST["nom"]);
         }
 
-        // Inserer dans la base de données
         if ($erreur != true) {
             $numEmplo = $_POST['numEmplo'];
             $recoverEmail = $_POST['recoverEmail'];
@@ -74,7 +76,7 @@
             } else {
                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             }
-            header("Location: eventBD.php");
+            header("Location: userBD.php");
             mysqli_close($conn); 
     ?>
         <?php

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +36,7 @@
             </div>
             <div class="col-2 p-0 text-end">
                 <button class="btn buttonNav" id="butCreate" onclick="window.location.href='create.php'">Création</button>
-                <button class="btn buttonNav" id="butSignOut" onclick="window.location.href='connexion.php'">Déconnexion</button>
+                <button class="btn buttonNav" id="butSignOut" onclick="window.location.href='deconnexion.php'">Déconnexion</button>
             </div>
         </div>
         <div class="row mainWindow">
@@ -61,7 +64,7 @@
                             <td><?php echo $row["nom"] ?></td>
                             <td><?php echo $row["recoverEmail"] ?></td>
                             <td>
-                                <a href="supprimer.php?id=<?php echo $row["numEmploye"] ?>?EoU=<?php echo 1?>" class="btn btn-danger" type="button" id="butRemove">&#10060;</a>
+                                <a href="supprimer.php?id=<?php echo $row["numEmploye"] ?>&eoU=<?php echo 1?>" class="btn btn-danger" type="button" id="butRemove">&#10060;</a>
                             </td>
                         </tr>
                     </tbody>

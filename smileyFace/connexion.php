@@ -1,7 +1,5 @@
 <?php
-/*
 session_start();
-*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,12 +14,10 @@ session_start();
 </head>
 <body>
     <?php
-    /*
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         $_SESSION["connexion"] = false;
     }
     if ($_SESSION["connexion"] == false) {
-        */
         $numEmplo = $passwd = "";
         $errorNumEplo = $errorPasswd = "";
         $erreur = false;
@@ -74,9 +70,14 @@ session_start();
             }
         if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
         ?>
-        <div class="container-fluid h-100">
-            <div class="row middle h-100">
-                <div class="col-2">
+        <div class="container-fluid h-100 d-flex flex-column">
+            <div class="row top-left test1">
+                <div class="col-1 p-0 m-0">
+                <button type="button" class="btn" id="butBack" onclick="window.location.href='index.php'">Revenir</button>
+                </div>
+            </div>
+            <div class="row middle test99 flex-grow-1 d-flex">
+                <div class="col-2 my-form-container">
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="form-group">
                             <label for="numEmplo">N° Employé</label>
@@ -97,6 +98,9 @@ session_start();
         </div>
     <?php
         }
+    } else {
+        header("Location: userBD.php");
+    }
     function test_input($data)
     {
         $data = trim($data);
