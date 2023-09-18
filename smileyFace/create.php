@@ -89,6 +89,9 @@ session_start();
                 <div class="col-2 my-form-container">
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="form-group">
+                            <h3>Création d'un utilisateur</h3>
+                        </div>
+                        <div class="form-group">
                             <label for="numEmplo">N° Employé</label>
                             <input type="text" class="form-control" placeholder="N° Employé" name="numEmplo">
                             <span><?php echo $errorNumEplo; ?></span>

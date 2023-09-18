@@ -10,4 +10,10 @@ Modification d'évènements
 Mettre couleur/background
 ScrollList évènements
 Order sur un attribut (date, departement) pour les évènements
+
+SELECT * FROM smileyFace ORDER BY date ASC
+SELECT * FROM smileyFace ORDER BY date DESC
+SELECT * FROM smileyFace ORDER BY departement ASC
+SELECT * FROM smileyFace ORDER BY departement DESC
+
 Faire une navbar (Dropdown)

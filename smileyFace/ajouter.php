@@ -86,6 +86,9 @@ session_start();
                 <div class="col-2 my-form-container">
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="form-group">
+                            <h3>Création d'un évènement</h3>
+                        </div>
+                        <div class="form-group">
                             <label for="nom">Nom de l'évènement</label>
                             <input type="text" class="form-control" placeholder="Nom de l'évènement" name="nom">
                             <span><?php echo $errorNom; ?></span>
