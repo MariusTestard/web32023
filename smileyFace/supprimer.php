@@ -27,9 +27,16 @@ session_start();
         } else {
             if ($eoU === "1") {
                 $toF = true;
-                $sql = "DELETE FROM user WHERE numEmploye=$id";
+                $sql = "DELETE FROM user WHERE numEmploye = $id";
             } else {
-                $sql = "DELETE FROM event WHERE idEvent=$id";
+                $sql = "DELETE FROM satisfaction WHERE idSatisfaction = $id";
+
+                if ($conn->query($sql) === TRUE) {
+                    echo "Record deleted succesfully";
+                } else {
+                    echo "Error deleting record: " . $conn->error;
+                }
+                  $sql = "DELETE FROM event WHERE idEvent = $id";
             }
             if ($conn->query($sql) === TRUE) {
                 echo "Record deleted succesfully";

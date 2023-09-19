@@ -33,7 +33,7 @@ session_start();
     <div class="container-fluid h-100">
         <div class="row navBar">
             <div class="col-2 p-0">
-                <button class="btn buttonNav" id="butUser" onclick="window.location.href='userBD.php'">Utilisateur</button>
+               <!-- <button class="btn buttonNav" id="butUser" onclick="window.location.href='userBD.php'">Utilisateur</button> -->
                 <div class="dropdown">
                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink">
                         <?php
@@ -62,7 +62,6 @@ session_start();
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">idEvent</th>
                             <th scope="col">Nom</th>
                             <th scope="col">Département
                                 <div class="dropdown">
@@ -92,15 +91,14 @@ session_start();
                     ?>
                             <tbody>
                                 <tr>
-                                    <th scope="row"><?php echo $row["idEvent"] ?></th>
                                     <td><?php echo $row["nom"] ?></td>
                                     <td><?php echo $row["departement"] ?></td>
                                     <td><?php echo $row["lieu"] ?></td>
                                     <td><?php echo $row["date"] ?></td>
                                     <td></td>
                                     <td>
-                                        <a href="modifier.php?id=<?php echo $row["idEvent"] ?>" class="btn" type="button" id="butLaunch" title="Lancer">&#128640;</a>
-                                        <a href="modifier.php?id=<?php echo $row["idEvent"] ?>" class="btn" type="button" id="butStop" title="Arrêter">&#128721;</a>
+                                        <a href="launch.php?id=<?php echo $row["idEvent"] ?>" class="btn" type="button" id="butLaunch" title="Lancer">&#128640;</a>
+                                        <a href="stop.php?id=<?php echo $row["idEvent"] ?>" class="btn" type="button" id="butStop" title="Arrêter">&#128721;</a>
                                         <a href="modifier.php?id=<?php echo $row["idEvent"] ?>" class="btn btn-warning" type="button" id="butModify" title="Modifier">&#128221;</a>
                                         <a href="supprimer.php?id=<?php echo $row["idEvent"] ?>&eoU=<?php echo 0 ?>" class="btn btn-danger" type="button" id="butRemove" title="Supprimer">&#10060;</a>
 
@@ -116,6 +114,33 @@ session_start();
                     ?>
                     <table>
                         <a href="ajouter.php" class="btn btn-primary" role="button" id="butAjouter">Ajouter</a>
+
+
+                        <h3>
+                            <h4>Connecté en tant que: <?php echo $_SESSION["prenom"] . " " . $_SESSION["nom"] ?></h4>
+
+                            <?php 
+                            if($_SESSION["eventLive"] == 0) {
+                                $valEvent = "Aucun";
+                            } else {
+                                $valEvent = $_SESSION["eventLive"];
+                            }
+                            ?>
+                            <h4>Évènement en cours: <?php echo $valEvent ?></h4>
+                            <br>
+                            <?php 
+                            try {
+                                if($_SESSION["eventLiveError"] == 1) {
+                                    $valEventErr = "Cet évènement n'est pas en fonction";
+                                } else{
+                                    $valEventErr = "";
+                                }
+                            } catch (Exception $e) {
+                                $_SESSION["eventLiveError"] = 0;
+                            }
+                            ?>
+                            <h4><?php echo $valEventErr ?></h4>
+                        </h3>
             </div>
         </div>
     </div>

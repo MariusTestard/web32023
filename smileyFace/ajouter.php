@@ -46,6 +46,12 @@ session_start();
             $date = test_input($_POST["date"]);
         }
 
+
+
+
+
+
+
         if ($erreur != true) {
             $nom = $_POST['nom'];
             $departement = $_POST['departement'];
@@ -60,8 +66,21 @@ session_start();
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
+            // QUERY QUI CRÉE L'ÉVÈNEMENT
             $sql = "INSERT INTO event (idEvent, nom, departement, lieu, date)
             VALUES (NULL" . ",'" . $_POST['nom'] . "','" . $_POST['departement'] . "','" . $_POST['lieu'] . "','" . $_POST['date'] . "')";
+            
+            $conn->query('SET NAMES utf8');
+            if (mysqli_query($conn, $sql)) {
+                echo "Enregistrement réussi";
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+            }
+
+            // QUERY QUI CRÉE LA SATISFACTION LIÉ À L'ÉVÈNEMENT
+            $sql = "INSERT INTO satisfaction (idSatisfaction, highEtu, midEtu, lowEtu, highEmplo, midEmplo, lowEmplo)
+            VALUES(NULL, 0, 0, 0, 0, 0, 0)";
+            
             $conn->query('SET NAMES utf8');
             if (mysqli_query($conn, $sql)) {
                 echo "Enregistrement réussi";
@@ -69,7 +88,20 @@ session_start();
                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             }
             header("Location: eventBD.php");
-            mysqli_close($conn);         
+            
+            
+            
+            mysqli_close($conn);        
+            
+            
+
+
+
+
+
+
+
+
     ?>
         <?php
         }

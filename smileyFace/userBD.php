@@ -31,7 +31,7 @@ session_start();
     <div class="container-fluid h-100">
         <div class="row navBar">
             <div class="col-2 p-0">
-                <button class="btn buttonNav" id="butUser" onclick="window.location.href='eventBD.php'">Événement</button>
+               <!-- <button class="btn buttonNav" id="butUser" onclick="window.location.href='eventBD.php'">Événement</button> -->
                 <div class="dropdown">
                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink">
                         <?php

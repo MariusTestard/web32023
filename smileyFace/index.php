@@ -18,15 +18,15 @@ session_start();
             <div class="mainText">Votre avis nous importe</div>
         </div>
         <div class="row rows align-items-center text-center">
-            <div class="col-12">
-                <img class="img-fluid" src="img/smiley_smidoeuf.png" width="300px" height="300px" onclick="">
+        <div class="col-12 smileyFaces">
+                <img class="img-fluid smil" src="img/smiley_smidoeuf.png" width="300px" height="300px" onclick="">
                 <img class="img-fluid" src="img/smiley_mid.png" width="300px" height="300px" onclick="">
                 <img class="img-fluid" src="img/smiley_bad.png" width="300px" height="300px" onclick="">
             </div>
         </div>
         <div class="row rows align-items-end">
             <div class="col-12 d-flex justify-content-end">
-                <a href="connexion.php" class="btn btn-warning" type="button">Page de connexion</a>
+                <a href="connexion.php" class="btn btn-warning" type="button" id="butConnec">Page de connexion</a>
             </div>
         </div>
     </div>
