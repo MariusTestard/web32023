@@ -132,6 +132,7 @@ session_start();
                                         <td>
                                             <a href="launch.php?id=<?php echo $row["idEvent"] ?>" class="btn" type="button" id="butLaunch" title="Lancer">&#128640;</a>
                                             <a href="stop.php?id=<?php echo $row["idEvent"] ?>" class="btn" type="button" id="butStop" title="Arrêter">&#128721;</a>
+                                            <a href="reset.php?id=<?php echo $row["idEvent"] ?>" class="btn" type="button" id="butStop" title="Réinitialiser">&#128260;</a>
                                             <a href="modifier.php?id=<?php echo $row["idEvent"] ?>" class="btn btn-warning" type="button" id="butModify" title="Modifier">&#128221;</a>
                                             <a href="supprimer.php?id=<?php echo $row["idEvent"] ?>&eoU=<?php echo 0 ?>" class="btn btn-danger" type="button" id="butRemove" title="Supprimer">&#10060;</a>
                                         </td>
