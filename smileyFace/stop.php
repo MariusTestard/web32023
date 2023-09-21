@@ -11,14 +11,14 @@ session_start();
 </head>
 <body>
     <?php
-         $id = $_GET['id'];
-         $_SESSION['eventLiveError'] = 0;
-         if ($_SESSION['idEvent'] == $id) {
-            $_SESSION['eventLive'] = 0;
-            $_SESSION['eventLiveError'] = 0;
-         } else {
-            $_SESSION['eventLiveError'] = 1;
-         }
+        $id = $_GET['id'];
+        if ($_SESSION['idEvent'] != $id) {
+            $_SESSION['eventLiveError'] = "Cet évènement n'est pas en fonction";
+        } else {
+            $_SESSION['eventLiveError'] = "";
+            $_SESSION['eventLive'] = "Aucun";
+        }
+        header("Location: eventBD.php");
     ?>
 </body>
 </html>

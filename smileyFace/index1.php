@@ -13,15 +13,17 @@ session_start();
     <title>Satisfaction Employeur- Cégep de Trois-Rivières</title>
 </head>
 <body>
+
+    <!-- ÉTUDIANT -->
     <div class="container-fluid h-100">
         <div class="row rows align-items-center text-center" >
             <div class="mainText">Votre avis nous importe</div>
         </div>
         <div class="row rows align-items-center text-center">
             <div class="col-12">
-                <img class="img-fluid" src="img/smiley_smidoeuf.png" width="300px" height="300px">
-                <img class="img-fluid" src="img/smiley_mid.png" width="300px" height="300px">
-                <img class="img-fluid" src="img/smiley_bad.png" width="300px" height="300px">
+                <a href="/web32023/smileyFace/smileyEtu/highEtu.php " class="hrefSmiley"> <img class="img-fluid" src="img/smiley_smidoeuf.png" width="300px" height="300px"> </a>
+                <a href="/smileyEtu/midEtu.php" class="hrefSmiley"> <img class="img-fluid" src="img/smiley_mid.png" width="300px" height="300px"> </a>
+                <a href="/smileyEtu/lowEtu.php" class="hrefSmiley"> <img class="img-fluid" src="img/smiley_bad.png" width="300px" height="300px"> </a>
             </div>
         </div>
         <div class="row rows align-items-end">

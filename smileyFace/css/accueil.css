@@ -80,7 +80,7 @@ th, td {
 
 #butLaunch {
    transform: rotate(-180deg);
-    border: solid lightgrey 2px;
+   border: solid lightgrey 2px;
 } #butLaunch:hover {
     /* background-color: #6f1d25;*/
     background-color: lightgrey;

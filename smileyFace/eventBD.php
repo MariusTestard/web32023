@@ -3,7 +3,6 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +12,6 @@ session_start();
     <script src="js/script.js"></script>
     <title>Événements - Cégep de Trois-Rivières</title>
 </head>
-
 <body>
     <?php
     $servername = "localhost";
@@ -32,7 +30,7 @@ session_start();
     ?>
     <div class="container-fluid h-100">
         <div class="row navBar">
-            <div class="col-2 p-0">
+            <div class="col-4 p-0">
                <!-- <button class="btn buttonNav" id="butUser" onclick="window.location.href='userBD.php'">Utilisateur</button> -->
                 <div class="dropdown">
                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink">
@@ -44,17 +42,23 @@ session_start();
 
                     <div class="dropdown-content">
                         <button class="dropdown-item" onclick="window.location.href='userBD.php'">Utilisateurs</button>
-                        <button class="dropdown-item" onclick="window.location.href='index.php'">Vote Étudiant</button>
-                        <button class="dropdown-item" onclick="window.location.href='index1.php'">Vote Employeur</button>
+                        <button class="dropdown-item" onclick="window.location.href='index1.php'">Vote Étudiant</button>
+                        <button class="dropdown-item" onclick="window.location.href='index.php'">Vote Employeur</button>
                     </div>
                 </div>
+                <div>
+                    Connecté en tant que: <h5> <?php echo $_SESSION["prenom"] . " " . $_SESSION["nom"]; ?> </h5>
+                </div>
             </div>
-            <div class="col-8 p-2 text-center">
+            <div class="col-4 p-2 text-center">
                 <p>Table des événements</p>
+                <h4><?php echo $_SESSION['eventLiveError']; ?></h4>
             </div>
-            <div class="col-2 p-0 text-end">
-
+            <div class="col-4 p-0 text-end">
                 <button class="btn buttonNav" id="butSignOut" onclick="window.location.href='deconnexion.php'">Déconnexion</button>
+                <div class="flexEventName">
+                    Évènement en cours: <h5> <?php echo $_SESSION['eventLive']; ?> </h5>
+                </div>
             </div>
         </div>
         <div class="row mainWindow">
@@ -75,17 +79,11 @@ session_start();
                             <th scope="col">Lieu</th>
                             <th scope="col" onclick="sortTableByDate()">Date</th>
                             <th scope="col">Satisfaction</th>
-                            <!--
-                            <th scope="col">Date</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Date</th>
-                            -->
-
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <?php
-                    // IL FAUT RAJOUTER DES CHAMPS DANS LE TABLEAU POUR CONCATÉNER LA TABLE "SATISFACTION" ----------------------------------------------------
+                    // ------------------------------ IL FAUT RAJOUTER DES CHAMPS DANS LE TABLEAU POUR CONCATÉNER LA TABLE "SATISFACTION" ----------------------------------------------------
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                     ?>
@@ -114,37 +112,9 @@ session_start();
                     ?>
                     <table>
                         <a href="ajouter.php" class="btn btn-primary" role="button" id="butAjouter">Ajouter</a>
-
-
-                        <h3>
-                            <h4>Connecté en tant que: <?php echo $_SESSION["prenom"] . " " . $_SESSION["nom"] ?></h4>
-
-                            <?php 
-                            if($_SESSION["eventLive"] == 0) {
-                                $valEvent = "Aucun";
-                            } else {
-                                $valEvent = $_SESSION["eventLive"];
-                            }
-                            ?>
-                            <h4>Évènement en cours: <?php echo $valEvent ?></h4>
-                            <br>
-                            <?php 
-                            try {
-                                if($_SESSION["eventLiveError"] == 1) {
-                                    $valEventErr = "Cet évènement n'est pas en fonction";
-                                } else{
-                                    $valEventErr = "";
-                                }
-                            } catch (Exception $e) {
-                                $_SESSION["eventLiveError"] = 0;
-                            }
-                            ?>
-                            <h4><?php echo $valEventErr ?></h4>
-                        </h3>
             </div>
         </div>
     </div>
-
     <?php
     function calc($high, $mid, $low)
     {
@@ -157,5 +127,4 @@ session_start();
     ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
-
 </html>

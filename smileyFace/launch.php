@@ -11,6 +11,8 @@ session_start();
 </head>
 <body>
     <?php
+
+    // ----------------------------------------------- EMPÊCHER L'ASSIGNATION DE $_SESSION['idEvent'] SI UN ÉVÈNEMENT EST DÉJA EN COURS ---------------------------------------------------
     $id = $_GET['id'];
     $_SESSION['idEvent'] = $id;
 
@@ -23,21 +25,19 @@ session_start();
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-
-    $sql = "SELECT nom, departement FROM event";
+    $sql = "SELECT nom, departement FROM event WHERE idEvent = '$id'";
     $conn->query('SET NAMES utf8');
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
+        $nom = $row["nom"];
+        $departement = $row["departement"];
+        $_SESSION['eventLive'] = $nom . " (Département " . $departement . ")";
+    } else {
+        $_SESSION['eventLive'] = "Aucun";
     }
-    $nom = $row["nom"];
-    $departement = $row["departement"];
-
-
-    $_SESSION['eventLive'] = $nom . " pour " . $departement;
-
     $conn->close();
-
+    header("Location: eventBD.php");
     ?>
 </body>
 </html>
