@@ -39,7 +39,7 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`idEvent`, `nom`, `departement`, `lieu`, `date`) VALUES
-(1, 'sfdg', 'sfg', 'sfdg', '2023-08-30 16:39:00');
+(1, 'Test1', 'Test1', 'Test1', '2023-08-30 16:39:00');
 
 -- --------------------------------------------------------
 

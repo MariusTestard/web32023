@@ -113,6 +113,10 @@ th, td {
     display: block;
 }
 
+#eventErrorMessage{
+    color: red;
+    font-weight: bold;
+}
 /*
 128578  --high
 128528 --mid
@@ -132,4 +136,7 @@ th, td {
 128640 -- Fusée
 128721-Stopper
 9989-lancer
+
+127891-Mortier
+
 */

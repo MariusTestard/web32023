@@ -3,6 +3,7 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,11 +13,12 @@ session_start();
     <link rel="stylesheet" href="css/index1.css">
     <title>Satisfaction Employeur- Cégep de Trois-Rivières</title>
 </head>
+
 <body>
 
     <!-- ÉTUDIANT -->
     <div class="container-fluid h-100">
-        <div class="row rows align-items-center text-center" >
+        <div class="row rows align-items-center text-center">
             <div class="mainText">Votre avis nous importe</div>
         </div>
         <div class="row rows align-items-center text-center">
@@ -34,4 +36,5 @@ session_start();
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
+
 </html>

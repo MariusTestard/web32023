@@ -3,6 +3,7 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,8 +13,14 @@ session_start();
     <script src="js/script.js"></script>
     <title>Événements - Cégep de Trois-Rivières</title>
 </head>
+
 <body>
     <?php
+    if ($_SESSION['EventFirstCo']) {
+        $_SESSION['eventLiveError'] = "";
+        $_SESSION['eventLive'] = "Aucun"; //À pense a qqc de meilleur
+        $_SESSION['EventFirstCo'] = false;
+    }
     $servername = "localhost";
     $username = "root";
     $password = "root";
@@ -25,13 +32,15 @@ session_start();
     }
 
     $sql = "SELECT idEvent, nom, departement, lieu, date FROM event";
+    $sqlSatis = "SELECT idSatisfaction, highEtu, midEtu, lowEtu, highEmplo, midEmplo, lowEmplo FROM satisfaction";
     $conn->query('SET NAMES utf8');
     $result = $conn->query($sql);
+    $resultSatis = $conn->query($sqlSatis);
     ?>
     <div class="container-fluid h-100">
         <div class="row navBar">
             <div class="col-4 p-0">
-               <!-- <button class="btn buttonNav" id="butUser" onclick="window.location.href='userBD.php'">Utilisateur</button> -->
+                <!-- <button class="btn buttonNav" id="butUser" onclick="window.location.href='userBD.php'">Utilisateur</button> -->
                 <div class="dropdown">
                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink">
                         <?php
@@ -52,7 +61,7 @@ session_start();
             </div>
             <div class="col-4 p-2 text-center">
                 <p>Table des événements</p>
-                <h4><?php echo $_SESSION['eventLiveError']; ?></h4>
+                <h4 id="eventErrorMessage"><?php echo $_SESSION['eventLiveError']; ?></h4>
             </div>
             <div class="col-4 p-0 text-end">
                 <button class="btn buttonNav" id="butSignOut" onclick="window.location.href='deconnexion.php'">Déconnexion</button>
@@ -77,33 +86,48 @@ session_start();
                                 </div>
                             </th>
                             <th scope="col">Lieu</th>
-                            <th scope="col" onclick="sortTableByDate()">Date</th>
+                            <th scope="col" onclick="sortTableByDate()">Date et heure</th>
                             <th scope="col">Satisfaction</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <?php
-                    // ------------------------------ IL FAUT RAJOUTER DES CHAMPS DANS LE TABLEAU POUR CONCATÉNER LA TABLE "SATISFACTION" ----------------------------------------------------
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
+                            if ($rowSatis = $resultSatis->fetch_assoc()) {
                     ?>
-                            <tbody>
-                                <tr>
-                                    <td><?php echo $row["nom"] ?></td>
-                                    <td><?php echo $row["departement"] ?></td>
-                                    <td><?php echo $row["lieu"] ?></td>
-                                    <td><?php echo $row["date"] ?></td>
-                                    <td></td>
-                                    <td>
-                                        <a href="launch.php?id=<?php echo $row["idEvent"] ?>" class="btn" type="button" id="butLaunch" title="Lancer">&#128640;</a>
-                                        <a href="stop.php?id=<?php echo $row["idEvent"] ?>" class="btn" type="button" id="butStop" title="Arrêter">&#128721;</a>
-                                        <a href="modifier.php?id=<?php echo $row["idEvent"] ?>" class="btn btn-warning" type="button" id="butModify" title="Modifier">&#128221;</a>
-                                        <a href="supprimer.php?id=<?php echo $row["idEvent"] ?>&eoU=<?php echo 0 ?>" class="btn btn-danger" type="button" id="butRemove" title="Supprimer">&#10060;</a>
-
-                                    </td>
-                                </tr>
-                            </tbody>
+                                <tbody>
+                                    <tr>
+                                        <td><?php echo $row["nom"] ?></td>
+                                        <td><?php echo $row["departement"] ?></td>
+                                        <td><?php echo $row["lieu"] ?></td>
+                                        <td><?php echo $row["date"] ?></td>
+                                        <td>
+                                            <?php
+                                            $satisfactionValues = [
+                                                "highEtu" => "smiley_smidoeuf.png",
+                                                "midEtu" => "smiley_mid.png",
+                                                "lowEtu" => "smiley_bad.png",
+                                                "highEmplo" => "smiley_smidoeuf.png",
+                                                "midEmplo" => "smiley_mid.png",
+                                                "lowEmplo" => "smiley_bad.png",
+                                            ];
+                                            foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
+                                                echo '<img class="img-fluid" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
+                                                echo $rowSatis[$satisfactionKey] . " ";
+                                            }
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <a href="launch.php?id=<?php echo $row["idEvent"] ?>" class="btn" type="button" id="butLaunch" title="Lancer">&#128640;</a>
+                                            <a href="stop.php?id=<?php echo $row["idEvent"] ?>" class="btn" type="button" id="butStop" title="Arrêter">&#128721;</a>
+                                            <a href="modifier.php?id=<?php echo $row["idEvent"] ?>" class="btn btn-warning" type="button" id="butModify" title="Modifier">&#128221;</a>
+                                            <a href="supprimer.php?id=<?php echo $row["idEvent"] ?>&eoU=<?php echo 0 ?>" class="btn btn-danger" type="button" id="butRemove" title="Supprimer">&#10060;</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
                     <?php
+                            }
                         }
                     } else {
                         echo "Aucun résultats";
@@ -127,4 +151,5 @@ session_start();
     ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
+
 </html>

@@ -11,14 +11,14 @@ session_start();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="icon" type="image/png" sizes="96x96" href="https://www.cegeptr.qc.ca/wp-content/themes/acolyte-2_1_5/assets/icons/favicon-96x96.png">
     <link rel="stylesheet" href="css/connexion.css">
-    <title>Ajouter  - Cégep de Trois-Rivières</title>
+    <title>Ajouter d'évènement - Cégep de Trois-Rivières</title>
 </head>
 
 <body>
     <?php
-        $nom = $departement = $lieu = $date = "";
-        $errorNom = $errorDepartement = $errorLieu = $errorDate = "";
-        $erreur = false;
+    $nom = $departement = $lieu = $date = "";
+    $errorNom = $errorDepartement = $errorLieu = $errorDate = "";
+    $erreur = false;
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST['nom'])) {
@@ -47,11 +47,6 @@ session_start();
         }
 
 
-
-
-
-
-
         if ($erreur != true) {
             $nom = $_POST['nom'];
             $departement = $_POST['departement'];
@@ -69,7 +64,7 @@ session_start();
             // QUERY QUI CRÉE L'ÉVÈNEMENT
             $sql = "INSERT INTO event (idEvent, nom, departement, lieu, date)
             VALUES (NULL" . ",'" . $_POST['nom'] . "','" . $_POST['departement'] . "','" . $_POST['lieu'] . "','" . $_POST['date'] . "')";
-            
+
             $conn->query('SET NAMES utf8');
             if (mysqli_query($conn, $sql)) {
                 echo "Enregistrement réussi";
@@ -80,7 +75,7 @@ session_start();
             // QUERY QUI CRÉE LA SATISFACTION LIÉ À L'ÉVÈNEMENT
             $sql = "INSERT INTO satisfaction (idSatisfaction, highEtu, midEtu, lowEtu, highEmplo, midEmplo, lowEmplo)
             VALUES(NULL, 0, 0, 0, 0, 0, 0)";
-            
+
             $conn->query('SET NAMES utf8');
             if (mysqli_query($conn, $sql)) {
                 echo "Enregistrement réussi";
@@ -88,17 +83,10 @@ session_start();
                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             }
             header("Location: eventBD.php");
-            
-            
-            
-            mysqli_close($conn);        
-            
-            
 
 
 
-
-
+            mysqli_close($conn);
 
 
 
@@ -109,9 +97,9 @@ session_start();
     if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
         ?>
         <div class="container-fluid h-100 d-flex flex-column">
-        <div class="row top-left test1">
+            <div class="row top-left test1">
                 <div class="col-1 p-0 m-0">
-                   <button type="button" class="btn" id="butBack" onclick="window.location.href='eventBD.php'">Revenir</button>
+                    <button type="button" class="btn" id="butBack" onclick="window.location.href='eventBD.php'">Revenir</button>
                 </div>
             </div>
             <div class="row middle test99 flex-grow-1 d-flex">

@@ -3,6 +3,7 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@ session_start();
     <link rel="stylesheet" href="js/script.js">
     <title>Utilisateurs - Cégep de Trois-Rivières</title>
 </head>
+
 <body>
     <?php
     $servername = "localhost";
@@ -31,9 +33,9 @@ session_start();
     <div class="container-fluid h-100">
         <div class="row navBar">
             <div class="col-2 p-0">
-               <!-- <button class="btn buttonNav" id="butUser" onclick="window.location.href='eventBD.php'">Événement</button> -->
+                <!-- <button class="btn buttonNav" id="butUser" onclick="window.location.href='eventBD.php'">Événement</button> -->
                 <div class="dropdown">
-                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink">
                         <?php
                         $page_name = 'Utilisateurs';
                         echo $page_name;
@@ -43,6 +45,9 @@ session_start();
                         <button class="dropdown-item" onclick="window.location.href='eventBD.php'">Événements</button>
                         <button class="dropdown-item" onclick="window.location.href='index.php'">Vote Étudiant</button>
                         <button class="dropdown-item" onclick="window.location.href='index1.php'">Vote Employeur</button>
+                    </div>
+                    <div>
+                        Connecté en tant que: <h5> <?php echo $_SESSION["prenom"] . " " . $_SESSION["nom"]; ?> </h5>
                     </div>
                 </div>
             </div>
@@ -89,9 +94,6 @@ session_start();
                     ?>
                     <table>
                         <button class="btn buttonNav" id="butCreate" onclick="window.location.href='create.php'">Création</button>
-                        <h3>
-                            <h4>Connecté en tant que: <?php echo $_SESSION["prenom"] . " " . $_SESSION["nom"] ?></h4>
-                        </h3>
             </div>
         </div>
     </div>

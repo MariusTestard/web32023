@@ -11,14 +11,14 @@ session_start();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="icon" type="image/png" sizes="96x96" href="https://www.cegeptr.qc.ca/wp-content/themes/acolyte-2_1_5/assets/icons/favicon-96x96.png">
     <link rel="stylesheet" href="css/connexion.css">
-    <title>Création - Cégep de Trois-Rivières</title>
+    <title>Création d'usager- Cégep de Trois-Rivières</title>
 </head>
 
 <body>
     <?php
-       $numEmplo = $passwd = $recoverEmail = $prenom = $nom = "";
-       $errorNumEplo = $errorPasswd = $errorRecoverEmail = $errorPrenom = $errorNom = "";
-       $erreur = false;
+    $numEmplo = $passwd = $recoverEmail = $prenom = $nom = "";
+    $errorNumEplo = $errorPasswd = $errorRecoverEmail = $errorPrenom = $errorNom = "";
+    $erreur = false;
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST['numEmplo'])) {
@@ -72,17 +72,17 @@ session_start();
                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             }
             header("Location: userBD.php");
-            mysqli_close($conn); 
+            mysqli_close($conn);
     ?>
         <?php
-            }
         }
+    }
     if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
         ?>
-         <div class="container-fluid h-100 d-flex flex-column">
+        <div class="container-fluid h-100 d-flex flex-column">
             <div class="row top-left test1">
                 <div class="col-1 p-0 m-0">
-                   <button type="button" class="btn" id="butBack" onclick="window.location.href='eventBD.php'">Revenir</button>
+                    <button type="button" class="btn" id="butBack" onclick="window.location.href='eventBD.php'">Revenir</button>
                 </div>
             </div>
             <div class="row middle test99 flex-grow-1 d-flex">
@@ -112,7 +112,7 @@ session_start();
                             <span><?php echo $errorNom; ?></span>
                         </div>
                         <div class="middle">
-                        <button type="submit" class="btn btn-success mt-2 maxlargeur">Créer</button>
+                            <button type="submit" class="btn btn-success mt-2 maxlargeur">Créer</button>
                         </div>
                     </form>
                 </div>
