@@ -23,9 +23,9 @@ session_start();
         </div>
         <div class="row rows align-items-center text-center">
             <div class="col-12 smileyFaces">
-                <a href="smileyEmplo/highEmplo.php" class="hrefSmiley"> <img class="img-fluid" src="img/smiley_smidoeuf.png" width="300px" height="300px"> </a>
-                <a href="smileyEmplo/midEmplo.php" class="hrefSmiley"> <img class="img-fluid" src="img/smiley_mid.png" width="300px" height="300px"> </a>
-                <a href="smileyEmplo/lowEmplo.php" class="hrefSmiley"> <img class="img-fluid" src="img/smiley_bad.png" width="300px" height="300px"> </a>
+                <a href="smileysCount/high.php?eoU=<?php echo 0; ?>" class="hrefSmiley"> <img class="img-fluid" src="img/smiley_smidoeuf.png" width="300px" height="300px"> </a>
+                <a href="smileysCount/mid.php?eoU=<?php echo 0; ?>" class="hrefSmiley"> <img class="img-fluid" src="img/smiley_mid.png" width="300px" height="300px"> </a>
+                <a href="smileysCount/low.php?eoU=<?php echo 0; ?>" class="hrefSmiley"> <img class="img-fluid" src="img/smiley_bad.png" width="300px" height="300px"> </a>
             </div>
         </div>
         <div class="row rows align-items-end">

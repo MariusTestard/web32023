@@ -87,7 +87,8 @@ session_start();
                             </th>
                             <th scope="col">Lieu</th>
                             <th scope="col" onclick="sortTableByDate()">Date et heure</th>
-                            <th scope="col">Satisfaction</th>
+                            <th scope="col">Étudiant</th>
+                            <th scope="col">Employé</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -108,12 +109,22 @@ session_start();
                                                 "highEtu" => "smiley_smidoeuf.png",
                                                 "midEtu" => "smiley_mid.png",
                                                 "lowEtu" => "smiley_bad.png",
+                                            ];
+                                            foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
+                                                echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
+                                                echo $rowSatis[$satisfactionKey] . " ";
+                                            }
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <?php
+                                            $satisfactionValues = [
                                                 "highEmplo" => "smiley_smidoeuf.png",
                                                 "midEmplo" => "smiley_mid.png",
                                                 "lowEmplo" => "smiley_bad.png",
                                             ];
                                             foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
-                                                echo '<img class="img-fluid" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
+                                                echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
                                                 echo $rowSatis[$satisfactionKey] . " ";
                                             }
                                             ?>

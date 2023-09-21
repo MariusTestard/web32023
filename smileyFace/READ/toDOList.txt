@@ -1,14 +1,13 @@
 ----------------- 29 SEPTEMBRE 23H59 DATE LIMITE REMISE ----------------------------------------------------------------------------------------------------------------------
 
-1. Évènement en cours.
-2. Lors création, mettre numEmplo dans mot de passe (BD)
-3. Si première connection (user), obliger de modifier mot de passe.
-4. Ajouter zoom des évènements.
-5. Ajouter button "Lancer" et "Arrêter" (évènements).
-6. Faire button voter employeur et voter étudiant.
-7. Mettre couleur/background
-8. ScrollList évènements
-9. Order sur un attribut (date, departement) pour les évènements
+- Lors création, mettre numEmplo dans mot de passe (BD)
+- Si première connection (user), obliger de modifier mot de passe.
+- Ajouter zoom des évènements.
+- Faire button voter employeur et voter étudiant.
+
+- Mettre couleur/background
+- ScrollList évènements
+- Order sur un attribut (date, departement) pour les évènements
 
 SELECT * FROM smileyFace ORDER BY date ASC
 SELECT * FROM smileyFace ORDER BY date DESC

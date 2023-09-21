@@ -12,6 +12,7 @@ session_start();
 </head>
 <body>
     <?php
+        $eoU = $_GET['eoU'];
         $id = $_SESSION['idEvent'];
         $servername = "localhost";
         $usernameBD = "root";
@@ -21,15 +22,22 @@ session_start();
         $conn = new mysqli($servername, $usernameBD, $passwordBD, $bd);
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
+        } if ($eoU == 0) {
+            $sql = "UPDATE satisfaction SET highEmplo = '(highEmplo + 1)' WHERE idSatisfaction = '$id'";
+        } else {
+            $sql = "UPDATE satisfaction SET highEtu = '(highEtu + 1)' WHERE idSatisfaction = '$id'";
         }
-        $sql = "UPDATE satisfaction SET highEmplo = '(highEmplo + 1)' WHERE idSatisfaction = '$id'";
+        
         $conn->query('SET NAMES utf8');
         if (mysqli_query($conn, $sql)) {
             echo "Enregistrement réussi";
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        } if ($eoU == 0) {
+            header("Location: ../index.php");
+        } else {
+            //header("Location: ../index1.php"); 
         }
-        header("Location: index.php");
         mysqli_close($conn);
     ?>  
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

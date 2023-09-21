@@ -117,6 +117,10 @@ th, td {
     color: red;
     font-weight: bold;
 }
+
+.littleSmileys {
+    margin: 0px 0px 0px 3px;
+}
 /*
 128578  --high
 128528 --mid
