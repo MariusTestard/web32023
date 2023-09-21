@@ -23,9 +23,9 @@ session_start();
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }if ($eoU == 0) {
-            $sql = "UPDATE satisfaction SET lowEmplo = '(lowEmplo + 1)' WHERE idSatisfaction = '$id'";
+            $sql = "UPDATE satisfaction SET lowEmplo = (lowEmplo + 1) WHERE idSatisfaction = '$id'";
         } else {
-            $sql = "UPDATE satisfaction SET lowEtu = '(lowEtu + 1)' WHERE idSatisfaction = '$id'";
+            $sql = "UPDATE satisfaction SET lowEtu = (lowEtu + 1) WHERE idSatisfaction = '$id'";
         }
         $conn->query('SET NAMES utf8');
         if (mysqli_query($conn, $sql)) {

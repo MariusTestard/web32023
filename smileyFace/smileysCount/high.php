@@ -23,9 +23,9 @@ session_start();
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         } if ($eoU == 0) {
-            $sql = "UPDATE satisfaction SET highEmplo = '(highEmplo + 1)' WHERE idSatisfaction = '$id'";
+            $sql = "UPDATE satisfaction SET highEmplo = (highEmplo + 1) WHERE idSatisfaction = '$id'";
         } else {
-            $sql = "UPDATE satisfaction SET highEtu = '(highEtu + 1)' WHERE idSatisfaction = '$id'";
+            $sql = "UPDATE satisfaction SET highEtu = (highEtu + 1) WHERE idSatisfaction = '$id'";
         }
         
         $conn->query('SET NAMES utf8');
@@ -36,7 +36,7 @@ session_start();
         } if ($eoU == 0) {
             header("Location: ../index.php");
         } else {
-            //header("Location: ../index1.php"); 
+            header("Location: ../index1.php"); 
         }
         mysqli_close($conn);
     ?>  
