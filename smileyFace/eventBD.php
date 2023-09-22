@@ -37,42 +37,39 @@ session_start();
     $result = $conn->query($sql);
     $resultSatis = $conn->query($sqlSatis);
     ?>
-    <div class="container-fluid h-100">
+    <div class="container-fluid h-100" id="backgroundimage">
         <div class="row navBar">
-            <div class="col-4 p-0">
+            <div class="col-4 p-0 col-fitNav">
                 <!-- <button class="btn buttonNav" id="butUser" onclick="window.location.href='userBD.php'">Utilisateur</button> -->
                 <div class="dropdown">
                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink">
                         <?php
-                        $page_name = 'Événements';
+                        $page_name = 'Évènements';
                         echo $page_name;
                         ?>
                     </a>
-
                     <div class="dropdown-content">
                         <button class="dropdown-item" onclick="window.location.href='userBD.php'">Utilisateurs</button>
                         <button class="dropdown-item" onclick="window.location.href='index1.php'">Vote Étudiant</button>
                         <button class="dropdown-item" onclick="window.location.href='index.php'">Vote Employeur</button>
                     </div>
                 </div>
-                <div>
-                    Connecté en tant que: <h5> <?php echo $_SESSION["prenom"] . " " . $_SESSION["nom"]; ?> </h5>
-                </div>
+                <div>Connecté en tant que: <?php echo $_SESSION["prenom"] . " " . $_SESSION["nom"]; ?> </div>
             </div>
-            <div class="col-4 p-2 text-center">
-                <p>Table des événements</p>
+            <div class="col-4 text-center">
+                <div>
+                    <h6>Table des événements</h6>
+                </div>
                 <h4 id="eventErrorMessage"><?php echo $_SESSION['eventLiveError']; ?></h4>
             </div>
-            <div class="col-4 p-0 text-end">
+            <div class="col-4 p-0 text-end col-fitNav">
                 <button class="btn buttonNav" id="butSignOut" onclick="window.location.href='deconnexion.php'">Déconnexion</button>
-                <div class="flexEventName">
-                    Évènement en cours: <h5> <?php echo $_SESSION['eventLive']; ?> </h5>
-                </div>
+                <div>Évènement en cours: <?php echo $_SESSION['eventLive']; ?> </div>
             </div>
         </div>
         <div class="row mainWindow">
-            <div class="col-12">
-                <table class="table">
+            <div class="col-10">
+                <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
                             <th scope="col">Nom</th>
@@ -80,8 +77,8 @@ session_start();
                                 <div class="dropdown">
                                     <button class="btn btn-link dropdown-toggle" type="button" id="departementDropdown" data-bs-toggle="dropdown" aria-expanded="false"></button>
                                     <ul class="dropdown-menu" aria-labelledby="departementDropdown">
-                                        <li><a class="dropdown-item" onclick="updateTable('asc')">Ascending</a></li>
-                                        <li><a class="dropdown-item" onclick="updateTable('desc')">Descending</a></li>
+                                        <li><a class="dropdown-item" onclick="updateTable()">Ascending</a></li>
+                                        <li><a class="dropdown-item" onclick="updateTable()">Descending</a></li>
                                     </ul>
                                 </div>
                             </th>
@@ -99,35 +96,62 @@ session_start();
                     ?>
                                 <tbody>
                                     <tr>
-                                        <td><?php echo $row["nom"] ?></td>
-                                        <td><?php echo $row["departement"] ?></td>
-                                        <td><?php echo $row["lieu"] ?></td>
-                                        <td><?php echo $row["date"] ?></td>
-                                        <td>
-                                            <?php
-                                            $satisfactionValues = [
-                                                "highEtu" => "smiley_smidoeuf.png",
-                                                "midEtu" => "smiley_mid.png",
-                                                "lowEtu" => "smiley_bad.png",
-                                            ];
-                                            foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
-                                                echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
-                                                echo $rowSatis[$satisfactionKey] . " ";
-                                            }
-                                            ?>
+
+                                        <td class="tdLink">
+                                            <div class="divBox">
+                                                <a href="zoom.php?id=<?php echo $row["idEvent"] ?>"><?php echo $row["nom"] ?></a>
+                                            </div>
                                         </td>
                                         <td>
-                                            <?php
-                                            $satisfactionValues = [
-                                                "highEmplo" => "smiley_smidoeuf.png",
-                                                "midEmplo" => "smiley_mid.png",
-                                                "lowEmplo" => "smiley_bad.png",
-                                            ];
-                                            foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
-                                                echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
-                                                echo $rowSatis[$satisfactionKey] . " ";
-                                            }
-                                            ?>
+                                            <div class="divBox">
+                                                <a href="zoom.php?id=<?php echo $row["idEvent"] ?>"><?php echo $row["departement"] ?></a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="divBox">
+                                                <a href="zoom.php?id=<?php echo $row["idEvent"] ?>"><?php echo $row["lieu"] ?></a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="divBox">
+                                                <a href="zoom.php?id=<?php echo $row["idEvent"] ?>"><?php echo $row["date"] ?></a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="divBox">
+                                                <a href="zoom.php?id=<?php echo $row["idEvent"] ?>">
+                                                    <?php
+                                                    $satisfactionValues = [
+                                                        "highEtu" => "smiley_smidoeuf.png",
+                                                        "midEtu" => "smiley_mid.png",
+                                                        "lowEtu" => "smiley_bad.png",
+                                                    ];
+                                                    foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
+                                                        echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
+                                                        echo $rowSatis[$satisfactionKey] . " ";
+                                                    }
+                                                    ?>
+                                                </a>
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <div class="divBox">
+                                                <a href="zoom.php?id=<?php echo $row["idEvent"] ?>">
+                                                    <?php
+                                                    $satisfactionValues = [
+                                                        "highEmplo" => "smiley_smidoeuf.png",
+                                                        "midEmplo" => "smiley_mid.png",
+                                                        "lowEmplo" => "smiley_bad.png",
+                                                    ];
+                                                    foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
+                                                        echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
+                                                        echo $rowSatis[$satisfactionKey] . " ";
+                                                    }
+                                                    ?>
+                                                </a>
+                                            </div>
+
                                         </td>
                                         <td>
                                             <a href="launch.php?id=<?php echo $row["idEvent"] ?>" class="btn" type="button" id="butLaunch" title="Lancer">&#128640;</a>
@@ -146,8 +170,8 @@ session_start();
                     }
                     $conn->close();
                     ?>
-                    <table>
-                        <a href="ajouter.php" class="btn btn-primary" role="button" id="butAjouter">Ajouter</a>
+                </table>
+                <a href="ajouter.php" class="btn btn-primary" role="button" id="butAjouter">Ajouter</a>
             </div>
         </div>
     </div>

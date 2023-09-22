@@ -11,6 +11,7 @@ session_start();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="icon" type="image/png" sizes="96x96" href="https://www.cegeptr.qc.ca/wp-content/themes/acolyte-2_1_5/assets/icons/favicon-96x96.png">
     <link rel="stylesheet" href="css/connexion.css">
+    <script src="js/connexion.js"></script>
     <title>Connexion - Cégep de Trois-Rivières</title>
 </head>
 
@@ -51,8 +52,44 @@ session_start();
                 }
 
                 // SI NUM ET MDP SAME   
-                /*
-                if($numEmplo == $password){
+
+                if ($numEmplo == $password) {
+                    $resultNum = $conn->query("SELECT numEmploye FROM user WHERE numEmploye = $numEmplo");
+                    $resultPass = $conn->query("SELECT password FROM user");
+
+                    while($rowNum = mysqli_fetch_array($resultNum)){
+                    while($rowPass = mysqli_fetch_array($resultPass))
+                        {
+                          if ($row['numEmploye'] == $row2['password'])
+                             { 
+                                ?>
+                                 <div id="myModal" class="modal">
+             
+                                     <!-- Modal content -->
+                                     <div class="modal-content">
+                                         <div class="modal-header">
+                                             <span class="close">&times;</span>
+                                             <h2>Première connexion !</h2>
+                                         </div>
+                                         <div class="modal-body">
+                                         <input type="password" class="form-control" placeholder="Mot de passe" name="passwd">
+                                         </div>
+                                         <div class="modal-footer">
+                                             <h3>Veuillez changez votre mot de passe par défaut.</h3>
+                                         </div>
+                                     </div>
+             
+                                 </div>
+                                 <?php
+                          }
+                          else
+                          {
+                               //add to array of not equal data
+                          }
+                        }
+                        }
+
+
                     //$sql = "SELECT * FROM user WHERE numEmploye = '$numEmplo' AND password = '$passwd'";
                     //POP-UP
                     $prompt_msg = "Veuillez changez votre mot de passe par défaut.";
@@ -61,7 +98,7 @@ session_start();
                     $conn->query($sql);
                     //header("Location: connexion.php");
                 }
-                */
+
                 $passwd = sha1($passwd, false);
                 $sql = "SELECT * FROM user WHERE numEmploye = '$numEmplo' AND password = '$passwd'";
                 $result = $conn->query($sql);
@@ -81,7 +118,7 @@ session_start();
                     $errorPasswd = "N° Employé ou mot de passe invalide";
                 }
                 $conn->close();
-    ?>
+                ?>
             <?php
             }
         }

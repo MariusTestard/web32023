@@ -13,7 +13,6 @@ session_start();
     <link rel="stylesheet" href="js/script.js">
     <title>Utilisateurs - Cégep de Trois-Rivières</title>
 </head>
-
 <body>
     <?php
     $servername = "localhost";
@@ -30,9 +29,9 @@ session_start();
     $conn->query('SET NAMES utf8');
     $result = $conn->query($sql);
     ?>
-    <div class="container-fluid h-100">
+    <div class="container-fluid h-100" id="backgroundimage">
         <div class="row navBar">
-            <div class="col-2 p-0">
+            <div class="col-4 p-0 col-fitNav">
                 <!-- <button class="btn buttonNav" id="butUser" onclick="window.location.href='eventBD.php'">Événement</button> -->
                 <div class="dropdown">
                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink">
@@ -46,21 +45,24 @@ session_start();
                         <button class="dropdown-item" onclick="window.location.href='index.php'">Vote Étudiant</button>
                         <button class="dropdown-item" onclick="window.location.href='index1.php'">Vote Employeur</button>
                     </div>
-                    <div>
-                        Connecté en tant que: <h5> <?php echo $_SESSION["prenom"] . " " . $_SESSION["nom"]; ?> </h5>
-                    </div>
                 </div>
             </div>
-            <div class="col-8 p-2 text-center">
-                <p>Table des utilisateurs</p>
+            <div class="col-4 text-center col-mainTitle">
+                <div id="mainTitle">
+                    <h6 id="test1234">Table des utilisateurs</h6> 
+                </div>
             </div>
-            <div class="col-2 p-0 text-end">
+            <div class="col-4 p-0 text-end col-fitNav">
                 <button class="btn buttonNav" id="butSignOut" onclick="window.location.href='deconnexion.php'">Déconnexion</button>
             </div>
         </div>
+        <div id="current">
+            <h5>Connecté en tant que:  <?php echo $_SESSION["prenom"] . " " . $_SESSION["nom"]; ?> </h5>
+            <h5>Évènement en cours: <?php echo $_SESSION['eventLive']; ?> </h5>
+        </div>
         <div class="row mainWindow">
             <div class="col-12 my-custom-scrollbar">
-                <table class="table" id="dtVerticalScrollExample">
+                <table class="table table table-hover table-bordered">
                     <thead>
                         <tr>
                             <th scope="col">N° Employé</th>
@@ -92,8 +94,8 @@ session_start();
                     }
                     $conn->close();
                     ?>
-                    <table>
-                        <button class="btn buttonNav" id="butCreate" onclick="window.location.href='create.php'">Création</button>
+                    </table>
+                    <button class="btn buttonNav" id="butCreate" onclick="window.location.href='create.php'">Création</button>
             </div>
         </div>
     </div>

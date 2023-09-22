@@ -2,8 +2,29 @@ html, body {
     height: 100%;
 }
 
+h6 {
+    color: white;
+    margin-top: 5px;
+    text-align:center;
+}
+
 .navBar {
-    height: 10%;
+    height: fit-content;
+    background-color: #092D74;
+    margin-bottom: 5px;
+    display: flex;
+}
+
+.divBox
+{
+    width: fit-content;
+    height: fit-content;
+}
+
+.divBox a
+{
+    color: white;
+    display: block;
 }
 
 .buttonNav {
@@ -47,10 +68,6 @@ p {
 a {
     text-decoration: none;
     color: black;
-}
-
-th, td {
-    vertical-align: middle;
 }
 
 #butModify {
@@ -121,6 +138,38 @@ th, td {
 .littleSmileys {
     margin: 0px 0px 0px 3px;
 }
+
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    height: 600px;
+    display:block;
+    overflow-y:scroll;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#backgroundimage {
+    background: url('');
+    background-color: lightblue;
+    height: 500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+tr:nth-child(even) {
+background-color: red;
+}
+
+td, th {
+    vertical-align: middle;
+    color: white;
+}
+
+  
+
 /*
 128578  --high
 128528 --mid
