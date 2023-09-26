@@ -1,11 +1,16 @@
 ----------------- 29 SEPTEMBRE 23H59 DATE LIMITE REMISE ----------------------------------------------------------------------------------------------------------------------
 
-- Lors création, mettre numEmplo dans mot de passe (BD)non sha1 --
-- Si première connection (user), obliger de modifier mot de passe.
+PROG:
 
-- Mettre couleur/background
+-   on peut pas stop un event si pas lancer et on peut pas lancer un event si un event en cours
+mettre valeur session dans fichier 
 - ScrollList évènements
 - Order sur un attribut (date, departement) pour les évènements
+
+STYLES:
+- Mettre couleur/background
+
+
 
 SELECT * FROM smileyFace ORDER BY date ASC
 SELECT * FROM smileyFace ORDER BY date DESC

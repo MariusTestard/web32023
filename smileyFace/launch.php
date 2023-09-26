@@ -14,11 +14,15 @@ session_start();
 <body>
     <?php
 
-    // ----------------------------------------------- EMPÊCHER L'ASSIGNATION DE $_SESSION['idEvent'] SI UN ÉVÈNEMENT EST DÉJA EN COURS ---------------------------------------------------
+    
+// ----------------------------------------------- EMPÊCHER L'ASSIGNATION DE $_SESSION['idEvent'] SI UN ÉVÈNEMENT EST DÉJA EN COURS ---------------------------------------------------
+    
     $id = $_GET['id'];
     $_SESSION['idEvent'] = $id;
 
-    $servername = "localhost";
+
+    if($_SESSION['eventIdLive']!=$_SESSION['idEvent']){
+       $servername = "localhost";
     $username = "root";
     $password = "root";
     $bd = "smileyFace";
@@ -32,6 +36,7 @@ session_start();
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
+        $_SESSION['eventIdLive']= $row["id"];
         $nom = $row["nom"];
         $departement = $row["departement"];
         $_SESSION['eventLive'] = $nom . " (Département " . $departement . ")";
@@ -39,7 +44,11 @@ session_start();
         $_SESSION['eventLive'] = "Aucun";
     }
     $conn->close();
-    header("Location: eventBD.php");
+    header("Location: eventBD.php"); 
+    }
+
+    header("Location: eventBD.php"); 
+    
     ?>
 </body>
 

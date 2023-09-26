@@ -1,16 +1,30 @@
 var modal = document.getElementById("myModal");
-var span = document.getElementsByClassName("close")[0];
 
-document.addEventListener("DOMContentLoaded",doSomething);
 function FirstTime() {
-    modal.style.display = "block";
-   }
+  document.getElementById("myModal").style.display = "block";
 
-   function PassEnter(){
-    modal.style.display = "none";
-   }
+  document.getElementById("InputFirstTime").addEventListener("keypress", function(event){
+    if (event.key === "Enter") {
+      event.preventDefault();
+      document.getElementById("myModal").style.display = "none";
+      setValConnection(true);
+      location.reload();
+    }
+  })
+}
 
+function getNewPass() {
+  let newPass = document.getElementById('InputFirstTime');
+  return newPass.value;
+}
 
-span.onclick = function() {
-  modal.style.display = "none";
+var temp = false;
+
+function setValConnection(value){
+  temp = value;
+  return temp;
+}
+
+function getValConnection(){
+  return temp;
 }

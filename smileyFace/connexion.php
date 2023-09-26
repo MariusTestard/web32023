@@ -21,6 +21,8 @@ session_start();
         $_SESSION["connexion"] = false;
     }
     if ($_SESSION["connexion"] == false) {
+        $_SESSION["ConnectionFirst"] = false;
+        $_SESSION["ConnectionBase"] = false;
         $numEmplo = $passwd = "";
         $errorNumEplo = $errorPasswd = "";
         $erreur = false;
@@ -52,52 +54,26 @@ session_start();
                 }
 
                 // SI NUM ET MDP SAME   
-
-                if ($numEmplo == $password) {
+                if ($numEmplo == $passwd) {
                     $resultNum = $conn->query("SELECT numEmploye FROM user WHERE numEmploye = $numEmplo");
-                    $resultPass = $conn->query("SELECT password FROM user");
-
-                    while($rowNum = mysqli_fetch_array($resultNum)){
+                    $resultPass = $conn->query("SELECT password FROM user WHERE password = $passwd");
+                    $_SESSION['numPlo'] = $numEmplo;
+                    while($rowNum = mysqli_fetch_array($resultNum)) {
                     while($rowPass = mysqli_fetch_array($resultPass))
                         {
-                          if ($row['numEmploye'] == $row2['password'])
-                             { 
-                                ?>
-                                 <div id="myModal" class="modal">
-             
-                                     <!-- Modal content -->
-                                     <div class="modal-content">
-                                         <div class="modal-header">
-                                             <span class="close">&times;</span>
-                                             <h2>Première connexion !</h2>
-                                         </div>
-                                         <div class="modal-body">
-                                         <input type="password" class="form-control" placeholder="Mot de passe" name="passwd">
-                                         </div>
-                                         <div class="modal-footer">
-                                             <h3>Veuillez changez votre mot de passe par défaut.</h3>
-                                         </div>
-                                     </div>
-             
-                                 </div>
-                                 <?php
+                          if ($rowNum['numEmploye'] == $rowPass['password']) { 
+                           // $_SESSION['numPlo'] = $rowNum['numEmploye'];
+                            header("Location: newPass.php");
                           }
-                          else
-                          {
+                          else {
+                            
                                //add to array of not equal data
-                          }
+                               echo 'INCORRECTE';
+                           }
                         }
-                        }
-
-
-                    //$sql = "SELECT * FROM user WHERE numEmploye = '$numEmplo' AND password = '$passwd'";
-                    //POP-UP
-                    $prompt_msg = "Veuillez changez votre mot de passe par défaut.";
-                    $passwd = sha1(prompt($prompt_msg), false);
-                    $sql = "UPDATE user SET password = '$passwd' WHERE numEmploye = '$numEmplo'";
-                    $conn->query($sql);
-                    //header("Location: connexion.php");
-                }
+                    }   
+                } 
+                 
 
                 $passwd = sha1($passwd, false);
                 $sql = "SELECT * FROM user WHERE numEmploye = '$numEmplo' AND password = '$passwd'";
@@ -117,6 +93,7 @@ session_start();
                     $numEmplo = "";
                     $errorPasswd = "N° Employé ou mot de passe invalide";
                 }
+            
                 $conn->close();
                 ?>
             <?php
