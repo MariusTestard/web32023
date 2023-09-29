@@ -16,133 +16,294 @@ session_start();
 
 <body>
     <?php
-    $nom = $departement = $lieu = $date = "";
-    $errorNom = $errorDepartement = $errorLieu = $errorDate = "";
-    $erreur = false;
-
-    if (isset($_GET['id'])) {
-        $id = $_GET['id'];
-        $servername = "localhost";
-        $username = "root";
-        $password = "root";
-        $bd = "smileyFace";
-
-        $conn = new mysqli($servername, $username, $password, $bd);
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
+    $rememberEoU;
+    $eoU;
+    if ($_SESSION["connexion"] == true) {
+        if ($_SERVER["REQUEST_METHOD"] != "POST") {
+            $eoU = $_GET['eoU'];
+            $rememberEoU = $eoU;
         }
+        if ($eoU == 0 || $rememberEoU == 0) {
+            $nom = $departement = $lieu = $date = "";
+            $errorNom = $errorDepartement = $errorLieu = $errorDate = "";
+            $erreur = false;
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                $servername = "localhost";
+                $username = "root";
+                $password = "root";
+                $bd = "smileyFace";
 
-        $sql = "SELECT * FROM event WHERE idEvent=$id";
-        $conn->query('SET NAMES utf8');
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-        }
-        $nom = $row["nom"];
-        $departement = $row["departement"];
-        $lieu = $row["lieu"];
-        $date = $row["date"];
-        $conn->close();
-    } elseif (isset($_POST['id'])) {
-        $id = $_POST['id'];
-    } else {
-        "erreur";
-    }
+                $conn = new mysqli($servername, $username, $password, $bd);
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (empty($_POST['nom'])) {
-            $errorNom = "Nom manquant";
-            $erreur = true;
-        } else {
-            $nom = test_input($_POST["nom"]);
-        }
-        if (empty($_POST['departement'])) {
-            $errorDepartement = "Departement manquant";
-            $erreur = true;
-        } else {
-            $departement = test_input($_POST["departement"]);
-        }
-        if (empty($_POST['lieu'])) {
-            $errorLieu = "Lieu manquant";
-            $erreur = true;
-        } else {
-            $lieu = test_input($_POST["lieu"]);
-        }
-        if (empty($_POST['date'])) {
-            $errorDate = "Date manquante";
-            $erreur = true;
-        } else {
-            $date = test_input($_POST["date"]);
-        }
-
-        if ($erreur != true) {
-            $servername = "localhost";
-            $username = "root";
-            $password = "root";
-            $bd = "smileyFace";
-
-            $conn = new mysqli($servername, $username, $password, $bd);
-            $nom = $_POST['nom'];
-            $departement = $_POST['departement'];
-            $lieu = $_POST['lieu'];
-            $date = $_POST['date'];
-
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-            $sql = "UPDATE event SET nom = '$nom', departement = '$departement', date = '$date' WHERE event.idEvent = '$id'";
-            $conn->query('SET NAMES utf8');
-            if (mysqli_query($conn, $sql)) {
-                echo "Enregistrement réussi";
+                $sql = "SELECT * FROM event WHERE idEvent=$id";
+                $conn->query('SET NAMES utf8');
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                }
+                $nom = $row["nom"];
+                $departement = $row["departement"];
+                $lieu = $row["lieu"];
+                $date = $row["date"];
+                $conn->close();
+            } elseif (isset($_POST['id'])) {
+                $id = $_POST['id'];
             } else {
-                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                "erreur";
             }
-            header("Location: eventBD.php");
-            mysqli_close($conn);
+
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if (empty($_POST['nom'])) {
+                    $errorNom = "Nom manquant";
+                    $erreur = true;
+                } else {
+                    $nom = test_input($_POST["nom"]);
+                }
+                if (empty($_POST['departement'])) {
+                    $errorDepartement = "Departement manquant";
+                    $erreur = true;
+                } else {
+                    $departement = test_input($_POST["departement"]);
+                }
+                if (empty($_POST['lieu'])) {
+                    $errorLieu = "Lieu manquant";
+                    $erreur = true;
+                } else {
+                    $lieu = test_input($_POST["lieu"]);
+                }
+                if (empty($_POST['date'])) {
+                    $errorDate = "Date manquante";
+                    $erreur = true;
+                } else {
+                    $date = test_input($_POST["date"]);
+                }
+
+                if ($erreur != true) {
+                    $servername = "localhost";
+                    $username = "root";
+                    $password = "root";
+                    $bd = "smileyFace";
+
+                    $conn = new mysqli($servername, $username, $password, $bd);
+                    $nom = $_POST['nom'];
+                    $departement = $_POST['departement'];
+                    $lieu = $_POST['lieu'];
+                    $date = $_POST['date'];
+
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
+                    $sql = "UPDATE event SET nom = '$nom', departement = '$departement', date = '$date' WHERE event.idEvent = '$id'";
+                    $conn->query('SET NAMES utf8');
+                    if (mysqli_query($conn, $sql)) {
+                        echo "Enregistrement réussi";
+                    } else {
+                        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                    }
+                    header("Location: eventBD.php");
+                    mysqli_close($conn);
     ?>
-        <?php
-        }
-    }
-    if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
-        ?>
-        <div class="container-fluid h-100 d-flex flex-column">
-            <div class="row top-left test1">
-                <div class="col-1 p-0 m-0">
-                    <button type="button" class="btn" id="butBack" onclick="window.location.href='eventBD.php'">Revenir</button>
+                <?php
+                }
+            }
+            if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
+                ?>
+                <div class="container-fluid h-100 d-flex flex-column">
+                    <div class="row top-left test1">
+                        <div class="col-1 p-0 m-0">
+                            <button type="button" class="btn" id="butBack" onclick="window.location.href='eventBD.php'">Revenir</button>
+                        </div>
+                    </div>
+                    <div class="row middle test99 flex-grow-1 d-flex">
+                        <div class="col-2 my-form-container">
+                            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                                <div class="form-group">
+                                    <label for="nom">Nom de l'évènement</label>
+                                    <input type="text" class="form-control" name="nom" value="<?php echo $nom ?>">
+                                    <span><?php echo $errorNom; ?></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="departement">Departement</label>
+                                    <input type="text" class="form-control" name="departement" value="<?php echo $departement ?>">
+                                    <span><?php echo $errorDepartement; ?></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lieu">Lieu</label>
+                                    <input type="text" class="form-control" name="lieu" value="<?php echo $lieu ?>">
+                                    <span><?php echo $errorLieu; ?></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nom">Date et heure</label>
+                                    <input type="datetime-local" class="form-control" name="date" value="<?php echo $date ?>">
+                                    <span><?php echo $errorDate; ?></span>
+                                </div>
+                                <input type="hidden" class="form-control field left" name="id" value="<?php echo $id; ?>" readonly>
+                                <div class="middle">
+                                    <button type="submit" class="btn btn-success mt-2 maxlargeur">Créer</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="row middle test99 flex-grow-1 d-flex">
-                <div class="col-2 my-form-container">
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                        <div class="form-group">
-                            <label for="nom">Nom de l'évènement</label>
-                            <input type="text" class="form-control" name="nom" value="<?php echo $nom ?>">
-                            <span><?php echo $errorNom; ?></span>
-                        </div>
-                        <div class="form-group">
-                            <label for="departement">Departement</label>
-                            <input type="text" class="form-control" name="departement" value="<?php echo $departement ?>">
-                            <span><?php echo $errorDepartement; ?></span>
-                        </div>
-                        <div class="form-group">
-                            <label for="lieu">Lieu</label>
-                            <input type="text" class="form-control" name="lieu" value="<?php echo $lieu ?>">
-                            <span><?php echo $errorLieu; ?></span>
-                        </div>
-                        <div class="form-group">
-                            <label for="nom">Date et heure</label>
-                            <input type="datetime-local" class="form-control" name="date" value="<?php echo $date ?>">
-                            <span><?php echo $errorDate; ?></span>
-                        </div>
-                        <input type="hidden" class="form-control field left" name="id" value="<?php echo $id; ?>" readonly>
-                        <div class="middle">
-                            <button type="submit" class="btn btn-success mt-2 maxlargeur">Créer</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
     <?php
+            }
+        } else {
+            $numEmplo = $password = $prenom = $nom = $recoverEmail = "";
+            $errorNumEmplo = $errorPasswd = $errorPrenom = $errorNom = $errorRecoverEmail = "";
+            $erreur1 = false;
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                $servername = "localhost";
+                $username = "root";
+                $password = "root";
+                $bd = "smileyFace";
+
+                $conn = new mysqli($servername, $username, $password, $bd);
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+                $sql = "SELECT * FROM user WHERE numEmploye = $id";
+                $conn->query('SET NAMES utf8');
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                }
+                $numEmplo = $row["numEmploye"];
+                $prenom = $row["prenom"];
+                $nom = $row["nom"];
+                $recoverEmail = $row["recoverEmail"];
+                $conn->close();
+            } elseif (isset($_POST['id'])) {
+                $id = $_POST['id'];
+            } else {
+                "erreur";
+            }
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if (empty($_POST['numEmplo'])) {
+                    $errorNumEmplo = "N° employé manquant";
+                    $erreur1 = true;
+                } else {
+                    $numEmplo = test_input($_POST["numEmplo"]);
+                }
+                if (empty($_POST['prenom'])) {
+                    $errorPrenom = "Prénom manquant";
+                    $erreur1 = true;
+                } else {
+                    $prenom = test_input($_POST["prenom"]);
+                }
+                if (empty($_POST['nom'])) {
+                    $errorNom = "Nom manquant";
+                    $erreur1 = true;
+                } else {
+                    $nom = test_input($_POST["nom"]);
+                }
+                if (empty($_POST['recoverEmail'])) {
+                    $errorRecoverEmail = "Email de récupération manquante";
+                    $erreur1 = true;
+                } else {
+                    $recoverEmail = test_input($_POST["recoverEmail"]);
+                }
+
+                if ($erreur != true) {
+                    $servername = "localhost";
+                    $username = "root";
+                    $password = "root";
+                    $bd = "smileyFace";
+
+                    $conn = new mysqli($servername, $username, $password, $bd);
+                    $numEmplo = $_POST['numEmplo'];
+                    $prenom = $_POST['prenom'];
+                    $nom = $_POST['nom'];
+                    $recoverEmail = $_POST['recoverEmail'];
+
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
+                    $sql = "UPDATE user SET numEmploye = '$numEmplo', prenom = '$prenom', nom = '$nom', recoverEmail = '$recoverEmail' WHERE numEmploye = '$id'";
+                    $conn->query('SET NAMES utf8');
+                    if (mysqli_query($conn, $sql)) {
+                        echo "Enregistrement réussi";
+                    } else {
+                        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                    }
+                    header("Location: userBD.php");
+                    mysqli_close($conn);
+    ?>
+                <?php
+                }
+            }
+            if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
+                ?>
+                <div class="container-fluid h-100 d-flex flex-column">
+                    <div class="row top-left test1">
+                        <div class="col-1 p-0 m-0">
+                            <button type="button" class="btn" id="butBack" onclick="window.location.href='eventBD.php'">Revenir</button>
+                        </div>
+                    </div>
+                    <div class="row middle test99 flex-grow-1 d-flex">
+                        <div class="col-2 my-form-container">
+                            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                                <div class="form-group">
+                                    <label for="numEmplo">N° d'employé</label>
+                                    <input type="text" class="form-control" name="numEmplo" value="<?php echo $numEmplo ?>">
+                                    <span><?php echo $errorNumEmplo; ?></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nom">Nom</label>
+                                    <input type="text" class="form-control" name="nom" value="<?php echo $nom ?>">
+                                    <span><?php echo $errorNom; ?></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="prenom">Prénom</label>
+                                    <input type="text" class="form-control" name="prenom" value="<?php echo $prenom ?>">
+                                    <span><?php echo $errorPrenom; ?></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nom">Email de récupération</label>
+                                    <input type="text" class="form-control" name="recoverEmail" value="<?php echo $recoverEmail ?>">
+                                    <span><?php echo $errorRecoverEmail; ?></span>
+                                </div>
+                                <input type="hidden" class="form-control field left" name="id" value="<?php echo $id; ?>" readonly>
+                                <div class="middle">
+                                    <button type="submit" class="btn btn-success mt-2 maxlargeur">Créer</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+    <?php
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
+    } else {
+        header("Location: connexion.php");
     }
     function test_input($data)
     {

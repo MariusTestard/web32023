@@ -16,6 +16,7 @@ session_start();
 
 <body>
     <?php
+    if ($_SESSION["connexion"] == true) {
     if ($_SESSION['EventFirstCo']) {
         $_SESSION['eventLiveError'] = "";
         $_SESSION['eventLive'] = "Aucun"; //À pense a qqc de meilleur
@@ -29,13 +30,31 @@ session_start();
     $conn = new mysqli($servername, $username, $password, $bd);
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
-    }
+    } else {
+        // REGARDER DANS TOUT LE TABLEAU POUR VOIR SI UN ÉVÈNEMENT EST ACTIF (ETAT), SI OUI ON VA GET L'IDEVENT DE L'ÉVÈNEMENT,
+        // ON VA FAIRE UNE AUTRE QUERY POUR ALLER CHERCHER LE NOM ET LE DEPARTMENT DE CELUI-CI ET METTRE LE RÉSULTAT DANS UNE 
+        // VARIABLE, SINON ASSIGNER "AUCUN" DANS LA VARIABLE
 
-    $sql = "SELECT idEvent, nom, departement, lieu, date FROM event";
-    $sqlSatis = "SELECT idSatisfaction, highEtu, midEtu, lowEtu, highEmplo, midEmplo, lowEmplo FROM satisfaction";
-    $conn->query('SET NAMES utf8');
-    $result = $conn->query($sql);
-    $resultSatis = $conn->query($sqlSatis);
+        $sqlEvent = "SELECT idEvent, nom, departement, Etat FROM event";
+        $sql = "SELECT idEvent, nom, departement, lieu, date FROM event";
+        $sqlSatis = "SELECT idSatisfaction, highEtu, midEtu, lowEtu, highEmplo, midEmplo, lowEmplo FROM satisfaction";
+        $conn->query('SET NAMES utf8');
+        $result = $conn->query($sql);
+        $resultSatis = $conn->query($sqlSatis);
+        $resultEvent = $conn->query($sqlEvent);
+        if ($resultEvent->num_rows > 0) {
+            while ($rowEvent = $resultEvent->fetch_assoc()) {
+                if ($rowEvent["Etat"] == true) {
+                    $idEventCours = $rowEvent["idEvent"];
+                    $idCours = $rowEvent["nom"] . " (Département " . $rowEvent["departement"] . ")";
+                    $idEtatCours = $rowEvent["Etat"];
+                    break;
+                } else {
+                    $idCours = "Aucun";
+                }
+            }
+        }
+    }
     ?>
     <div class="container-fluid h-100" id="backgroundimage">
         <div class="row navBar">
@@ -44,7 +63,7 @@ session_start();
                 <div class="dropdown">
                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink">
                         <?php
-                        $page_name = 'Évènements';
+                        $page_name = 'Événements';
                         echo $page_name;
                         ?>
                     </a>
@@ -64,7 +83,7 @@ session_start();
             </div>
             <div class="col-4 p-0 text-end col-fitNav">
                 <button class="btn buttonNav" id="butSignOut" onclick="window.location.href='deconnexion.php'">Déconnexion</button>
-                <div>Évènement en cours: <?php echo $_SESSION['eventLive']; ?> </div>
+                <div>Événement en cours: <?php echo $idCours; ?> </div>
             </div>
         </div>
         <div class="row mainWindow">
@@ -77,8 +96,10 @@ session_start();
                                 <div class="dropdown">
                                     <button class="btn btn-link dropdown-toggle" type="button" id="departementDropdown" data-bs-toggle="dropdown" aria-expanded="false"></button>
                                     <ul class="dropdown-menu" aria-labelledby="departementDropdown">
+                                        <!--
                                         <li><a class="dropdown-item" onclick="updateTable()">Ascending</a></li>
                                         <li><a class="dropdown-item" onclick="updateTable()">Descending</a></li>
+                                        -->
                                     </ul>
                                 </div>
                             </th>
@@ -157,7 +178,7 @@ session_start();
                                             <a href="launch.php?id=<?php echo $row["idEvent"] ?>" class="btn" type="button" id="butLaunch" title="Lancer">&#128640;</a>
                                             <a href="stop.php?id=<?php echo $row["idEvent"] ?>" class="btn" type="button" id="butStop" title="Arrêter">&#128721;</a>
                                             <a href="reset.php?id=<?php echo $row["idEvent"] ?>" class="btn" type="button" id="butStop" title="Réinitialiser">&#128260;</a>
-                                            <a href="modifier.php?id=<?php echo $row["idEvent"] ?>" class="btn btn-warning" type="button" id="butModify" title="Modifier">&#128221;</a>
+                                            <a href="modifier.php?id=<?php echo $row["idEvent"] ?>&eoU=<?php echo 0 ?>" class="btn btn-warning" type="button" id="butModify" title="Modifier">&#128221;</a>
                                             <a href="supprimer.php?id=<?php echo $row["idEvent"] ?>&eoU=<?php echo 0 ?>" class="btn btn-danger" type="button" id="butRemove" title="Supprimer">&#10060;</a>
                                         </td>
                                     </tr>
@@ -184,6 +205,9 @@ session_start();
         $moyenne = ($moyennehigh + $moyennemid + $moyennelow) / ($high + $mid + $low);
         return $moyenne;
     }
+} else {
+    header("Location: connexion.php");
+}
     ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>

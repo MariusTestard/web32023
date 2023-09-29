@@ -12,17 +12,35 @@ session_start();
 </head>
 <body>
     <?php
-        $eoU = $_GET['eoU'];
-        $id = $_SESSION['idEvent'];
+    if ($_SESSION["connexion"] == true) {
         $servername = "localhost";
         $usernameBD = "root";
         $passwordBD = "root";
         $bd = "smileyFace";
-
+        
         $conn = new mysqli($servername, $usernameBD, $passwordBD, $bd);
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
-        }if ($eoU == 0) {
+        }
+
+        $eoU = $_GET['eoU'];
+        
+
+       $sql = "SELECT idEvent, Etat FROM event";
+       $result = $conn->query($sql);
+       if ($result->num_rows > 0) {
+           while ($row = $result->fetch_assoc()) {
+               if ($row["Etat"] == true) {
+                   $id = $row['idEvent'];
+                   mysqli_query($conn, $sql);
+                   break;
+               } 
+           }
+       }
+
+
+       
+        if ($eoU == 0) {
             $sql = "UPDATE satisfaction SET lowEmplo = (lowEmplo + 1) WHERE idSatisfaction = '$id'";
         } else {
             $sql = "UPDATE satisfaction SET lowEtu = (lowEtu + 1) WHERE idSatisfaction = '$id'";
@@ -38,6 +56,9 @@ session_start();
             header("Location: ../index1.php"); 
         }
         mysqli_close($conn);
+    } else {
+        header("Location: connexion.php");
+    }
     ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>

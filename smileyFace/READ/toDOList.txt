@@ -1,9 +1,14 @@
 ----------------- 29 SEPTEMBRE 23H59 DATE LIMITE REMISE ----------------------------------------------------------------------------------------------------------------------
 
 PROG:
+Modifier un usager fonctionne adéquatement
+Le site est réactif pour la partie gestion
+La page de votation est optimisée pour la tablette Samsung ciblée
+L’esthétique du site est professionnelle et le site est en français
 
--   on peut pas stop un event si pas lancer et on peut pas lancer un event si un event en cours
-mettre valeur session dans fichier 
+
+Modifier l'entrée pour modifier ou plutôt identifier l'entrée pour envoyer le bon formulaire et gérer les erreurs
+
 - ScrollList évènements
 - Order sur un attribut (date, departement) pour les évènements
 
@@ -20,3 +25,5 @@ SELECT * FROM smileyFace ORDER BY departement DESC
 Faire une navbar (Dropdown)
 
 ----------------- 29 SEPTEMBRE 23H59 DATE LIMITE REMISE ---------------------------------------------------------------------------------------------------------------------
+
+
