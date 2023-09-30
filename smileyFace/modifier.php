@@ -1,6 +1,9 @@
 <?php
 session_start();
 ?>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,20 +13,25 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="icon" type="image/png" sizes="96x96" href="https://www.cegeptr.qc.ca/wp-content/themes/acolyte-2_1_5/assets/icons/favicon-96x96.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/buttercake@3.0.0/dist/css/butterCake.min.css">
     <link rel="stylesheet" href="css/connexion.css">
     <title>Modifier - Cégep de Trois-Rivières</title>
 </head>
 
 <body>
     <?php
-    $rememberEoU;
-    $eoU;
+
+    // USERBD = 1,  EVENTBD = 0;
+    if (isset($_GET['eoU'])) {
+        $eoU = $_GET['eoU'];
+    } elseif (isset($_POST['eoU'])) {
+        $eoU = $_POST['eoU'];
+    } else {
+        echo "erreur";
+    }
     if ($_SESSION["connexion"] == true) {
-        if ($_SERVER["REQUEST_METHOD"] != "POST") {
-            $eoU = $_GET['eoU'];
-            $rememberEoU = $eoU;
-        }
-        if ($eoU == 0 || $rememberEoU == 0) {
+        if ($eoU == 0) {
             $nom = $departement = $lieu = $date = "";
             $errorNom = $errorDepartement = $errorLieu = $errorDate = "";
             $erreur = false;
@@ -33,12 +41,10 @@ session_start();
                 $username = "root";
                 $password = "root";
                 $bd = "smileyFace";
-
                 $conn = new mysqli($servername, $username, $password, $bd);
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
                 }
-
                 $sql = "SELECT * FROM event WHERE idEvent=$id";
                 $conn->query('SET NAMES utf8');
                 $result = $conn->query($sql);
@@ -55,7 +61,6 @@ session_start();
             } else {
                 "erreur";
             }
-
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (empty($_POST['nom'])) {
                     $errorNom = "Nom manquant";
@@ -97,7 +102,7 @@ session_start();
                     if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                     }
-                    $sql = "UPDATE event SET nom = '$nom', departement = '$departement', date = '$date' WHERE event.idEvent = '$id'";
+                    $sql = "UPDATE event SET nom = '$nom', departement = '$departement', date = '$date' WHERE idEvent = '$id'";
                     $conn->query('SET NAMES utf8');
                     if (mysqli_query($conn, $sql)) {
                         echo "Enregistrement réussi";
@@ -112,44 +117,55 @@ session_start();
             }
             if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
                 ?>
-                <div class="container-fluid h-100 d-flex flex-column">
-                    <div class="row top-left test1">
-                        <div class="col-1 p-0 m-0">
-                            <button type="button" class="btn" id="butBack" onclick="window.location.href='eventBD.php'">Revenir</button>
-                        </div>
+                <section class="login-page flex-center-center py-5 bg-light">
+                    <div class="w-100 mx-auto px-2" style="max-width: 400px">
+                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                            <div class="text-center text-gray">
+                                <h2 class="weight-500 mb-1">Modification d'événement</h2>
+                                <p class="h4 mb-2 weight-300 ">Veuillez modifier les champs à corriger</p>
+                            </div>
+                            <div class="card overflow-unset mt-9 mb-1">
+                                <div class="card-body">
+                                    <div class="avatar-icon text-center">
+                                        <img src="https://yt3.ggpht.com/a/AATXAJyBgyVuLbK5tbpbn8yLLYqX2cU0o5GCmDoToA=s900-c-k-c0xffffffff-no-rj-mo" height="128" width="128" alt="Avatar" class="img-circle img-cover card mb-2 ml-auto mr-auto p-1">
+                                    </div>
+                                    <div class="group">
+                                        <label for="nom">Nom de l'évènement</label>
+                                        <input type="text" class="input" placeholder="Nom de l'événement" name="nom" value="<?php echo $nom ?>">
+                                        <span class="spanErr"><?php echo $errorNom; ?></span>
+                                    </div>
+
+                                    <div class="group">
+                                        <label for="departement">Département</label>
+                                        <input type="text" class="input" name="departement" value="<?php echo $departement ?>">
+                                        <span class="spanErr"><?php echo $errorDepartement; ?></span>
+                                    </div>
+                                    <div class="group">
+                                        <label for="lieu">Lieu de l'événement:</label>
+                                        <input type="text" class="input" placeholder="Lieu de l'événement" name="lieu" value="<?php echo $lieu ?>">
+                                        <span class="spanErr"><?php echo $errorLieu; ?></span>
+                                    </div>
+                                    <div class="group">
+                                        <label for="date">Date et heure de l'événement:</label>
+                                        <input type="datetime-local" class="input" placeholder="Date de l'événement" name="date" value="<?php echo $date ?>">
+                                        <span class="spanErr"><?php echo $errorDate; ?></span>
+                                    </div>
+                                    <div class="group">
+                                        <input type="hidden" class="form-control field left" name="id" value="<?php echo $id; ?>" readonly>
+                                        <input type="hidden" class="form-control field left" name="eoU" value="<?php echo $eoU; ?>" readonly>
+                                    </div>
+                                    <div class="group">
+                                        <button class="btn btncolor block btn-lg weight-500" type="submit">Modifier</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center weight-600 text-gray">
+                                <a href="" class="text-gray">Besoin d'aide?</a>
+                            </div>
+                        </form>
                     </div>
-                    <div class="row middle test99 flex-grow-1 d-flex">
-                        <div class="col-2 my-form-container">
-                            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                                <div class="form-group">
-                                    <label for="nom">Nom de l'évènement</label>
-                                    <input type="text" class="form-control" name="nom" value="<?php echo $nom ?>">
-                                    <span><?php echo $errorNom; ?></span>
-                                </div>
-                                <div class="form-group">
-                                    <label for="departement">Departement</label>
-                                    <input type="text" class="form-control" name="departement" value="<?php echo $departement ?>">
-                                    <span><?php echo $errorDepartement; ?></span>
-                                </div>
-                                <div class="form-group">
-                                    <label for="lieu">Lieu</label>
-                                    <input type="text" class="form-control" name="lieu" value="<?php echo $lieu ?>">
-                                    <span><?php echo $errorLieu; ?></span>
-                                </div>
-                                <div class="form-group">
-                                    <label for="nom">Date et heure</label>
-                                    <input type="datetime-local" class="form-control" name="date" value="<?php echo $date ?>">
-                                    <span><?php echo $errorDate; ?></span>
-                                </div>
-                                <input type="hidden" class="form-control field left" name="id" value="<?php echo $id; ?>" readonly>
-                                <div class="middle">
-                                    <button type="submit" class="btn btn-success mt-2 maxlargeur">Créer</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-    <?php
+                </section>
+                <?php
             }
         } else {
             $numEmplo = $password = $prenom = $nom = $recoverEmail = "";
@@ -184,7 +200,7 @@ session_start();
             }
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (empty($_POST['numEmplo'])) {
-                    $errorNumEmplo = "N° employé manquant";
+                    $errorNumEmplo = "Numéro d'employé manquant";
                     $erreur1 = true;
                 } else {
                     $numEmplo = test_input($_POST["numEmplo"]);
@@ -202,13 +218,13 @@ session_start();
                     $nom = test_input($_POST["nom"]);
                 }
                 if (empty($_POST['recoverEmail'])) {
-                    $errorRecoverEmail = "Email de récupération manquante";
+                    $errorRecoverEmail = "Email de récupération manquant";
                     $erreur1 = true;
                 } else {
                     $recoverEmail = test_input($_POST["recoverEmail"]);
                 }
 
-                if ($erreur != true) {
+                if ($erreur1 != true) {
                     $servername = "localhost";
                     $username = "root";
                     $password = "root";
@@ -232,75 +248,64 @@ session_start();
                     }
                     header("Location: userBD.php");
                     mysqli_close($conn);
-    ?>
+                ?>
                 <?php
                 }
             }
-            if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
+            if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur1 == true) {
                 ?>
-                <div class="container-fluid h-100 d-flex flex-column">
-                    <div class="row top-left test1">
-                        <div class="col-1 p-0 m-0">
-                            <button type="button" class="btn" id="butBack" onclick="window.location.href='eventBD.php'">Revenir</button>
-                        </div>
+                <section class="login-page flex-center-center py-5 bg-light">
+                    <div class="w-100 mx-auto px-2" style="max-width: 400px">
+                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+
+                            <div class="text-center text-gray">
+                                <h2 class="weight-500 mb-1">Modification de l'usager</h2>
+                                <p class="h4 mb-2 weight-300 ">Veuillez modifier les champs à corriger</p>
+                            </div>
+                            <div class="card overflow-unset mt-9 mb-1">
+                                <div class="card-body">
+                                    <div class="avatar-icon text-center">
+                                        <img src="https://yt3.ggpht.com/a/AATXAJyBgyVuLbK5tbpbn8yLLYqX2cU0o5GCmDoToA=s900-c-k-c0xffffffff-no-rj-mo" height="128" width="128" alt="Avatar" class="img-circle img-cover card mb-2 ml-auto mr-auto p-1">
+                                    </div>
+                                    <div class="group">
+                                        <label for="numEmplo">Numéro d'employé:</label>
+                                        <input type="text" class="input" placeholder="Numéro d'employé" name="numEmplo" value="<?php echo $numEmplo ?>">
+                                        <span class="spanErr"><?php echo $errorNumEmplo; ?></span>
+                                    </div>
+                                    <div class="group">
+                                        <label for="prenom">Prénom de l'employé:</label>
+                                        <input type="text" class="input" placeholder="Prénom de l'employé" name="prenom" value="<?php echo $prenom ?>">
+                                        <span class="spanErr"><?php echo $errorPrenom; ?></span>
+                                    </div>
+                                    <div class="group">
+                                        <label for="nom">Nom de l'employé:</label>
+                                        <input type="text" class="input" placeholder="Nom de l'employé" name="nom" value="<?php echo $nom ?>">
+                                        <span class="spanErr"><?php echo $errorNom; ?></span>
+                                    </div>
+                                    <div class="group">
+                                        <label for="recoverEmail">Email de récupération:</label>
+                                        <input type="email" class="input" placeholder="Email de récupération" name="recoverEmail" value="<?php echo $recoverEmail ?>">
+                                        <span class="spanErr"><?php echo $errorRecoverEmail; ?></span>
+                                    </div>
+                                    <div class="group">
+                                        <input type="hidden" class="form-control field left" name="id" value="<?php echo $id; ?>" readonly>
+                                        <input type="hidden" class="form-control field left" name="eoU" value="<?php echo $eoU; ?>" readonly>
+                                    </div>
+
+                                    <div class="group">
+                                        <button class="btn btncolor block btn-lg weight-500" type="submit">Modifier</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="text-center weight-600 text-gray">
+                                <a href="" class="text-gray">Besoin d'aide?</a>
+                            </div>
+                        </form>
                     </div>
-                    <div class="row middle test99 flex-grow-1 d-flex">
-                        <div class="col-2 my-form-container">
-                            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                                <div class="form-group">
-                                    <label for="numEmplo">N° d'employé</label>
-                                    <input type="text" class="form-control" name="numEmplo" value="<?php echo $numEmplo ?>">
-                                    <span><?php echo $errorNumEmplo; ?></span>
-                                </div>
-                                <div class="form-group">
-                                    <label for="nom">Nom</label>
-                                    <input type="text" class="form-control" name="nom" value="<?php echo $nom ?>">
-                                    <span><?php echo $errorNom; ?></span>
-                                </div>
-                                <div class="form-group">
-                                    <label for="prenom">Prénom</label>
-                                    <input type="text" class="form-control" name="prenom" value="<?php echo $prenom ?>">
-                                    <span><?php echo $errorPrenom; ?></span>
-                                </div>
-                                <div class="form-group">
-                                    <label for="nom">Email de récupération</label>
-                                    <input type="text" class="form-control" name="recoverEmail" value="<?php echo $recoverEmail ?>">
-                                    <span><?php echo $errorRecoverEmail; ?></span>
-                                </div>
-                                <input type="hidden" class="form-control field left" name="id" value="<?php echo $id; ?>" readonly>
-                                <div class="middle">
-                                    <button type="submit" class="btn btn-success mt-2 maxlargeur">Créer</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                </section>
     <?php
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
     } else {
         header("Location: connexion.php");
@@ -314,6 +319,8 @@ session_start();
     }
     ?>
     </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/buttercake@3.0.0/dist/js/butterCake.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 

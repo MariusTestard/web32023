@@ -21,12 +21,10 @@ session_start();
         $username = "root";
         $password = "root";
         $bd = "smileyFace";
-
         $conn = new mysqli($servername, $username, $password, $bd);
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
-
         $sql = "SELECT numEmploye, password, prenom, nom, recoverEmail FROM user";
         $conn->query('SET NAMES utf8');
         $result = $conn->query($sql);
@@ -34,7 +32,6 @@ session_start();
         <div class="container-fluid h-100" id="backgroundimage">
             <div class="row navBar">
                 <div class="col-4 p-0 col-fitNav">
-                    <!-- <button class="btn buttonNav" id="butUser" onclick="window.location.href='eventBD.php'">Événement</button> -->
                     <div class="dropdown">
                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink">
                             <?php
@@ -60,7 +57,7 @@ session_start();
             </div>
             <div id="current">
                 <h5>Connecté en tant que: <?php echo $_SESSION["prenom"] . " " . $_SESSION["nom"]; ?> </h5>
-                <h5>Évènement en cours: <?php echo $_SESSION['eventLive']; ?> </h5>
+                <h5>Évènement en cours: <?php ?> </h5>
             </div>
             <div class="row mainWindow">
                 <div class="col-12 my-custom-scrollbar">

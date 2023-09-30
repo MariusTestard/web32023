@@ -18,24 +18,23 @@ session_start();
     <?php
     if ($_SESSION["connexion"] == true) {
     ?>
-    <!-- ÉTUDIANT -->
-    <div class="container-fluid h-100">
-        <div class="row rows align-items-center text-center">
-            <div class="mainText">L'avis des étudiants nous importe</div>
-        </div>
-        <div class="row rows align-items-center text-center">
-            <div class="col-12 d-flex justify-content-evenly">
-                <a href="smileysCount/high.php?eoU=<?php echo 1; ?>" class="hrefSmiley"> <img class="img-fluid" src="img/smiley_smidoeuf.png" width="300px" height="300px"> </a>
-                <a href="smileysCount/mid.php?eoU=<?php echo 1; ?>" class="hrefSmiley"> <img class="img-fluid" src="img/smiley_mid.png" width="300px" height="300px"> </a>
-                <a href="smileysCount/low.php?eoU=<?php echo 1; ?>" class="hrefSmiley"> <img class="img-fluid" src="img/smiley_bad.png" width="300px" height="300px"> </a>
+        <div class="container-fluid h-100">
+            <div class="row rows align-items-center text-center">
+                <div class="mainText">L'avis des étudiants nous importe</div>
+            </div>
+            <div class="row rows align-items-center text-center">
+                <div class="col-12 d-flex justify-content-evenly">
+                    <a href="smileysCount/high.php?eoU=<?php echo 1; ?>" class="hrefSmiley"> <img class="img-fluid" src="img/smiley_smidoeuf.png" width="300px" height="300px"> </a>
+                    <a href="smileysCount/mid.php?eoU=<?php echo 1; ?>" class="hrefSmiley"> <img class="img-fluid" src="img/smiley_mid.png" width="300px" height="300px"> </a>
+                    <a href="smileysCount/low.php?eoU=<?php echo 1; ?>" class="hrefSmiley"> <img class="img-fluid" src="img/smiley_bad.png" width="300px" height="300px"> </a>
+                </div>
+            </div>
+            <div class="row rows align-items-end">
+                <div class="col-12 d-flex justify-content-end">
+                    <a href="eventBD.php" class="btn btn-warning" type="button">Page de connexion</a>
+                </div>
             </div>
         </div>
-        <div class="row rows align-items-end">
-            <div class="col-12 d-flex justify-content-end">
-                <a href="eventBD.php" class="btn btn-warning" type="button">Page de connexion</a>
-            </div>
-        </div>
-    </div>
     <?php
     } else {
         header("Location: connexion.php");
@@ -43,4 +42,5 @@ session_start();
     ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
+
 </html>

@@ -1,0 +1,176 @@
+* { margin: 0px; padding: 0px; }
+body {
+	background: lightblue;
+	font:14px "Open Sans", sans-serif; 
+	text-align:center;
+}
+
+.tile {
+	width: 100%;
+	border:1px solid #ebeff2;
+	box-shadow:0px 2px 3px -1px rgba(151, 171, 187, 0.7);
+	float:left;
+  	transform-style: preserve-3d;
+  	margin: 10px 5px;
+}
+
+.header {
+	border-bottom:1px solid #ebeff2;
+
+	padding:19px 0;
+	text-align:center;
+	color:#5aadef;
+	font-size:600;
+	font-size:19px;	
+	position:relative;
+}
+
+.dates {
+	border-bottom:1px solid #ebeff2;
+	border-right:1px solid #ebeff2;
+
+	padding:20px 0px;
+	margin: 0px 0px 5px 0px;
+	font-size:16px;
+	color:#5aadef;
+	font-weight:600;	
+	overflow:auto;
+}
+
+.dates div {
+	float:left;
+	width:100%;
+	text-align:center;
+	position:relative;
+}
+
+.dates strong,
+.stats strong {
+	display:block;
+	color: white;
+	font-size:11px;
+	font-weight:700;
+}
+
+.noBordeRightdate {
+	border-bottom:1px solid #ebeff2;
+	padding:20px 0px;
+	margin: 5px 0px 0px 0px;
+	font-size:16px;
+	color:#5aadef;
+	font-weight:600;	
+	overflow:auto;
+}
+
+.noBordeRightdate strong{
+	display:block;
+	color: white;
+	font-size:11px;
+	font-weight:700;
+}
+
+.noBordeRightLieu {
+	border-bottom:1px solid #ebeff2;
+	padding:20px 0px;
+	margin: 0px 0px 5px 0px;
+	font-size:16px;
+	color:#5aadef;
+	font-weight:600;	
+	overflow:auto;
+}
+
+.noBordeRightLieu strong{
+	display:block;
+	color: white;
+	font-size:11px;
+	font-weight:700;
+}
+
+.stats{
+	border-right:1px solid #ebeff2;
+	overflow:auto;
+	padding:15px;
+	font-size:16px;
+	font-weight:600;
+}
+
+.noBordeRightstat{
+
+	overflow:auto;
+	padding:15px;
+	font-size:16px;
+	font-weight:600;
+}
+
+.noBordeRightstat strong{
+	display:block;
+	color: white;
+	font-size:11px;
+	font-weight:700;
+}
+
+.statyy{
+	border-right:1px solid #ebeff2;
+}
+
+.stat div{
+	
+	float:left;
+	width: 33.33333%;
+	text-align:center;
+}
+
+.borderlow{
+	border-right:0px solid #ebeff2;
+}
+
+.stats div:nth-of-type(3){border:none;}
+
+.pie1 {
+  width: 200px;
+  height: 200px;
+  background-image: conic-gradient(orange 70%, blue 70% 85%, green 85%);
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.pie {
+  width: 200px;
+  height: 200px;
+  background-image: conic-gradient(orange 40%, blue 40% 60%, green 60%);
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.middle-container{
+	border-right:1px solid #ebeff2;
+	display: flex;
+	flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+
+}
+
+.middle-container1{
+	display: flex;
+	flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+
+}
+
+.middle {
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	text-align: center;
+}
+
+.stats p{
+	margin: 0;
+}
+
+
+
