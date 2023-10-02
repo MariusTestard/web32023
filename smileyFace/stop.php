@@ -28,15 +28,17 @@ session_start();
             $sql = "SELECT Etat FROM event WHERE idEvent = $id";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
+                $row = $result->fetch_assoc();
                     if ($row["Etat"] == true) {
                         $sql = "UPDATE event SET Etat = '0' WHERE idEvent = '$id'";
-                        mysqli_query($conn, $sql);
+                        if(mysqli_query($conn, $sql)){
+                            $conn->close();
+                            header("Location: eventBD.php");
+                        }
+                    }else{
+                        echo "Aucun événement ou un autre événement est déja en cours !";
                     }
-                }
             }
-            header("Location: eventBD.php");
-            $conn->close();
         }
     } else {
         header("Location: connexion.php");

@@ -64,10 +64,10 @@ session_start();
                     </div>
                     <div class="collapse navbar-collapse" id="navbar-collapse-4">
                         <ul class="nav navbar-nav navbar-right">
-                            <!--
+                            <
                             <li><a href="userBD.php">Connecté en tant que: <?php echo $_SESSION["prenom"] . " " . $_SESSION["nom"]; ?> </a></li>
                             <li><a href="userBD.php">Événement en cours: <?php echo $idCours; ?></a></li>
-                            -->
+                            
                             <li><a href="userBD.php">Utilisateurs</a></li>
                             <li><a href="eventBD.php">Évènements</a></li>
                             <li>

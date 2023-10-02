@@ -27,22 +27,19 @@ session_start();
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
-            $sql = "SELECT Etat FROM event";
+
+            $sql = "SELECT Etat FROM event WHERE Etat = '1'";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    if ($row["Etat"] == true) {
-                        echo "Un évènement est présentement en cours !";
-                        $bool = true;
-                        break;
-                    }
-                }
-                if ($bool == false) {
-                    $sql = "UPDATE event SET Etat = '1' WHERE idEvent = '$id'";
-                    mysqli_query($conn, $sql);
+                echo "Un évènement est présentement en cours !";
+                $bool = true;
+            }
+            if ($bool == false) {
+                $sql = "UPDATE event SET Etat = '1' WHERE idEvent = '$id'";
+                if (mysqli_query($conn, $sql)) {
+                    header("Location: eventBD.php");
                 }
             }
-            header("Location: eventBD.php");
             $conn->close();
         }
     } else {
