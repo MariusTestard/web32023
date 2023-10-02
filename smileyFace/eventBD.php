@@ -6,10 +6,14 @@ session_start();
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="icon" type="image/png" sizes="96x96" href="https://www.cegeptr.qc.ca/wp-content/themes/acolyte-2_1_5/assets/icons/favicon-96x96.png">
     <link rel="stylesheet" href="css/accueil.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="js/script.js"></script>
     <title>Événements - Cégep de Trois-Rivières</title>
 </head>
@@ -46,140 +50,139 @@ session_start();
             }
         }
     ?>
-        <div class="container-fluid h-100" id="backgroundimage">
-            <div class="row navBar">
-                <div class="col-4 p-0 col-fitNav">
-                    <!-- <button class="btn buttonNav" id="butUser" onclick="window.location.href='userBD.php'">Utilisateur</button> -->
-                    <div class="dropdown">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink">
-                            <?php
-                            $page_name = 'Événements';
-                            echo $page_name;
-                            ?>
-                        </a>
-                        <div class="dropdown-content">
-                            <button class="dropdown-item" onclick="window.location.href='userBD.php'">Utilisateurs</button>
-                            <button class="dropdown-item" onclick="window.location.href='index1.php'">Vote Étudiant</button>
-                            <button class="dropdown-item" onclick="window.location.href='index.php'">Vote Employeur</button>
-                        </div>
+        <div>
+            <nav class="navbar navbar-inverse">
+                <div>
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-4">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="https://www.cegeptr.qc.ca/" target="_blank">Cégep de Trois-Rivières</a>
                     </div>
-                    <div>Connecté en tant que: <?php echo $_SESSION["prenom"] . " " . $_SESSION["nom"]; ?> </div>
-                </div>
-                <div class="col-4 text-center">
-                    <div>
-                        <h6>Table des événements</h6>
+                    <div class="collapse navbar-collapse" id="navbar-collapse-4">
+                        <ul class="nav navbar-nav navbar-right">
+                            <!--
+                            <li><a href="userBD.php">Connecté en tant que: <?php echo $_SESSION["prenom"] . " " . $_SESSION["nom"]; ?> </a></li>
+                            <li><a href="userBD.php">Événement en cours: <?php echo $idCours; ?></a></li>
+                            -->
+                            <li><a href="userBD.php">Utilisateurs</a></li>
+                            <li><a href="eventBD.php">Évènements</a></li>
+                            <li>
+                                <button class="btn btn-default btn-outline btn-circle collapsed" onclick="window.location.href='deconnexion.php'">Déconnexion</button>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div class="col-4 p-0 text-end col-fitNav">
-                    <button class="btn buttonNav" id="butSignOut" onclick="window.location.href='deconnexion.php'">Déconnexion</button>
-                    <div>Événement en cours: <?php echo $idCours; ?> </div>
-                </div>
-            </div>
-            <div class="row mainWindow">
-                <div class="col-10">
-                    <table class="table table-hover table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col">Nom</th>
-                                <th scope="col">Département
-                                    <div class="dropdown">
-                                        <button class="btn btn-link dropdown-toggle" type="button" id="departementDropdown" data-bs-toggle="dropdown" aria-expanded="false"></button>
-                                        <ul class="dropdown-menu" aria-labelledby="departementDropdown">
-                                            <!--
+            </nav>
+        </div>
+        <div class="row mainWindow">
+            <div class="col-10">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Département
+                                <div class="dropdown">
+                                    <button class="btn btn-link dropdown-toggle" type="button" id="departementDropdown" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                                    <ul class="dropdown-menu" aria-labelledby="departementDropdown">
+                                        <!--
                                         <li><a class="dropdown-item" onclick="updateTable()">Ascending</a></li>
                                         <li><a class="dropdown-item" onclick="updateTable()">Descending</a></li>
                                         -->
-                                        </ul>
-                                    </div>
-                                </th>
-                                <th scope="col">Lieu</th>
-                                <th scope="col" onclick="sortTableByDate()">Date et heure</th>
-                                <th scope="col">Étudiant</th>
-                                <th scope="col">Employé</th>
-                                <th scope="col">Actions</th>
-                            </tr>
-                        </thead>
-                        <?php
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                if ($rowSatis = $resultSatis->fetch_assoc()) {
-                        ?>
-                                    <tbody>
-                                        <tr>
-                                            <td class="tdLink">
-                                                <div class="divBox">
-                                                    <a href="zoom.php?id=<?php echo $row["idEvent"] ?>"><?php echo $row["nom"] ?></a>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="divBox">
-                                                    <a href="zoom.php?id=<?php echo $row["idEvent"] ?>"><?php echo $row["departement"] ?></a>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="divBox">
-                                                    <a href="zoom.php?id=<?php echo $row["idEvent"] ?>"><?php echo $row["lieu"] ?></a>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="divBox">
-                                                    <a href="zoom.php?id=<?php echo $row["idEvent"] ?>"><?php echo $row["date"] ?></a>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="divBox">
-                                                    <a href="zoom.php?id=<?php echo $row["idEvent"] ?>">
-                                                        <?php
-                                                        $satisfactionValues = [
-                                                            "highEtu" => "smiley_smidoeuf.png",
-                                                            "midEtu" => "smiley_mid.png",
-                                                            "lowEtu" => "smiley_bad.png",
-                                                        ];
-                                                        foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
-                                                            echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
-                                                            echo $rowSatis[$satisfactionKey] . " ";
-                                                        }
-                                                        ?>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="divBox">
-                                                    <a href="zoom.php?id=<?php echo $row["idEvent"] ?>">
-                                                        <?php
-                                                        $satisfactionValues = [
-                                                            "highEmplo" => "smiley_smidoeuf.png",
-                                                            "midEmplo" => "smiley_mid.png",
-                                                            "lowEmplo" => "smiley_bad.png",
-                                                        ];
-                                                        foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
-                                                            echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
-                                                            echo $rowSatis[$satisfactionKey] . " ";
-                                                        }
-                                                        ?>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a href="launch.php?id=<?php echo $row["idEvent"] ?>" class="btn" type="button" id="butLaunch" title="Lancer">&#128640;</a>
-                                                <a href="stop.php?id=<?php echo $row["idEvent"] ?>" class="btn" type="button" id="butStop" title="Arrêter">&#128721;</a>
-                                                <a href="modifier.php?id=<?php echo $row["idEvent"] ?>&eoU=<?php echo 0 ?>" class="btn btn-warning" type="button" id="butModify" title="Modifier">&#128221;</a>
-                                                <a href="supprimer.php?id=<?php echo $row["idEvent"] ?>&eoU=<?php echo 0 ?>" class="btn btn-danger" type="button" id="butRemove" title="Supprimer">&#10060;</a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                        <?php
-                                }
+                                    </ul>
+                                </div>
+                            </th>
+                            <th scope="col">Lieu</th>
+                            <th scope="col" onclick="sortTableByDate()">Date et heure</th>
+                            <th scope="col">Étudiant</th>
+                            <th scope="col">Employé</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <?php
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            if ($rowSatis = $resultSatis->fetch_assoc()) {
+                    ?>
+                                <tbody>
+                                    <tr>
+                                        <td class="tdLink">
+                                            <div class="divBox">
+                                                <a href="zoom.php?id=<?php echo $row["idEvent"] ?>"><?php echo $row["nom"] ?></a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="divBox">
+                                                <a href="zoom.php?id=<?php echo $row["idEvent"] ?>"><?php echo $row["departement"] ?></a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="divBox">
+                                                <a href="zoom.php?id=<?php echo $row["idEvent"] ?>"><?php echo $row["lieu"] ?></a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="divBox">
+                                                <a href="zoom.php?id=<?php echo $row["idEvent"] ?>"><?php echo $row["date"] ?></a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="divBox">
+                                                <a href="zoom.php?id=<?php echo $row["idEvent"] ?>">
+                                                    <?php
+                                                    $satisfactionValues = [
+                                                        "highEtu" => "smiley_smidoeuf.png",
+                                                        "midEtu" => "smiley_mid.png",
+                                                        "lowEtu" => "smiley_bad.png",
+                                                    ];
+                                                    foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
+                                                        echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
+                                                        echo $rowSatis[$satisfactionKey] . " ";
+                                                    }
+                                                    ?>
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="divBox">
+                                                <a href="zoom.php?id=<?php echo $row["idEvent"] ?>">
+                                                    <?php
+                                                    $satisfactionValues = [
+                                                        "highEmplo" => "smiley_smidoeuf.png",
+                                                        "midEmplo" => "smiley_mid.png",
+                                                        "lowEmplo" => "smiley_bad.png",
+                                                    ];
+                                                    foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
+                                                        echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
+                                                        echo $rowSatis[$satisfactionKey] . " ";
+                                                    }
+                                                    ?>
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a href="launch.php?id=<?php echo $row["idEvent"] ?>" class="btn" type="button" id="butLaunch" title="Lancer">&#128640;</a>
+                                            <a href="stop.php?id=<?php echo $row["idEvent"] ?>" class="btn" type="button" id="butStop" title="Arrêter">&#128721;</a>
+                                            <a href="modifier.php?id=<?php echo $row["idEvent"] ?>&eoU=<?php echo 0 ?>" class="btn btn-warning" type="button" id="butModify" title="Modifier">&#128221;</a>
+                                            <a href="supprimer.php?id=<?php echo $row["idEvent"] ?>&eoU=<?php echo 0 ?>" class="btn btn-danger" type="button" id="butRemove" title="Supprimer">&#10060;</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                    <?php
                             }
-                        } else {
-                            echo "Aucun résultats";
                         }
-                        $conn->close();
-                        ?>
-                    </table>
-                    <a href="ajouter.php" class="btn btn-primary" role="button" id="butAjouter">Ajouter</a>
-                </div>
+                    } else {
+                        echo "Aucun résultats";
+                    }
+                    $conn->close();
+                    ?>
+                </table>
+                <a href="ajouter.php" class="btn btn-primary" role="button" id="butAjouter">Ajouter</a>
             </div>
+        </div>
         </div>
     <?php
     } else {
@@ -194,7 +197,7 @@ session_start();
         return $moyenne;
     }
     ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script type="text/javascript"></script>
 </body>
 
 </html>

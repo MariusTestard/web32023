@@ -1,19 +1,36 @@
 ----------------- 29 SEPTEMBRE 23H59 DATE LIMITE REMISE ----------------------------------------------------------------------------------------------------------------------
 
 PROG:
-Modifier un usager fonctionne adéquatement
 Le site est réactif pour la partie gestion
-La page de votation est optimisée pour la tablette Samsung ciblée
 L’esthétique du site est professionnelle et le site est en français
-
-
-Modifier l'entrée pour modifier ou plutôt identifier l'entrée pour envoyer le bon formulaire et gérer les erreurs
-
-- ScrollList évènements
-- Order sur un attribut (date, departement) pour les évènements
 
 STYLES:
 - Mettre couleur/background
+- Faire style page création utilisateurs
+- Faire style page création évènements
+- Ajouter à la navbar un Dropdown ou champ pour aller voter
+- Changer couleur de la navbar
+- Petit animation (1.5s) et message significatif avant d'envoyer l'utilisateur à la page newPass.php
+- Style de la page d'évènements
+- Style de la page utilisateurs
+
+----------------- 29 SEPTEMBRE 23H59 DATE LIMITE REMISE ---------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -23,7 +40,3 @@ SELECT * FROM smileyFace ORDER BY departement ASC
 SELECT * FROM smileyFace ORDER BY departement DESC
 
 Faire une navbar (Dropdown)
-
------------------ 29 SEPTEMBRE 23H59 DATE LIMITE REMISE ---------------------------------------------------------------------------------------------------------------------
-
-

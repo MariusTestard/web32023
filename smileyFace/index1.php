@@ -29,11 +29,6 @@ session_start();
                     <a href="smileysCount/low.php?eoU=<?php echo 1; ?>" class="hrefSmiley"> <img class="img-fluid" src="img/smiley_bad.png" width="300px" height="300px"> </a>
                 </div>
             </div>
-            <div class="row rows align-items-end">
-                <div class="col-12 d-flex justify-content-end">
-                    <a href="eventBD.php" class="btn btn-warning" type="button">Page de connexion</a>
-                </div>
-            </div>
         </div>
     <?php
     } else {

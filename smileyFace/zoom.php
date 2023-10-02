@@ -7,10 +7,13 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/zoom.css">
     <link rel="icon" type="image/png" sizes="96x96" href="https://www.cegeptr.qc.ca/wp-content/themes/acolyte-2_1_5/assets/icons/favicon-96x96.png">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <title>Focus - Cégep de Trois-Rivières</title>
 </head>
 
@@ -42,189 +45,254 @@ session_start();
                         $resultEtuMoyenne = calcMoyene($rowSatis['highEtu'], $rowSatis['midEtu'], $rowSatis['lowEtu']);
                         $resultEmploMoyenne = calcMoyene($rowSatis['highEmplo'], $rowSatis['midEmplo'], $rowSatis['lowEmplo']);
             ?>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="tile">
-                                        <div class="wrapper">
-                                            <div class="header"><?php echo $row['nom']; ?> </div>
-                                            <div class="row g-0">
-                                                <div class="col-6">
-                                                    <div class="dates">
-                                                        <div class="start">
-                                                            <strong>Département:</strong> <?php echo $row['departement']; ?>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="noBordeRightLieu">
-                                                        <div>
-                                                            <strong>Lieu:</strong> <?php echo $row['lieu']; ?>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="noBordeRightdate">
+                        <div>
+                            <nav class="navbar navbar-inverse">
+                                <div>
+                                    <div class="navbar-header">
+                                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-4">
+                                            <span class="sr-only">Toggle navigation</span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </button>
+                                        <a class="navbar-brand" href="https://www.cegeptr.qc.ca/" target="_blank">Cégep de Trois-Rivières</a>
+                                    </div>
+                                    <div class="collapse navbar-collapse" id="navbar-collapse-4">
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <li><a href="userBD.php">Utilisateurs</a></li>
+                                            <li><a href="eventBD.php">Évènements</a></li>
+                                            <li>
+                                                <button class="btn btn-default btn-outline btn-circle collapsed" onclick="window.location.href='deconnexion.php'">Déconnexion</button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </nav>
+                            <div>
+                                <h1><strong><?php echo $row['nom']; ?> </strong></h1>
+                                <h4>Date:<strong> <?php echo $row['date']; ?></strong></h4>
+                                <div class="rowForCols">
+                                    <div class="column6">
+                                        <h3>Lieu:<strong> <?php echo $row['lieu']; ?></strong></h3>
+                                    </div>
+                                    <div class="column6">
+                                        <h3>Département:<strong> <?php echo $row['departement']; ?></strong></h3>
+                                    </div>
+                                </div>
+                                <div class="rowForCols">
+                                    <div class="column12">
+                                        <h3>Les statistiques</h3>
+                                    </div>
+                                </div>
+
+                                <div class="rowForCols miniScreenFlexDirection">
+                                    <div class="column6">
+                                        <h4>Les étudiants</h4>
+                                        <div class="rowForCols">
+                                            <div class="column4">
                                                 <div>
-                                                    <strong>Date:</strong> <?php echo $row['date']; ?>
+                                                    <?php
+                                                    $satisfactionValues = [
+                                                        "highEtu" => "smiley_smidoeuf.png"
+                                                    ];
+                                                    foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
+                                                        echo $rowSatis[$satisfactionKey] . " ";
+                                                    }
+                                                    ?>
+                                                </div>
+                                                <div>
+                                                    <?php
+                                                    $satisfactionValues = [
+                                                        "highEtu" => "smiley_smidoeuf.png"
+                                                    ];
+                                                    foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
+                                                        echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
+                                                    }
+                                                    ?>
                                                 </div>
                                             </div>
-                                            <div class="row g-0">
-                                                <div class="col-6 stat statyy">
-                                                    <div class="stats">
-                                                        <strong>High</strong>
-                                                        <p class="getValueBackGround" id="EtuHigh"><?php echo round($resultEtu[0], 2); ?>%</p>
-                                                    </div>
-                                                    <div class="stats">
-                                                        <strong>Mid</strong>
-                                                        <p class="getValueBackGround" id="EtuMid"><?php echo round($resultEtu[1], 2); ?>%</p>
-                                                    </div>
-                                                    <div class="stats borderlow">
-                                                        <strong>Low</strong>
-                                                        <p class="getValueBackGround" id="EtuLow"><?php echo round($resultEtu[2], 2); ?>%</p>
-                                                    </div>
+                                            <div class="column4">
+                                                <div>
+                                                    <?php
+                                                    $satisfactionValues = [
+                                                        "midEtu" => "smiley_mid.png",
+                                                    ];
+                                                    foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
+                                                        echo $rowSatis[$satisfactionKey] . " ";
+                                                    }
+                                                    ?>
                                                 </div>
-                                                <div class="stat col-6">
-                                                    <div class="stats">
-                                                        <strong>High</strong>
-                                                        <p class="getValueBackGround"><?php echo round($resultEmplo[0], 2); ?>%</p>
-                                                    </div>
-                                                    <div class="stats">
-                                                        <strong>Mid</strong>
-                                                        <p class="getValueBackGround"><?php echo round($resultEmplo[1], 2); ?>%</p>
-                                                    </div>
-                                                    <div class="noBordeRightstat borderlow">
-                                                        <strong>Low</strong>
-                                                        <p class="getValueBackGround"><?php echo round($resultEmplo[2], 2); ?>%</p>
-                                                    </div>
+                                                <div>
+                                                    <?php
+                                                    $satisfactionValues = [
+                                                        "midEtu" => "smiley_mid.png",
+                                                    ];
+                                                    foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
+                                                        echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
+                                                    }
+                                                    ?>
                                                 </div>
                                             </div>
-                                            <div class="row g-0">
-                                                <div class="col-6">
-                                                    <div class="middle-container p-0">
-                                                        <div class="m-2">
-                                                            Étudiant
-                                                        </div>
-                                                        <div class="pie1 middle" id="pie1"></div>
-                                                    </div>
+                                            <div class="column4">
+                                                <div>
+                                                    <?php
+                                                    $satisfactionValues = [
+                                                        "lowEtu" => "smiley_bad.png"
+                                                    ];
+                                                    foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
+                                                        echo $rowSatis[$satisfactionKey] . " ";
+                                                    }
+                                                    ?>
                                                 </div>
-                                                <div class="col-6">
-                                                    <div class="middle-container1 p-0">
-                                                        <div class="m-2">
-                                                            Employé
-                                                        </div>
-                                                        <div class="pie middle" id="pie"></div>
-                                                    </div>
+                                                <div>
+                                                    <?php
+                                                    $satisfactionValues = [
+                                                        "lowEtu" => "smiley_bad.png"
+                                                    ];
+                                                    foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
+                                                        echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
+                                                    }
+                                                    ?>
                                                 </div>
                                             </div>
-                                            <script>
-                                                <?php
-                                                $resultEtu[0] = round($resultEtu[0], 2);
-                                                $resultEtu[1] = round($resultEtu[1], 2);
-                                                $resultEtuMoyenne = round($resultEtuMoyenne, 2);
-                                                $resultEmploMoyenne = round($resultEmploMoyenne, 2);
-                                                $color = "conic-gradient(#00ff30 " . $resultEtu[0] . "%, #ffe019 " . $resultEtu[0] . "% " . ($resultEtu[0] + $resultEtu[1]) . "%, #ff0000 " . ($resultEtu[1] + $resultEtu[0]) . "%)";
-                                                echo "var color ='$color';";
-                                                echo "var resultEtuMoyenne ='$resultEtuMoyenne';";
-                                                echo "var resultEmploMoyenne ='$resultEmploMoyenne';";
-                                                $color1 = "conic-gradient(#00ff30 " . $resultEmplo[0] . "%, #ffe019 " . $resultEmplo[0] . "% " . ($resultEmplo[0] + $resultEmplo[1]) . "%, #ff0000 " . ($resultEmplo[1] + $resultEmplo[0]) . "%)";
-                                                echo "var color1 ='$color1';";
-                                                ?>
-                                                var secteur1 = document.getElementById('pie1');
-                                                var secteur2 = document.getElementById('pie');
-                                                secteur1.style.backgroundImage = color;
-                                                secteur1.innerHTML = resultEtuMoyenne + "%";
-                                                secteur1.style.fontSize = "40px";
-                                                secteur1.style.fontStyle = "italic";
-                                                secteur1.style.fontWeight = "bold";
-                                                secteur2.style.backgroundImage = color1;
-                                                secteur2.innerHTML = resultEmploMoyenne + "%";
-                                                secteur2.style.fontSize = "40px";
-                                                secteur2.style.fontStyle = "italic";
-                                                secteur2.style.fontWeight = "bold";
-                                            </script>
-                                            <div class="row g-0">
-                                                <div class="col-6 stat statyy">
-                                                    <div class="stats">
-                                                        <strong>High</strong>
-                                                        <?php
-                                                        $satisfactionValues = [
-                                                            "highEtu" => "smiley_smidoeuf.png"
-                                                        ];
-                                                        foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
-                                                            echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
-                                                            echo $rowSatis[$satisfactionKey] . " ";
-                                                        }
-                                                        ?>
-                                                    </div>
-                                                    <div class="stats">
-                                                        <strong>Mid</strong>
-                                                        <?php
-                                                        $satisfactionValues = [
-                                                            "midEtu" => "smiley_mid.png",
-                                                        ];
-                                                        foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
-                                                            echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
-                                                            echo $rowSatis[$satisfactionKey] . " ";
-                                                        }
-                                                        ?>
-                                                    </div>
-                                                    <div class="stats borderlow">
-                                                        <strong>Low</strong>
-                                                        <?php
-                                                        $satisfactionValues = [
-                                                            "lowEtu" => "smiley_bad.png"
-                                                        ];
-                                                        foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
-                                                            echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
-                                                            echo $rowSatis[$satisfactionKey] . " ";
-                                                        }
-                                                        ?>
-                                                    </div>
+                                        </div>
+                                        <div class="rowForCols miniScreenFlexDirection">
+                                            <div class="column4">
+                                                <div class="getValueBackGround" id="EtuHigh"><?php echo round($resultEtu[0], 2); ?>%</div>
+                                            </div>
+                                            <div class="column4">
+                                                <div class="getValueBackGround" id="EtuMid"><?php echo round($resultEtu[1], 2); ?>%</div>
+                                            </div>
+                                            <div class="column4">
+                                                <div class="getValueBackGround" id="EtuLow"><?php echo round($resultEtu[2], 2); ?>%</div>
+                                            </div>
+                                        </div>
+                                        <div class="rowForCols">
+                                            <div class="column12">
+                                                <div class="pie1 middle" id="pie1"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="column6">
+                                        <h4>Les employés</h4>
+                                        <div class="rowForCols">
+                                            <div class="column4">
+                                                <div>
+                                                    <?php
+                                                    $satisfactionValues = [
+                                                        "highEmplo" => "smiley_smidoeuf.png"
+                                                    ];
+                                                    foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
+
+                                                        echo $rowSatis[$satisfactionKey] . " ";
+                                                    }
+                                                    ?>
+                                                </div>
+                                                <div>
+                                                    <?php
+                                                    $satisfactionValues = [
+                                                        "highEmplo" => "smiley_smidoeuf.png"
+                                                    ];
+                                                    foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
+                                                        echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
+                                                    }
+                                                    ?>
                                                 </div>
 
-                                                <div class="stat col-6">
-                                                    <div class="stats">
-                                                        <strong>High</strong>
-                                                        <?php
-                                                        $satisfactionValues = [
-                                                            "highEmplo" => "smiley_smidoeuf.png"
-                                                        ];
-                                                        foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
-                                                            echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
-                                                            echo $rowSatis[$satisfactionKey] . " ";
-                                                        }
-                                                        ?>
-                                                    </div>
-                                                    <div class="stats">
-                                                        <strong>Mid</strong>
-                                                        <?php
-                                                        $satisfactionValues = [
-                                                            "midEmplo" => "smiley_mid.png"
-                                                        ];
-                                                        foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
-                                                            echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
-                                                            echo $rowSatis[$satisfactionKey] . " ";
-                                                        }
-                                                        ?>
-                                                    </div>
-                                                    <div class="noBordeRightstat borderlow">
-                                                        <strong>Low</strong>
-                                                        <?php
-                                                        $satisfactionValues = [
-                                                            "lowEmplo" => "smiley_bad.png"
-                                                        ];
-                                                        foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
-                                                            echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
-                                                            echo $rowSatis[$satisfactionKey] . " ";
-                                                        }
-                                                        ?>
-                                                    </div>
+                                            </div>
+                                            <div class="column4">
+                                                <div>
+                                                    <?php
+                                                    $satisfactionValues = [
+                                                        "midEmplo" => "smiley_mid.png"
+                                                    ];
+                                                    foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
+
+                                                        echo $rowSatis[$satisfactionKey] . " ";
+                                                    }
+                                                    ?>
                                                 </div>
+                                                <div>
+                                                    <?php
+                                                    $satisfactionValues = [
+                                                        "midEmplo" => "smiley_mid.png"
+                                                    ];
+                                                    foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
+                                                        echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
+                                                    }
+                                                    ?>
+                                                </div>
+
+                                            </div>
+                                            <div class="column4">
+                                                <div>
+                                                    <?php
+                                                    $satisfactionValues = [
+                                                        "lowEmplo" => "smiley_bad.png"
+                                                    ];
+                                                    foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
+
+                                                        echo $rowSatis[$satisfactionKey] . " ";
+                                                    }
+                                                    ?>
+                                                </div>
+                                                <div>
+                                                    <?php
+                                                    $satisfactionValues = [
+                                                        "lowEmplo" => "smiley_bad.png"
+                                                    ];
+                                                    foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
+                                                        echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
+                                                    }
+                                                    ?>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="rowForCols miniScreenFlexDirection">
+                                            <div class="column4">
+                                                <div class="getValueBackGround"><?php echo round($resultEmplo[0], 2); ?>%</div>
+                                            </div>
+                                            <div class="column4">
+                                                <div class="getValueBackGround"><?php echo round($resultEmplo[1], 2); ?>%</div>
+                                            </div>
+                                            <div class="column4">
+                                                <div class="getValueBackGround"><?php echo round($resultEmplo[2], 2); ?>%</div>
+                                            </div>
+                                        </div>
+                                        <div class="rowForCols">
+                                            <div class="column12">
+                                                <div class="pie1 middle" id="pie"></div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <script>
+                                    <?php
+                                    $resultEtu[0] = round($resultEtu[0], 2);
+                                    $resultEtu[1] = round($resultEtu[1], 2);
+                                    $resultEtuMoyenne = round($resultEtuMoyenne, 2);
+                                    $resultEmploMoyenne = round($resultEmploMoyenne, 2);
+                                    $color = "conic-gradient(#00ff30 " . $resultEtu[0] . "%, #ffe019 " . $resultEtu[0] . "% " . ($resultEtu[0] + $resultEtu[1]) . "%, #ff0000 " . ($resultEtu[1] + $resultEtu[0]) . "%)";
+                                    echo "var color ='$color';";
+                                    echo "var resultEtuMoyenne ='$resultEtuMoyenne';";
+                                    echo "var resultEmploMoyenne ='$resultEmploMoyenne';";
+                                    $color1 = "conic-gradient(#00ff30 " . $resultEmplo[0] . "%, #ffe019 " . $resultEmplo[0] . "% " . ($resultEmplo[0] + $resultEmplo[1]) . "%, #ff0000 " . ($resultEmplo[1] + $resultEmplo[0]) . "%)";
+                                    echo "var color1 ='$color1';";
+                                    ?>
+                                    var secteur1 = document.getElementById('pie1');
+                                    var secteur2 = document.getElementById('pie');
+                                    secteur1.style.backgroundImage = color;
+                                    secteur1.innerHTML = resultEtuMoyenne + "%";
+                                    secteur1.style.fontSize = "40px";
+                                    secteur1.style.fontStyle = "italic";
+                                    secteur1.style.fontWeight = "bold";
+                                    secteur2.style.backgroundImage = color1;
+                                    secteur2.innerHTML = resultEmploMoyenne + "%";
+                                    secteur2.style.fontSize = "40px";
+                                    secteur2.style.fontStyle = "italic";
+                                    secteur2.style.fontWeight = "bold";
+                                </script>
                             </div>
                         </div>
     <?php
@@ -245,23 +313,35 @@ session_start();
     function calc($valeurhigh, $valeurmid, $valeurlow)
     {
         $tot = $valeurhigh + $valeurmid + $valeurlow;
-        $pourhigh = $valeurhigh / $tot * 100;
-        $pourmid = $valeurmid / $tot * 100;
-        $pourlow = $valeurlow / $tot * 100;
+        if ($tot != 0) {
+            $pourhigh = $valeurhigh / $tot * 100;
+            $pourmid = $valeurmid / $tot * 100;
+            $pourlow = $valeurlow / $tot * 100;
+        } else {
+            $pourhigh = 0;
+            $pourmid = 0;
+            $pourlow = 0;
+        }
         return [$pourhigh, $pourmid, $pourlow];
     }
+
     function calcMoyene($valeurhigh, $valeurmid, $valeurlow)
     {
         $totalmem1 = $valeurhigh + $valeurmid + $valeurlow;
-        $pourcenthigh1 = $valeurhigh / $totalmem1 * 100;
-        $pourcentmid1 = $valeurmid / $totalmem1 * 50;
-        $pourcentlow1 = $valeurlow / $totalmem1 * 0;
+        if ($totalmem1 != 0) {
+            $pourcenthigh1 = $valeurhigh / $totalmem1 * 100;
+            $pourcentmid1 = $valeurmid / $totalmem1 * 50;
+            $pourcentlow1 = $valeurlow / $totalmem1 * 0;
+        } else {
+            $pourcenthigh1 = 0;
+            $pourcentmid1 = 0;
+            $pourcentlow1 = 0;
+        }
         $totalmem1 = $pourcenthigh1 + $pourcentmid1 + $pourcentlow1;
         return $totalmem1;
     }
     ?>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script type="text/javascript"></script>
 </body>
 
 </html>
