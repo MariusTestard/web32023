@@ -50,10 +50,13 @@ session_start();
                 $departement = $_POST['departement'];
                 $lieu = $_POST['lieu'];
                 $date = $_POST['date'];
+                require("connexionServeur.php");
+                /*
                 $servername = "localhost";
                 $username = "root";
                 $password = "root";
                 $bd = "smileyFace";
+                */
                 $conn = new mysqli($servername, $username, $password, $bd);
 
                 if ($conn->connect_error) {

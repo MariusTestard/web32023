@@ -18,10 +18,13 @@ session_start();
         $toF = false;
         $eoU = $_GET['eoU'];
         $id = $_GET['id'];
+        require("connexionServeur.php");
+        /*
         $servername = "localhost";
         $username = "root";
         $password = "root";
         $bd = "smileyFace";
+        */
         $conn = new mysqli($servername, $username, $password, $bd);
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
