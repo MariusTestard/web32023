@@ -22,12 +22,13 @@ session_start();
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
-
             $sql = "SELECT etat FROM event WHERE etat = '1'";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
-                echo "Un évènement est présentement en cours !";
+                $_SESSION['enCours'] = "Un évènement est présentement en cours !";
                 $bool = true;
+            } else {
+                $_SESSION['enCours'] = "";
             }
             if ($bool == false) {
                 $sql = "UPDATE event SET Etat = '1' WHERE idEvent = '$id'";
@@ -36,6 +37,7 @@ session_start();
                 }
             }
             $conn->close();
+            header("Location: eventBD.php");
         }
     } else {
         header("Location: connexion.php");

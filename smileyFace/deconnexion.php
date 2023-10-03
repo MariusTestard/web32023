@@ -13,8 +13,10 @@ session_start();
 
 <body>
     <?php
+    
     session_unset();
     session_destroy();
+    $_SESSION["test1"]=true;
     header("Location: connexion.php");
     ?>
 </body>

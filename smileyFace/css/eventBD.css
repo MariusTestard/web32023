@@ -167,6 +167,18 @@ body {margin:0;font-family:Arial}
     display: flex;
     justify-content: center;
     background-color: rgb(245, 121, 0);
+    font-size: 1.25vw;
+}
+
+.enCoursRed {
+  margin-top: 7px;
+  border: 1px solid black;
+  width: 50%;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(232, 12, 12);
+  font-size: 1.25vw;
 }
 
 .btnForAdd {
@@ -177,7 +189,7 @@ body {margin:0;font-family:Arial}
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 1.25vw;
     margin-bottom: 7px;
     margin-top: 7px;
     border-radius: 4px;
@@ -199,8 +211,10 @@ body {margin:0;font-family:Arial}
 .smallButtons {
     margin: 5px;
     width: max-content;
-    font-size: 20px;
+    font-size: 30px;
     text-decoration: none;
+    width: 2.5vw;
+    width: 2.5vh;
 }
 
 .col-11 {
@@ -221,6 +235,7 @@ th {
 
 table {
   border-collapse: collapse;
+  font-size: 1.25vw;
 }
 
 .col-11Mid {
@@ -236,35 +251,43 @@ table {
 
 a {
     text-decoration: none;
+    text-align: center;
+    display: flex;
+    justify-content: center;
     color: black;
-} a:hover {
-    text-decoration: none;
-    color: white;
 }
 
-.smallButtons {
-    margin: 5px;
-    width: max-content;
-    font-size: 20px;
-}
 
 .statusIconA {
-
+  width: 50%;
   border-radius: 5px;
   background-color: #28a745;
   color: white;
-  padding: 5px;
+  padding: 10px;
+  align-items: center;
+  text-align: center;
+
+}
+
+.statusIconI {
+  width: 50%;
+  border-radius: 5px;
+  background-color: #5a6268;
+  color: white;
+  padding: 10px;
   align-items: center;
   text-align: center;
 }
 
-.statusIconI {
-  width: fit-content;
-  height: fit-content;
-  border-radius: 5px;
-  background-color: #5a6268;
-  color: white;
-  padding: 5px;
-  align-items: center;
-  text-align: center;
+.rowActions {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  
 }
+
+@keyframes fadeinout {
+  100% { opacity: 0; }
+  0% { opacity: 1; }
+}
+

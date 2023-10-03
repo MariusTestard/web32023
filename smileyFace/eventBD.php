@@ -12,6 +12,12 @@ session_start();
 
 <body>
 <?php
+    if (!isset($_SESSION['enCours'])) {
+        $_SESSION['enCours'] = "";
+    } if (!isset($_SESSION['pasEnCours'])) {
+        $_SESSION['pasEnCours'] = "";
+    }
+    if (isset($_SESSION["connexion"]))  {
     if ($_SESSION["connexion"] == true) {
         require("connexionServeur.php");
         $conn = new mysqli($servername, $username, $password, $bd);
@@ -67,6 +73,26 @@ session_start();
 
             <!-- PAGE -->
             <div>
+                <?php if ($_SESSION['enCours'] == "Un évènement est présentement en cours !") { 
+                ?>
+            <div class="row" id="eventErrorMessage">
+                    <div class="col-11Mid">
+                        <div class="enCoursRed"><?php echo $_SESSION['enCours']; ?></div>
+                    </div>
+                </div>
+            <?php       
+                } 
+                ?>
+                 <?php if ($_SESSION['pasEnCours'] == "Cet évènement n'est pas en cours !") { 
+                ?>
+            <div class="row" id="eventErrorMessage">
+                    <div class="col-11Mid">
+                        <div class="enCoursRed"><?php echo $_SESSION['pasEnCours']; ?></div>
+                    </div>
+                </div>
+            <?php       
+                } 
+                ?>
             <div class="row">
                     <div class="col-11Mid">
                         <div class="enCours">En cours: <?php echo $idCours; ?></div>
@@ -264,25 +290,23 @@ session_start();
                                         </div>
                                         
                                     </td>
-                                    <td>
+                                    <td >
                                         <?php
                                         if ($row['etat'] == 1) {
                                             ?>
-                                            <div class="statusIconA">Actif</div>
+                                            <a href="zoom.php?id=<?php echo $row["idEvent"] ?>"><div class="statusIconA">Actif</div></a>
                                             <?php
                                         } else {
                                             ?>
-                                            <div class="statusIconI">Inactif</div>
+                                            <a href="zoom.php?id=<?php echo $row["idEvent"] ?>"><div  class="statusIconI">Inactif</div></a>
                                             <?php
                                         }
                                         ?>
                                     </td>
                                     <td>
-                                        <div class="row">
+                                        <div class="rowActions">
                                             <a href="launch.php?id=<?php echo $row["idEvent"] ?>" class="smallButtons" type="button" id="butLaunch" title="Lancer">&#128640;</a>
                                             <a href="stop.php?id=<?php echo $row["idEvent"] ?>" class="smallButtons" type="button" id="butStop" title="Arrêter">&#128721;</a>
-                                        </div>
-                                        <div class="row">
                                             <a href="modifier.php?id=<?php echo $row["idEvent"] ?>&eoU=<?php echo 0 ?>" class="smallButtons" type="button" id="butModify" title="Modifier">&#128221;</a>
                                             <a href="supprimer.php?id=<?php echo $row["idEvent"] ?>&eoU=<?php echo 0 ?>" class="smallButtons" type="button" id="butRemove" title="Supprimer">&#10060;</a>
                                         </div>
@@ -303,6 +327,7 @@ session_start();
     } else {
         header("Location: connexion.php");
     }
+}
     ?>
     <script>
         function myFunction() {
@@ -313,17 +338,25 @@ session_start();
                 x.className = "topnav";
             }
         }
-    <?php
-        function calc($high, $mid, $low)
-    {
-        $moyennehigh = $high * 100;
-        $moyennemid = $mid * 50;
-        $moyennelow = $low * 0;
-        $moyenne = ($moyennehigh + $moyennemid + $moyennelow) / ($high + $mid + $low);
-        return $moyenne;
+    </script>
+
+    <?php 
+    if ($_SESSION['enCours'] == "Un évènement est présentement en cours !") {
+    ?>
+    <script>
+        setTimeout(function () {
+            var errorElement = document.getElementById('eventErrorMessage'); 
+            errorElement.style.animation = "fadeinout 1.75s";
+            setTimeout(function () {
+            errorElement.style.display = "none";
+        }, 1750);
+        }, 1750);  
+    </script>
+    <?php 
     }
     ?>
-    </script>
+    
+    
     <script type="text/javascript"></script>
 </body>
 

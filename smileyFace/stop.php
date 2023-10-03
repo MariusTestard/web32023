@@ -21,22 +21,32 @@ session_start();
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
-            $sql = "SELECT etat FROM event WHERE idEvent = $id";
+            $sql = "SELECT idEvent ,etat FROM event WHERE idEvent = $id";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
-                    if ($row["etat"] == true) {
-                        $sql = "UPDATE event SET Etat = '0' WHERE idEvent = '$id'";
-                        if(mysqli_query($conn, $sql)){
-                            $conn->close();
+                    if ($row["etat"] == 1) {
+                            $_SESSION['pasEnCours'] = "";
+                            $sql = "UPDATE event SET etat = '0' WHERE idEvent = '$id'";
+                            if(mysqli_query($conn, $sql)){
+                                $conn->close();
+                                header("Location: eventBD.php");
+                            }
+                        }
+                        else {
+                            $_SESSION['pasEnCours'] = "Cet évènement n'est pas en cours!";
                             header("Location: eventBD.php");
                         }
-                    }else{
-                        echo "Aucun événement ou un autre événement est déja en cours !";
+                        
+                    } else {
+                        $_SESSION['pasEnCours'] = "Cet évènement n'est pas en cours!";
+                        header("Location: eventBD.php");
                     }
+                    $_SESSION['enCours'] = "";
+
             }
-        }
-    } else {
+            header("Location: eventBD.php");
+        } else {
         header("Location: connexion.php");
     }
     ?>

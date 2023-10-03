@@ -13,12 +13,8 @@ session_start();
 <body>
     <?php
     if ($_SESSION["connexion"] == true) {
-        $servername = "localhost";
-        $usernameBD = "root";
-        $passwordBD = "root";
-        $bd = "smileyFace";
-        
-        $conn = new mysqli($servername, $usernameBD, $passwordBD, $bd);
+        require("connexionServeur.php");
+        $conn = new mysqli($servername, $username, $password, $bd);
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
@@ -26,11 +22,11 @@ session_start();
         $eoU = $_GET['eoU'];
         
 
-       $sql = "SELECT idEvent, Etat FROM event";
+       $sql = "SELECT idEvent, etat FROM event";
        $result = $conn->query($sql);
        if ($result->num_rows > 0) {
            while ($row = $result->fetch_assoc()) {
-               if ($row["Etat"] == true) {
+               if ($row["etat"] == true) {
                    $id = $row['idEvent'];
                    mysqli_query($conn, $sql);
                    break;
@@ -50,12 +46,15 @@ session_start();
             echo "Enregistrement réussi";
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        } if ($eoU == 0) {
-            header("Location: ../index.php");
-        } else {
-            header("Location: ../index1.php"); 
-        }
+        } 
+        
         mysqli_close($conn);
+        
+        if ($eoU == 0) {
+            header("Location: index.php");
+        } else {
+            header("Location: index1.php"); 
+        }
     } else {
         header("Location: connexion.php");
     }

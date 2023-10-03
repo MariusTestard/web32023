@@ -1,6 +1,7 @@
 <?php
 session_start();
 ?>
+<?php ini_set('display_errors', 0); ?>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -22,10 +23,15 @@ session_start();
 
 <body>
     <?php
-    if ($_SERVER["REQUEST_METHOD"] != "POST") {
-        $_SESSION["connexion"] = false;
-        $_SESSION["ConnectionFirst"] = false;
-    }
+    
+        if ($_SESSION["connexion"] != true) {
+    
+        if ($_SERVER["REQUEST_METHOD"] != "POST") {
+            $_SESSION["connexion"] = false;
+            $_SESSION["ConnectionFirst"] = false;
+        }
+
+
     if ($_SESSION["connexion"] == false) {
         $numEmplo = $passwd = "";
         $errorNumEplo = $errorPasswd = "";
@@ -141,10 +147,13 @@ session_start();
                 </div>
             </section>
     <?php
+            }
+        } else {
+        header("Location: userBD.php");
         }
     } else {
-        header("Location: userBD.php");
-    }
+    header("Location: eventBD.php");
+}
     function test_input($data)
     {
         $data = trim($data);
