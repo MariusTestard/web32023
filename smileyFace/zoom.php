@@ -7,13 +7,13 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="css/zoom.css">
     <link rel="icon" type="image/png" sizes="96x96" href="https://www.cegeptr.qc.ca/wp-content/themes/acolyte-2_1_5/assets/icons/favicon-96x96.png">
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/zoom.css">
     <title>Focus - Cégep de Trois-Rivières</title>
 </head>
 
@@ -22,13 +22,11 @@ session_start();
     if ($_SESSION["connexion"] == true) {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
-            require("connexionServeur.php");
-            /*
+            //require("connexionServeur.php");
             $servername = "localhost";
             $username = "root";
             $password = "root";
             $bd = "smileyFace";
-            */
             $conn = new mysqli($servername, $username, $password, $bd);
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
@@ -62,6 +60,7 @@ session_start();
                                     </div>
                                     <div class="collapse navbar-collapse" id="navbar-collapse-4">
                                         <ul class="nav navbar-nav navbar-right">
+                                            <
                                             <li><a href="userBD.php">Utilisateurs</a></li>
                                             <li><a href="eventBD.php">Évènements</a></li>
                                             <li>

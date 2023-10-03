@@ -8,31 +8,47 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" sizes="96x96" href="https://www.cegeptr.qc.ca/wp-content/themes/acolyte-2_1_5/assets/icons/favicon-96x96.png">
-    <link rel="stylesheet" href="css/accueil.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="js/script.js">
+    <link rel="stylesheet" href="css/accueil.css">
     <title>Utilisateurs - Cégep de Trois-Rivières</title>
 </head>
 
 <body>
     <?php
     if ($_SESSION["connexion"] == true) {
-        require("connexionServeur.php");
-        /*
+        //require("connexionServeur.php");
         $servername = "localhost";
         $username = "root";
         $password = "root";
         $bd = "smileyFace";
-        */
         $conn = new mysqli($servername, $username, $password, $bd);
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
+        } else {
+            $sql = "SELECT numEmploye, password, prenom, nom, recoverEmail FROM user";
+            $conn->query('SET NAMES utf8');
+            $result = $conn->query($sql);
+            $sqlEvent = "SELECT idEvent, nom, departement, Etat FROM event";
+            $sqlNom = "SELECT idEvent, nom, departement, lieu, date FROM event";
+            $conn->query('SET NAMES utf8');
+            $resultNom = $conn->query($sqlNom);
+            $resultEvent = $conn->query($sqlEvent);
+            if ($resultEvent->num_rows > 0) {
+                while ($rowEvent = $resultEvent->fetch_assoc()) {
+                    if ($rowEvent["Etat"] == true) {
+                        $idEventCours = $rowEvent["idEvent"];
+                        $idCours = $rowEvent["nom"] . " (Département " . $rowEvent["departement"] . ")";
+                        $idEtatCours = $rowEvent["Etat"];
+                        break;
+                    } else {
+                        $idCours = "Aucun";
+                    }
+                }
+            }
         }
-        $sql = "SELECT numEmploye, password, prenom, nom, recoverEmail FROM user";
-        $conn->query('SET NAMES utf8');
-        $result = $conn->query($sql);
     ?>
         <div>
             <nav class="navbar navbar-inverse">
@@ -48,10 +64,9 @@ session_start();
                     </div>
                     <div class="collapse navbar-collapse" id="navbar-collapse-4">
                         <ul class="nav navbar-nav navbar-right">
-                            <!--
+                            <
                             <li><a href="userBD.php">Connecté en tant que: <?php echo $_SESSION["prenom"] . " " . $_SESSION["nom"]; ?> </a></li>
                             <li><a href="userBD.php">Événement en cours: <?php echo $idCours; ?></a></li>
-                            -->
                             <li><a href="userBD.php">Utilisateurs</a></li>
                             <li><a href="eventBD.php">Évènements</a></li>
                             <li>

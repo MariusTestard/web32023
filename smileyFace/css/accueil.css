@@ -1,6 +1,144 @@
 html, body {
     height: 100%;
     width: 100%;
+    background: #cdfdff;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.rowSmile {
+    display: flex;
+    justify-content:space-evenly;
+}
+
+.col-11 {
+    width: 90%;
+}
+
+td {
+    text-align: center;
+    border: solid 1px black;
+    padding: 5px;
+}
+
+th {
+    border: solid 1px black; 
+    padding: 5px;
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.right {
+    justify-content: right;
+}
+
+.col-11Right {
+    width: 90%;
+    display: flex;
+    justify-content: right;
+}
+
+.btnForAdd {
+    background-color: #87a2ec;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 2px;
+    margin-top: 2px;
+    border-radius: 4px;
+}
+
+.navbar {
+	margin-bottom: 0px !important;
+}
+
+.navbar-inverse {
+    background-color: rgb(9, 45, 116);
+    border-color: #080808;
+}
+
+.btn-default {
+    color: #9d9d9d;
+    background-color: #fff;
+    border-color: #ccc;
+} .btn-default:hover {
+    background-color: #db2222 !important;
+}
+
+.navbar-brand { 
+	position: relative; z-index: 2; 
+}
+
+.navbar-nav.navbar-right .btn { 
+	position: relative; z-index: 2; padding: 4px 20px; margin: 10px auto; 
+}
+
+.navbar .navbar-collapse { 
+	position: relative; 
+}
+
+.navbar .navbar-collapse .navbar-right > li:last-child { 
+	padding-left: 22px; 
+}
+
+.navbar .nav-collapse { 
+	position: absolute; z-index: 1; top: 0; left: 0; right: 0; bottom: 0; margin: 0; padding-right: 120px; padding-left: 80px; width: 100%; 
+}
+
+.navbar.navbar-default .nav-collapse { 
+	background-color: #f8f8f8; 
+}
+
+.navbar.navbar-inverse .nav-collapse { 
+	background-color: #ad3030; 
+}
+
+.navbar .nav-collapse .navbar-form { 
+	border-width: 0; box-shadow: none; 
+}
+
+.nav-collapse > li { 
+	float: right; 
+}
+
+.btn.btn-circle { 
+	border-radius: 50px; 
+}
+
+.btn.btn-outline { 
+	background-color: transparent; 
+}
+
+@media screen and (max-width: 767px) {
+    .navbar .navbar-collapse .navbar-right > li:last-child { 
+		padding-left: 15px; padding-right: 15px; 
+	} 
+    
+    .navbar .nav-collapse { 
+		margin: 7.5px auto; padding: 0; 
+	}
+
+    .navbar .nav-collapse .navbar-form { 
+		margin: 0; 
+	}
+    .nav-collapse > li { 
+		float: none; 
+	}
+	
+	.miniScreenFlexDirection {
+		flex-direction: column;
+		align-items: center;
+	}
 }
 
 h6 {
@@ -16,18 +154,6 @@ h6 {
     display: flex;
 }
 
-.divBox
-{
-    width: fit-content;
-    height: fit-content;
-}
-
-.divBox a
-{
-    color: white;
-    display: block;
-}
-
 .buttonNav {
     height: max-content;
 }
@@ -41,77 +167,15 @@ p {
     font-size: 18px;
 }
 
-#butUser {
-    background-color: lightblue;
-    border: solid black 1px;
-} #butUser:hover {
-    background-color: lightsalmon;
-}
-
-#butCreate {
-    background-color: lightgreen;
-    border: solid black 1px;
-} 
-
-#butCreate:hover {
-    background-color: lightsalmon;
-}
-
-#butSignOut {
-    background-color: indianred;
-    border: solid black 1px;
-} 
-
-#butSignOut:hover {
-    background-color: lightsalmon;
-}
-
 a {
     text-decoration: none;
     color: black;
 }
 
-#butModify {
-    /*background-color: #ffc107;*/
-   /* border: solid black 2px;*/
-    background-color: white;
-    border: solid lightgrey 2px;
-} #butModify:hover {
-    /*background-color: #be950c;*/
-    background-color: lightgrey;
-    border: solid lightgrey 2px;
-} #butRemove {
-    /*background-color: #dc3545;*/
-    /* border: solid black 2px;*/
-    background-color: white;
-    border: solid lightgrey 2px;
-} #butRemove:hover {
-   /* background-color: #6f1d25;*/
-   background-color: lightgrey;
-    border: solid lightgrey 2px;
+.smallButtons {
+    margin: 5px;
+    width: max-content;
 }
-
-#butAjouter {
-    background-color: rgb(62, 138, 185);
-    border: solid black 1px;
-}
-
-#butLaunch {
-   transform: rotate(-180deg);
-   border: solid lightgrey 2px;
-} #butLaunch:hover {
-    /* background-color: #6f1d25;*/
-    background-color: lightgrey;
-     border: solid lightgrey 2px;
- }
-
-#butStop {
-    border: solid lightgrey 2px;
-} #butStop:hover {
-    /* background-color: #6f1d25;*/
-    background-color: lightgrey;
-     border: solid lightgrey 2px;
- } 
 
  .dropdown {
     position: relative;
@@ -137,77 +201,21 @@ a {
 }
 
 .littleSmileys {
-    margin: 0px 0px 0px 3px;
-}
-
-
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    height: 600px;
-    display:block;
-    overflow-y:scroll;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 2px;
 }
 
 tr:nth-child(even) {
-background-color: red;
+    background-color: rgb(216, 210, 210);
 }
 
-td, th {
-    vertical-align: middle;
-    color: white;
-}
-
-
-
-
-
-
-
-
-
-
-
-.navbar-brand { position: relative; z-index: 2; }
-
-.navbar-nav.navbar-right .btn { position: relative; z-index: 2; padding: 4px 20px; margin: 10px auto; }
-
-.navbar .navbar-collapse { position: relative; }
-.navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 22px; }
-
-.navbar .nav-collapse { position: absolute; z-index: 1; top: 0; left: 0; right: 0; bottom: 0; margin: 0; padding-right: 120px; padding-left: 80px; width: 100%; }
-.navbar.navbar-default .nav-collapse { background-color: #f8f8f8; }
-.navbar.navbar-inverse .nav-collapse { background-color: #222; }
-.navbar .nav-collapse .navbar-form { border-width: 0; box-shadow: none; }
-.nav-collapse>li { float: right; }
-
-.btn.btn-circle { border-radius: 50px; 
-}
-.btn.btn-outline { background-color: transparent; }
-
-@media screen and (max-width: 767px) {
-    .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 15px; padding-right: 15px; } 
-    
-    .navbar .nav-collapse { margin: 7.5px auto; padding: 0; }
-    .navbar .nav-collapse .navbar-form { margin: 0; }
-    .nav-collapse>li { float: none; }
-}
 
   
 
 /*
-128578  --high
-128528 --mid
-128577 --low
 <link rel="icon" type="image/png" sizes="32x32" href="https://www.cegeptr.qc.ca/wp-content/themes/acolyte-2_1_5/assets/icons/favicon-32x32.png">
 8592 --back
 8656 --back
 8701 --back
-
-
-
 
 127758-Terre
 128100-Étudiant
@@ -216,7 +224,6 @@ td, th {
 128640 -- Fusée
 128721-Stopper
 9989-lancer
-
 127891-Mortier
 
 */

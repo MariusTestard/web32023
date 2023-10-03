@@ -1,90 +1,21 @@
-/*
 html, body {
     height: 100%;
 }
 
-label {
-    margin: 5px 0px 5px 0px;
-}
-
-input {
-    max-width: 240px;
-    margin-bottom: 10px;
-}
-
-span {
-    color: red;
-    font-size: 12px;
-}
-
-a {
-    margin: 3px 0px -5px 0px; 
-}
-
-th, td {
-    vertical-align: middle;
-}
-
-.middle{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.maxlargeur{
-    width: 100%;
-}
-
-.top-left{
-    display: flex !important;
-    align-items: center;
-    justify-content: flex-start;
-    height: auto;
-}
-
-input{
-    max-width: 100%;
-}
-
-.test99{
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-}
-
-.test1{
-    height: auto;
-}
-
-#butBack {
-    background-color: lightcoral;
-    border: solid black 1px;
-}
-
-#butBack:hover {
-    background-color: lightsalmon;
-}
-
-#butBack a {
-    text-decoration: none; 
-    color: black; 
-}
-*/
-
 .login-page {
     min-height: 100vh;
-  }
+}
 
-  .btncolor{
-      background-color: #092D74 !important;
-      color: white;
-  }
+.btncolor{
+    background-color: #092D74 !important;
+    color: white;
+}
 
-  .login-page .avatar-icon img {
+.login-page .avatar-icon img {
     margin-top: -80px;
     width: 128px;
     height: 128px;
-  }
+}
 
 .spanErr{
     color: red;
@@ -93,8 +24,7 @@ input{
     margin-top: 5px;
 }
 
-
 input[readonly] {
     background-color: rgba(205, 204, 204, 0.525);
-  }
+}
 

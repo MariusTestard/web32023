@@ -1,8 +1,92 @@
 * { margin: 0px; padding: 0px; }
 body {
-	background: lightblue;
-	font:14px "Open Sans", sans-serif; 
+	background: #cdfdff;
+	font: 14px "Open Sans", sans-serif; 
 	text-align:center;
+	color: black;
+}
+
+.navbar {
+	margin-bottom: 0px !important;
+}
+
+.navbar-inverse {
+    background-color: rgb(9, 45, 116);
+    border-color: #080808;
+}
+
+.btn-default {
+    color: #9d9d9d;
+    background-color: #fff;
+    border-color: #ccc;
+} .btn-default:hover {
+    background-color: #db2222 !important;
+}
+
+.navbar-brand { 
+	position: relative; z-index: 2; 
+}
+
+.navbar-nav.navbar-right .btn { 
+	position: relative; z-index: 2; padding: 4px 20px; margin: 10px auto; 
+}
+
+.navbar .navbar-collapse { 
+	position: relative; 
+}
+
+.navbar .navbar-collapse .navbar-right > li:last-child { 
+	padding-left: 22px; 
+}
+
+.navbar .nav-collapse { 
+	position: absolute; z-index: 1; top: 0; left: 0; right: 0; bottom: 0; margin: 0; padding-right: 120px; padding-left: 80px; width: 100%; 
+}
+
+.navbar.navbar-default .nav-collapse { 
+	background-color: #f8f8f8; 
+}
+
+.navbar.navbar-inverse .nav-collapse { 
+	background-color: #ad3030; 
+}
+
+.navbar .nav-collapse .navbar-form { 
+	border-width: 0; box-shadow: none; 
+}
+
+.nav-collapse > li { 
+	float: right; 
+}
+
+.btn.btn-circle { 
+	border-radius: 50px; 
+}
+
+.btn.btn-outline { 
+	background-color: transparent; 
+}
+
+@media screen and (max-width: 767px) {
+    .navbar .navbar-collapse .navbar-right > li:last-child { 
+		padding-left: 15px; padding-right: 15px; 
+	} 
+    
+    .navbar .nav-collapse { 
+		margin: 7.5px auto; padding: 0; 
+	}
+
+    .navbar .nav-collapse .navbar-form { 
+		margin: 0; 
+	}
+    .nav-collapse > li { 
+		float: none; 
+	}
+	
+	.miniScreenFlexDirection {
+		flex-direction: column;
+		align-items: center;
+	}
 }
 
 .rowForCols {
@@ -36,7 +120,6 @@ body {
 
 .header {
 	border-bottom:1px solid #ebeff2;
-
 	padding:19px 0;
 	text-align:center;
 	color:#5aadef;
@@ -48,7 +131,6 @@ body {
 .dates {
 	border-bottom:1px solid #ebeff2;
 	border-right:1px solid #ebeff2;
-
 	padding:20px 0px;
 	margin: 0px 0px 5px 0px;
 	font-size:16px;
@@ -82,7 +164,7 @@ body {
 	overflow:auto;
 }
 
-.noBordeRightdate strong{
+.noBordeRightdate strong {
 	display:block;
 	color: white;
 	font-size:11px;
@@ -99,14 +181,14 @@ body {
 	overflow:auto;
 }
 
-.noBordeRightLieu strong{
+.noBordeRightLieu strong {
 	display:block;
 	color: white;
 	font-size:11px;
 	font-weight:700;
 }
 
-.stats{
+.stats {
 	border-right:1px solid #ebeff2;
 	overflow:auto;
 	padding:15px;
@@ -114,37 +196,38 @@ body {
 	font-weight:600;
 }
 
-.noBordeRightstat{
-
+.noBordeRightstat {
 	overflow:auto;
 	padding:15px;
 	font-size:16px;
 	font-weight:600;
 }
 
-.noBordeRightstat strong{
+.noBordeRightstat strong {
 	display:block;
 	color: white;
 	font-size:11px;
 	font-weight:700;
 }
 
-.statyy{
+.statyy {
 	border-right:1px solid #ebeff2;
 }
 
-.stat div{
+.stat div {
 	
 	float:left;
 	width: 33.33333%;
 	text-align:center;
 }
 
-.borderlow{
+.borderlow {
 	border-right:0px solid #ebeff2;
 }
 
-.stats div:nth-of-type(3){border:none;}
+.stats div:nth-of-type(3) {
+	border:none;
+}
 
 .pie1 {
   width: 200px;
@@ -194,41 +277,6 @@ body {
 }
 
 
-.navbar {
-	margin-bottom: 0px !important;
-}
-
-.navbar-brand { position: relative; z-index: 2; }
-
-.navbar-nav.navbar-right .btn { position: relative; z-index: 2; padding: 4px 20px; margin: 10px auto; }
-
-.navbar .navbar-collapse { position: relative; }
-.navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 22px; }
-
-.navbar .nav-collapse { position: absolute; z-index: 1; top: 0; left: 0; right: 0; bottom: 0; margin: 0; padding-right: 120px; padding-left: 80px; width: 100%; }
-.navbar.navbar-default .nav-collapse { background-color: #f8f8f8; }
-.navbar.navbar-inverse .nav-collapse { background-color: #222; }
-.navbar .nav-collapse .navbar-form { border-width: 0; box-shadow: none; }
-.nav-collapse>li { float: right; }
-
-.btn.btn-circle { border-radius: 50px; 
-}
-.btn.btn-outline { background-color: transparent; }
-
-@media screen and (max-width: 767px) {
-    .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 15px; padding-right: 15px; } 
-    
-    .navbar .nav-collapse { margin: 7.5px auto; padding: 0; }
-    .navbar .nav-collapse .navbar-form { margin: 0; }
-    .nav-collapse>li { float: none; }
-	
-	.miniScreenFlexDirection {
-		flex-direction: column;
-		align-items: center;
-	
-	}
-
-}
 
 
 

@@ -16,13 +16,11 @@ session_start();
     if ($_SESSION["connexion"] == true) {
         $id = $_GET['id'];
         if ($_SERVER["REQUEST_METHOD"] != "POST") {
-            require("connexionServeur.php");
-            /*
+            //require("connexionServeur.php");
             $servername = "localhost";
             $username = "root";
             $password = "root";
             $bd = "smileyFace";
-*/
             $conn = new mysqli($servername, $username, $password, $bd);
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);

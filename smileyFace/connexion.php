@@ -44,13 +44,11 @@ session_start();
                 $passwd = test_input($_POST["passwd"]);
             }
             if ($erreur != true) {
-                require("connexionServeur.php");
-                /*
+                //require("connexionServeur.php");
                 $servername = "localhost";
                 $usernameBD = "root";
                 $passwordBD = "root";
                 $bd = "smileyFace";
-                */
                 $conn = new mysqli($servername, $usernameBD, $passwordBD, $bd);
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
@@ -122,7 +120,7 @@ session_start();
                         <div class="card overflow-unset mt-9 mb-1">
                             <div class="card-body">
                                 <div class="avatar-icon text-center">
-                                    <img src="https://yt3.ggpht.com/a/AATXAJyBgyVuLbK5tbpbn8yLLYqX2cU0o5GCmDoToA=s900-c-k-c0xffffffff-no-rj-mo" height="128" width="128" alt="Avatar" class="img-circle img-cover card mb-2 ml-auto mr-auto p-1">
+                                    <img src="img/tr.jpg" height="128" width="128" alt="Avatar" class="img-circle img-cover card mb-2 ml-auto mr-auto p-1">
                                 </div>
                                 <div class="group">
                                     <label for="numEmplo">Numéro d'employé:</label>
