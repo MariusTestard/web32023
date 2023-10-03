@@ -23,7 +23,7 @@ session_start();
                 die("Connection failed: " . $conn->connect_error);
             }
 
-            $sql = "SELECT Etat FROM event WHERE Etat = '1'";
+            $sql = "SELECT etat FROM event WHERE etat = '1'";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 echo "Un évènement est présentement en cours !";

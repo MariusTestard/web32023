@@ -21,17 +21,17 @@ session_start();
             $sql = "SELECT numEmploye, password, prenom, nom, recoverEmail FROM user";
             $conn->query('SET NAMES utf8');
             $result = $conn->query($sql);
-            $sqlEvent = "SELECT idEvent, nom, departement, Etat FROM event";
+            $sqlEvent = "SELECT idEvent, nom, departement, etat FROM event";
             $sqlNom = "SELECT idEvent, nom, departement, lieu, date FROM event";
             $conn->query('SET NAMES utf8');
             $resultNom = $conn->query($sqlNom);
             $resultEvent = $conn->query($sqlEvent);
             if ($resultEvent->num_rows > 0) {
                 while ($rowEvent = $resultEvent->fetch_assoc()) {
-                    if ($rowEvent["Etat"] == true) {
+                    if ($rowEvent["etat"] == true) {
                         $idEventCours = $rowEvent["idEvent"];
                         $idCours = $rowEvent["nom"] . " (Département " . $rowEvent["departement"] . ")";
-                        $idEtatCours = $rowEvent["Etat"];
+                        $idEtatCours = $rowEvent["etat"];
                         break;
                     } else {
                         $idCours = "Nul";
@@ -49,7 +49,7 @@ session_start();
                     <a href="https://www.cegeptr.qc.ca/">Cégep TR</a>
                 </div>
                 <div>
-                    <a href="testEventBD.php">Évènements</a>
+                    <a href="eventBD.php">Évènements</a>
                     <a href="userBD.php" class="active">Utilisateurs</a>
                 </div>
 

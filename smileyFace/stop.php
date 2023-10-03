@@ -21,11 +21,11 @@ session_start();
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
-            $sql = "SELECT Etat FROM event WHERE idEvent = $id";
+            $sql = "SELECT etat FROM event WHERE idEvent = $id";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
-                    if ($row["Etat"] == true) {
+                    if ($row["etat"] == true) {
                         $sql = "UPDATE event SET Etat = '0' WHERE idEvent = '$id'";
                         if(mysqli_query($conn, $sql)){
                             $conn->close();

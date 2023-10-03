@@ -1,33 +1,25 @@
 <?php
 session_start();
 ?>
-<!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="robots" content="noindex, nofollow">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" sizes="96x96" href="https://www.cegeptr.qc.ca/wp-content/themes/acolyte-2_1_5/assets/icons/favicon-96x96.png">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="js/script.js"></script>
-    <link rel="stylesheet" href="css/accueil.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/eventBD.css">
     <title>Événements - Cégep de Trois-Rivières</title>
 </head>
 
 <body>
-    <?php
+<?php
     if ($_SESSION["connexion"] == true) {
         require("connexionServeur.php");
         $conn = new mysqli($servername, $username, $password, $bd);
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         } else {
-            $sqlEvent = "SELECT idEvent, nom, departement, Etat FROM event";
-            $sql = "SELECT idEvent, nom, departement, lieu, date FROM event";
+            $sqlEvent = "SELECT idEvent, nom, departement, etat FROM event";
+            $sql = "SELECT idEvent, nom, departement, lieu, date, etat FROM event";
             $sqlSatis = "SELECT idSatisfaction, highEtu, midEtu, lowEtu, highEmplo, midEmplo, lowEmplo FROM satisfaction";
             $conn->query('SET NAMES utf8');
             $result = $conn->query($sql);
@@ -35,10 +27,10 @@ session_start();
             $resultEvent = $conn->query($sqlEvent);
             if ($resultEvent->num_rows > 0) {
                 while ($rowEvent = $resultEvent->fetch_assoc()) {
-                    if ($rowEvent["Etat"] == true) {
+                    if ($rowEvent["etat"] == true) {
                         $idEventCours = $rowEvent["idEvent"];
                         $idCours = $rowEvent["nom"] . " (Département " . $rowEvent["departement"] . ")";
-                        $idEtatCours = $rowEvent["Etat"];
+                        $idEtatCours = $rowEvent["etat"];
                         break;
                     } else {
                         $idCours = "Nul";
@@ -46,39 +38,40 @@ session_start();
                 }
             }
         }
-        //
     ?>
-
-
+        <!-- CONTAINER -->
         <div>
-            <nav class="navbar navbar-inverse">
-                <div>
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-4">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="https://www.cegeptr.qc.ca/" target="_blank">Cégep de Trois-Rivières</a>
-                    </div>
-                    <div class="collapse navbar-collapse" id="navbar-collapse-4">
-                        <ul class="nav navbar-nav navbar-right">
-                            < <li><a href="userBD.php">Connecté en tant que: <?php echo $_SESSION["prenom"] . " " . $_SESSION["nom"]; ?> </a></li>
-                                <li><a href="userBD.php">Événement en cours: <?php echo $idCours; ?></a></li>
 
-                                <li><a href="userBD.php">Utilisateurs</a></li>
-                                <li><a href="eventBD.php">Évènements</a></li>
-                                <li>
-                                    <button class="btn btn-default btn-outline btn-circle collapsed" onclick="window.location.href='deconnexion.php'">Déconnexion</button>
-                                </li>
-                        </ul>
+            <!-- NAVBAR -->
+            <div class="topnav" id="myTopnav">
+                <div>
+                    <a href="https://www.cegeptr.qc.ca/">Cégep TR</a>
+                </div>
+                <div>
+                    <a href="eventBD.php" class="active">Évènements</a>
+                    <a href="userBD.php">Utilisateurs</a>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn"><?php echo $_SESSION["prenom"] . " " . $_SESSION["nom"]; ?>
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="index1.php">Vote Étudiant</a>
+                        <a href="index.php">Vote Employé</a>
+                        <a href="deconnexion.php">Déconnexion</a>
                     </div>
                 </div>
-            </nav>
-        </div>
+                <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+            </div>
 
-        <div>
+            <!-- PAGE -->
+            <div>
+            <div class="row">
+                    <div class="col-11Mid">
+                        <div class="enCours">En cours: <?php echo $idCours; ?></div>
+                    </div>
+                </div>
             <div class="row">
                 <div class="col-11Mid">
                     <a href="ajouter.php" class="btnForAdd"><b>+ </b>Ajouter</a>
@@ -101,6 +94,7 @@ session_start();
                     <?php
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
+                            
                             if ($rowSatis = $resultSatis->fetch_assoc()) {
                     ?>
                                 <tr>
@@ -271,7 +265,17 @@ session_start();
                                         
                                     </td>
                                     <td>
-                                        STATUT
+                                        <?php
+                                        if ($row['etat'] == 1) {
+                                            ?>
+                                            <div class="statusIconA">Actif</div>
+                                            <?php
+                                        } else {
+                                            ?>
+                                            <div class="statusIconI">Inactif</div>
+                                            <?php
+                                        }
+                                        ?>
                                     </td>
                                     <td>
                                         <div class="row">
@@ -293,13 +297,24 @@ session_start();
                     $conn->close();
                     ?>
                 </table>
-            </div>
-        </div>
+            </div> <!-- PAGE -->
+        </div> <!-- CONTAINER -->
     <?php
     } else {
         header("Location: connexion.php");
     }
-    function calc($high, $mid, $low)
+    ?>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+    <?php
+        function calc($high, $mid, $low)
     {
         $moyennehigh = $high * 100;
         $moyennemid = $mid * 50;
@@ -308,7 +323,11 @@ session_start();
         return $moyenne;
     }
     ?>
+    </script>
     <script type="text/javascript"></script>
 </body>
 
 </html>
+            
+
+   
