@@ -44,12 +44,8 @@ session_start();
                 $passwd = test_input($_POST["passwd"]);
             }
             if ($erreur != true) {
-                //require("connexionServeur.php");
-                $servername = "localhost";
-                $usernameBD = "root";
-                $passwordBD = "root";
-                $bd = "smileyFace";
-                $conn = new mysqli($servername, $usernameBD, $passwordBD, $bd);
+                require("connexionServeur.php");
+                $conn = new mysqli($servername, $username, $password, $bd);
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
                 }

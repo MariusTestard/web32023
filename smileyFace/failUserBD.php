@@ -1,12 +1,19 @@
 <?php
 session_start();
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://www.cegeptr.qc.ca/wp-content/themes/acolyte-2_1_5/assets/icons/favicon-96x96.png">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/userBD.css">
+    <link rel="stylesheet" href="js/script.js">
+    <link rel="stylesheet" href="css/accueil.css">
     <title>Utilisateurs - Cégep de Trois-Rivières</title>
 </head>
 
@@ -40,33 +47,25 @@ session_start();
             }
         }
     ?>
-        <!-- CONTAINER -->
         <div>
-
-            <!-- NAVBAR -->
             <div class="topnav" id="myTopnav">
-                <div>
-                    <a href="https://www.cegeptr.qc.ca/">Cégep TR</a>
-                </div>
-                <div>
-                    <a href="testEventBD.php">Évènements</a>
-                    <a href="userBD.php" class="active">Utilisateurs</a>
-                </div>
-
+                <a href="#home" class="active">Home</a>
+                <a href="#news">News</a>
+                <a href="#contact">Contact</a>
                 <div class="dropdown">
-                    <button class="dropbtn"><?php echo $_SESSION["prenom"] . " " . $_SESSION["nom"]; ?>
+                    <button class="dropbtn">Dropdown
                         <i class="fa fa-caret-down"></i>
                     </button>
                     <div class="dropdown-content">
-                        <a href="index1.php">Vote Étudiant</a>
-                        <a href="index.php">Vote Employé</a>
-                        <a href="deconnexion.php">Déconnexion</a>
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
                     </div>
                 </div>
+                <a href="#about">About</a>
                 <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
             </div>
 
-            <!-- PAGE -->
             <div>
                 <div class="row">
                     <div class="col-11Mid">
@@ -114,23 +113,23 @@ session_start();
                         ?>
                     </table>
                 </div>
-            </div> <!-- PAGE -->
-        </div> <!-- CONTAINER -->
-    <?php
+            </div>
+        <?php
     } else {
         header("Location: connexion.php");
     }
-    ?>
-    <script>
-        function myFunction() {
-            var x = document.getElementById("myTopnav");
-            if (x.className === "topnav") {
-                x.className += " responsive";
-            } else {
-                x.className = "topnav";
+        ?>
+        <script>
+            function myFunction() {
+                var x = document.getElementById("myTopnav");
+                if (x.className === "topnav") {
+                    x.className += " responsive";
+                } else {
+                    x.className = "topnav";
+                }
             }
-        }
-    </script>
+        </script>
+        <script type="text/javascript"></script>
 </body>
 
 </html>

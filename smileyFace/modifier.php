@@ -37,11 +37,7 @@ session_start();
             $erreur = false;
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
-                //require("connexionServeur.php");
-                $servername = "localhost";
-                $username = "root";
-                $password = "root";
-                $bd = "smileyFace";
+                require("connexionServeur.php");
                 $conn = new mysqli($servername, $username, $password, $bd);
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
@@ -90,12 +86,6 @@ session_start();
 
                 if ($erreur != true) {
                     require("connexionServeur.php");
-                    /*
-                    $servername = "localhost";
-                    $username = "root";
-                    $password = "root";
-                    $bd = "smileyFace";
-*/
                     $conn = new mysqli($servername, $username, $password, $bd);
                     $nom = $_POST['nom'];
                     $departement = $_POST['departement'];
@@ -177,12 +167,6 @@ session_start();
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
                 require("connexionServeur.php");
-                /*
-                $servername = "localhost";
-                $username = "root";
-                $password = "root";
-                $bd = "smileyFace";
-*/
                 $conn = new mysqli($servername, $username, $password, $bd);
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
@@ -231,12 +215,6 @@ session_start();
 
                 if ($erreur1 != true) {
                     require("connexionServeur.php");
-                    /*
-                    $servername = "localhost";
-                    $username = "root";
-                    $password = "root";
-                    $bd = "smileyFace";
-*/
                     $conn = new mysqli($servername, $username, $password, $bd);
                     $numEmplo = $_POST['numEmplo'];
                     $prenom = $_POST['prenom'];

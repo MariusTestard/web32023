@@ -17,11 +17,7 @@ session_start();
         $id = $_GET['id'];
         $bool = false;
         if ($_SERVER["REQUEST_METHOD"] != "POST") {
-            //require("connexionServeur.php");
-            $servername = "localhost";
-            $username = "root";
-            $password = "root";
-            $bd = "smileyFace";
+            require("connexionServeur.php");
             $conn = new mysqli($servername, $username, $password, $bd);
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
