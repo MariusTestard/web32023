@@ -57,7 +57,7 @@ session_start();
                     <button class="dropbtn"><?php echo $_SESSION["prenom"] . " " . $_SESSION["nom"]; ?>
                         <i class="fa fa-caret-down"></i>
                     </button>
-                    <div class="dropdown-content">
+                    <div class="dropdown-content right-align">
                         <a href="index1.php">Vote Étudiant</a>
                         <a href="index.php">Vote Employé</a>
                         <a href="deconnexion.php">Déconnexion</a>
@@ -75,7 +75,7 @@ session_start();
                 </div>
                 <div class="row">
                     <div class="col-11Mid">
-                        <a href="ajouter.php" class="btnForAdd"><b>+ </b>Ajouter</a>
+                        <a href="create.php" class="btnForAdd"><b>+ </b>Ajouter</a>
                     </div>
                 </div>
                 <div class="row">

@@ -21,8 +21,6 @@ session_start();
 
 <body>
     <?php
-
-    // USERBD = 1,  EVENTBD = 0;
     if (isset($_GET['eoU'])) {
         $eoU = $_GET['eoU'];
     } elseif (isset($_POST['eoU'])) {

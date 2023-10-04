@@ -34,10 +34,12 @@ session_start();
                     }
                 } else {
                     $_SESSION['pasEnCours'] = "Cet évènement n'est pas en cours !";
+                    $_SESSION['enCours'] = "";
                     header("Location: eventBD.php");
                 }
+            } else {
+                $_SESSION['enCours'] = "";
             }
-            $_SESSION['enCours'] = "";
         }
         header("Location: eventBD.php");
     } else {

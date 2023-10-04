@@ -10,10 +10,10 @@
 
 <body>
     <?php
-    $servername = "cours.cegep3r.info";
-    $username = "1865294";
-    $password = "1865294";
-    $bd = "1865294-poisson-gabryel";
+        $servername = "cours.cegep3r.info";
+        $username = "1865294";
+        $password = "1865294";
+        $bd = "1865294-poisson-gabryel";
     ?>
 </body>
 

@@ -76,8 +76,6 @@ table {
     opacity: 100%;
 }
 
-
-
 h6 {
     color: white;
     margin-top: 5px;
@@ -126,35 +124,3 @@ a {
 tr:nth-child(even) {
     background-color: rgb(216, 210, 210);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-<link rel="icon" type="image/png" sizes="32x32" href="https://www.cegeptr.qc.ca/wp-content/themes/acolyte-2_1_5/assets/icons/favicon-32x32.png">
-8592 --back
-8656 --back
-8701 --back
-
-127758-Terre
-128100-Étudiant
-128197-Date
-128202-Statistiques
-128640 -- Fusée
-128721-Stopper
-9989-lancer
-127891-Mortier
-
-*/

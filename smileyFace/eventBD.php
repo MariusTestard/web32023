@@ -46,10 +46,7 @@ session_start();
                 }
             }
     ?>
-            <!-- CONTAINER -->
             <div>
-
-                <!-- NAVBAR -->
                 <div class="topnav" id="myTopnav">
                     <div>
                         <a href="https://www.cegeptr.qc.ca/">Cégep TR</a>
@@ -58,7 +55,6 @@ session_start();
                         <a href="eventBD.php" class="active">Évènements</a>
                         <a href="userBD.php">Utilisateurs</a>
                     </div>
-
                     <div class="dropdown">
                         <button class="dropbtn"><?php echo $_SESSION["prenom"] . " " . $_SESSION["nom"]; ?>
                             <i class="fa fa-caret-down"></i>
@@ -71,27 +67,27 @@ session_start();
                     </div>
                     <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
                 </div>
-
-
-                
-
-
-                <!-- PAGE   -->
                 <div>
-                    <div class="row" id="eventErrorMessage">
-                        <div class="col-11Mid">
-                            <div class="enCoursRed">
-                                <?php 
-                                if ($_SESSION['enCours'] == "Un évènement est présentement en cours !") { 
-                                    echo $_SESSION['enCours']; 
-
-                                } elseif ($_SESSION['pasEnCours'] == "Cet évènement n'est pas en cours !") {
-                                    echo $_SESSION['pasEnCours'];
-                                }
-                                ?>
+                    <?php
+                    if ($_SESSION['enCours'] == "Un évènement est présentement en cours !" || $_SESSION['pasEnCours'] == "Cet évènement n'est pas en cours !") {
+                    ?>
+                        <div class="row" id="eventErrorMessage">
+                            <div class="col-11Mid">
+                                <div class="enCoursRed">
+                                    <?php
+                                    if ($_SESSION['enCours'] == "Un évènement est présentement en cours !") {
+                                        echo $_SESSION['enCours'];
+                                    }
+                                    if ($_SESSION['pasEnCours'] == "Cet évènement n'est pas en cours !") {
+                                        echo $_SESSION['pasEnCours'];
+                                    }
+                                    ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <?php
+                    }
+                    ?>
                     <div class="row">
                         <div class="col-11Mid">
                             <div class="enCours">En cours: <?php echo $idCours; ?></div>
@@ -124,24 +120,16 @@ session_start();
                             ?>
                                         <tr>
                                             <td class="tdLink">
-
                                                 <a href="zoom.php?id=<?php echo $row["idEvent"] ?>"><?php echo $row["nom"] ?></a>
-
                                             </td>
                                             <td>
-
                                                 <a href="zoom.php?id=<?php echo $row["idEvent"] ?>"><?php echo $row["departement"] ?></a>
-
                                             </td>
                                             <td>
-
                                                 <a href="zoom.php?id=<?php echo $row["idEvent"] ?>"><?php echo $row["lieu"] ?></a>
-
                                             </td>
                                             <td>
-
                                                 <a href="zoom.php?id=<?php echo $row["idEvent"] ?>"><?php echo $row["date"] ?></a>
-
                                             </td>
                                             <td>
                                                 <div class="rowSmile">
@@ -149,7 +137,6 @@ session_start();
                                                         <?php
                                                         $satisfactionValues = [
                                                             "highEtu" => "smiley_smidoeuf.png"
-
                                                         ];
                                                         foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
 
@@ -160,12 +147,9 @@ session_start();
                                                     <a href="zoom.php?id=<?php echo $row["idEvent"] ?>">
                                                         <?php
                                                         $satisfactionValues = [
-
                                                             "midEtu" => "smiley_mid.png"
-
                                                         ];
                                                         foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
-
                                                             echo $rowSatis[$satisfactionKey] . " ";
                                                         }
                                                         ?>
@@ -176,7 +160,6 @@ session_start();
                                                             "lowEtu" => "smiley_bad.png",
                                                         ];
                                                         foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
-
                                                             echo $rowSatis[$satisfactionKey] . " ";
                                                         }
                                                         ?>
@@ -214,7 +197,6 @@ session_start();
                                                         ?>
                                                     </a>
                                                 </div>
-
                                             </td>
                                             <td>
                                                 <div class="rowSmile">
@@ -224,7 +206,6 @@ session_start();
                                                             "highEmplo" => "smiley_smidoeuf.png"
                                                         ];
                                                         foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
-
                                                             echo $rowSatis[$satisfactionKey] . " ";
                                                         }
                                                         ?>
@@ -235,7 +216,6 @@ session_start();
                                                             "midEmplo" => "smiley_mid.png"
                                                         ];
                                                         foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
-
                                                             echo $rowSatis[$satisfactionKey] . " ";
                                                         }
                                                         ?>
@@ -246,7 +226,6 @@ session_start();
                                                             "lowEmplo" => "smiley_bad.png"
                                                         ];
                                                         foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
-
                                                             echo $rowSatis[$satisfactionKey] . " ";
                                                         }
                                                         ?>
@@ -284,7 +263,6 @@ session_start();
                                                         ?>
                                                     </a>
                                                 </div>
-
                                             </td>
                                             <td>
                                                 <?php
@@ -321,8 +299,8 @@ session_start();
                             $conn->close();
                             ?>
                         </table>
-                    </div> <!-- PAGE -->
-                </div> <!-- CONTAINER -->
+                    </div>
+                </div>
         <?php
         } else {
             header("Location: connexion.php");
@@ -339,7 +317,6 @@ session_start();
                 }
             }
         </script>
-
         <?php
         if ($_SESSION['enCours'] == "Un évènement est présentement en cours !" || $_SESSION['pasEnCours'] == "Cet évènement n'est pas en cours !") {
         ?>

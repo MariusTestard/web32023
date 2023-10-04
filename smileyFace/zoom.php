@@ -10,9 +10,7 @@ session_start();
     <link rel="icon" type="image/png" sizes="96x96" href="https://www.cegeptr.qc.ca/wp-content/themes/acolyte-2_1_5/assets/icons/favicon-96x96.png">
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/zoom.css">
     <title>Focus - Cégep de Trois-Rivières</title>
 </head>
@@ -43,30 +41,31 @@ session_start();
                         $resultEmploMoyenne = calcMoyene($rowSatis['highEmplo'], $rowSatis['midEmplo'], $rowSatis['lowEmplo']);
             ?>
                         <div>
-                            <nav class="navbar navbar-inverse">
+                            <!-- NAVBAR -->
+                            <div class="topnav" id="myTopnav">
+                            <div>
+                                    <a href="https://www.cegeptr.qc.ca/">Cégep TR</a>
+                                </div>
+
                                 <div>
-                                    <div class="navbar-header">
-                                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-4">
-                                            <span class="sr-only">Toggle navigation</span>
-                                            <span class="icon-bar"></span>
-                                            <span class="icon-bar"></span>
-                                            <span class="icon-bar"></span>
-                                        </button>
-                                        <a class="navbar-brand" href="https://www.cegeptr.qc.ca/" target="_blank">Cégep de Trois-Rivières</a>
-                                    </div>
-                                    <div class="collapse navbar-collapse" id="navbar-collapse-4">
-                                        <ul class="nav navbar-nav navbar-right">
-                                            <
-                                            <li><a href="userBD.php">Utilisateurs</a></li>
-                                            <li><a href="eventBD.php">Évènements</a></li>
-                                            <li>
-                                                <button class="btn btn-default btn-outline btn-circle collapsed" onclick="window.location.href='deconnexion.php'">Déconnexion</button>
-                                            </li>
-                                        </ul>
+                                    <a href="eventBD.php" class="active">Évènements</a>
+                                    <a href="userBD.php">Utilisateurs</a>
+                                </div>
+                            
+                                <div class="dropdown">
+                                    <button class="dropbtn"><?php echo $_SESSION["prenom"] . " " . $_SESSION["nom"]; ?>
+                                        <i class="fa fa-caret-down"></i>
+                                    </button>
+                                    <div class="dropdown-content">
+                                        <a href="index1.php">Vote Étudiant</a>
+                                        <a href="index.php">Vote Employé</a>
+                                        <a href="deconnexion.php">Déconnexion</a>
                                     </div>
                                 </div>
-                            </nav>
-                            <div>
+
+                                <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+                            </div>
+                            <div class="containerStats">
                                 <h1><strong><?php echo $row['nom']; ?> </strong></h1>
                                 <h4>Date:<strong> <?php echo $row['date']; ?></strong></h4>
                                 <div class="rowForCols">

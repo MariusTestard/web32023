@@ -26,6 +26,7 @@ session_start();
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 $_SESSION['enCours'] = "Un évènement est présentement en cours !";
+                $_SESSION['pasEnCours'] = "";
                 $bool = true;
             } else {
                 $_SESSION['enCours'] = "";

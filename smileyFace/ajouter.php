@@ -14,7 +14,7 @@ session_start();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/buttercake@3.0.0/dist/css/butterCake.min.css">
     <link rel="stylesheet" href="css/connexion.css">
     <script src="js/connexion.js"></script>
-    <title>Ajouter d'évènement - Cégep de Trois-Rivières</title>
+    <title>Ajout d'évènements - Cégep de Trois-Rivières</title>
 </head>
 
 <body>
@@ -55,13 +55,11 @@ session_start();
                 $date = $_POST['date'];
                 require("connexionServeur.php");
                 $conn = new mysqli($servername, $username, $password, $bd);
-
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
                 }
                 $sql = "INSERT INTO event (idEvent, nom, departement, lieu, date)
-            VALUES (NULL" . ",'" . $_POST['nom'] . "','" . $_POST['departement'] . "','" . $_POST['lieu'] . "','" . $_POST['date'] . "')";
-
+                VALUES (NULL" . ",'" . $_POST['nom'] . "','" . $_POST['departement'] . "','" . $_POST['lieu'] . "','" . $_POST['date'] . "')";
                 $conn->query('SET NAMES utf8');
                 if (mysqli_query($conn, $sql)) {
                     echo "Enregistrement réussi";
@@ -99,26 +97,26 @@ session_start();
                                 <div class="group">
                                     <label for="nom">Nom de l'évènement</label>
                                     <input type="text" class="form-control" placeholder="Nom de l'évènement" name="nom">
-                                    <span><?php echo $errorNom; ?></span>
+                                    <span class="spanErr"><?php echo $errorNom; ?></span>
                                 </div>
                                 <div class="group">
                                     <label for="departement">Departement</label>
                                     <input type="text" class="form-control" placeholder="Departement" name="departement">
-                                    <span><?php echo $errorDepartement; ?></span>
+                                    <span class="spanErr"><?php echo $errorDepartement; ?></span>
                                 </div>
                                 <div class="group">
                                     <label for="lieu">Lieu</label>
                                     <input type="text" class="form-control" placeholder="Lieu" name="lieu">
-                                    <span><?php echo $errorLieu; ?></span>
+                                    <span class="spanErr"><?php echo $errorLieu; ?></span>
                                 </div>
                                 <div class="group">
                                     <label for="nom">Date et heure</label>
                                     <input type="datetime-local" class="form-control" placeholder="Date" name="date">
-                                    <span><?php echo $errorDate; ?></span>
+                                    <span class="spanErr"><?php echo $errorDate; ?></span>
                                 </div>
                                 <div class="group"></div>
                                 <div class="group">
-                                    <button class="btn btncolor block btn-lg weight-500 test" type="submit">Se connecter</button>
+                                    <button class="btn btncolor block btn-lg weight-500 test" type="submit">Ajouter</button>
                                 </div>
                             </div>
                         </div>
@@ -130,15 +128,15 @@ session_start();
             </section>
     <?php
         }
-        function test_input($data)
-        {
-            $data = trim($data);
-            $data = addslashes($data);
-            $data = htmlspecialchars($data);
-            return $data;
-        }
     } else {
         header("Location: connexion.php");
+    }
+    function test_input($data)
+    {
+        $data = trim($data);
+        $data = addslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
     }
     ?>
 </body>
