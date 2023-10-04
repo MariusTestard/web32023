@@ -25,28 +25,22 @@ session_start();
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
-                    if ($row["etat"] == 1) {
-                            $_SESSION['pasEnCours'] = "";
-                            $sql = "UPDATE event SET etat = '0' WHERE idEvent = '$id'";
-                            if(mysqli_query($conn, $sql)){
-                                $conn->close();
-                                header("Location: eventBD.php");
-                            }
-                        }
-                        else {
-                            $_SESSION['pasEnCours'] = "Cet évènement n'est pas en cours!";
-                            header("Location: eventBD.php");
-                        }
-                        
-                    } else {
-                        $_SESSION['pasEnCours'] = "Cet évènement n'est pas en cours!";
+                if ($row["etat"] == 1) {
+                    $_SESSION['pasEnCours'] = "";
+                    $sql = "UPDATE event SET etat = '0' WHERE idEvent = '$id'";
+                    if (mysqli_query($conn, $sql)) {
+                        $conn->close();
                         header("Location: eventBD.php");
                     }
-                    $_SESSION['enCours'] = "";
-
+                } else {
+                    $_SESSION['pasEnCours'] = "Cet évènement n'est pas en cours !";
+                    header("Location: eventBD.php");
+                }
             }
-            header("Location: eventBD.php");
-        } else {
+            $_SESSION['enCours'] = "";
+        }
+        header("Location: eventBD.php");
+    } else {
         header("Location: connexion.php");
     }
     ?>
