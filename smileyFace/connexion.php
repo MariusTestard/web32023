@@ -2,11 +2,12 @@
 session_start();
 ?>
 <?php ini_set('display_errors', 0); ?>
+<!--
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!DOCTYPE html>
-<html lang="en">
+-->
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -16,8 +17,8 @@ session_start();
     <link rel="icon" type="image/png" sizes="96x96" href="https://www.cegeptr.qc.ca/wp-content/themes/acolyte-2_1_5/assets/icons/favicon-96x96.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/buttercake@3.0.0/dist/css/butterCake.min.css">
+    <script src="js/loading.js"></script>
     <link rel="stylesheet" href="css/connexion.css">
-    <script src="js/connexion.js"></script>
     <title>Connexion - Cégep de Trois-Rivières</title>
 </head>
 
@@ -52,14 +53,12 @@ session_start();
                         die("Connection failed: " . $conn->connect_error);
                     }
                     if ($numEmplo == $passwd) {
-                        echo "LE NUM ET LE PASSWORD ENTRÉS SONT LES MÊMES";
                         $resultNum = $conn->query("SELECT numEmploye, password FROM user WHERE numEmploye = $numEmplo");
                         if ($rowNum = mysqli_fetch_array($resultNum)) {
                             if ($numEmplo == $rowNum['password']) {
-                                echo "LE NUM ET LE PASSWORD DANS LA BD SONT LES MÊMES";
                                 $_SESSION["ConnectionFirst"] = true;
                                 $_SESSION['numPlo'] = $rowNum['numEmploye'];
-                                header("Location: newPass.php");
+                                header("Location: loading.php");
                             } else {
                                 $passwd = sha1($passwd, false);
                                 $sql = "SELECT * FROM user WHERE numEmploye = '$numEmplo' AND password = '$passwd'";
@@ -68,9 +67,9 @@ session_start();
                                 if ($result->num_rows > 0) {
                                     $row = $result->fetch_assoc();
                                     echo "<h1>Connecté</h1>";
-                                    $_SESSION["ConnectionFirst"] = false;
+                                    //$_SESSION["ConnectionFirst"] = false;
                                     $_SESSION["connexion"] = true;
-                                    $_SESSION['EventFirstCo'] = true;
+                                    //$_SESSION['EventFirstCo'] = true;
                                     $_SESSION["nom"] = $row['nom'];
                                     $_SESSION["prenom"] = $row['prenom'];
                                     header("Location: eventBD.php");
@@ -89,9 +88,9 @@ session_start();
                         if ($result->num_rows > 0) {
                             $row = $result->fetch_assoc();
                             echo "<h1>Connecté</h1>";
-                            $_SESSION["ConnectionFirst"] = false;
+                           // $_SESSION["ConnectionFirst"] = false;
                             $_SESSION["connexion"] = true;
-                            $_SESSION['EventFirstCo'] = true;
+                           // $_SESSION['EventFirstCo'] = true;
                             $_SESSION["nom"] = $row['nom'];
                             $_SESSION["prenom"] = $row['prenom'];
                             header("Location: eventBD.php");
@@ -102,46 +101,57 @@ session_start();
                         }
                     }
                     $conn->close();
-    ?>
+                    ?>
                 <?php
                 }
             }
             if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
                 ?>
-                <section class="login-page flex-center-center py-5 bg-light">
-                    <div class="w-100 mx-auto px-2" style="max-width: 400px">
-                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                            <div class="text-center text-gray">
-                                <h2 class="weight-500 mb-1">Connexion</h2>
-                                <p class="h4 mb-2 weight-300">Veuillez vous connecter pour continuer</p>
-                            </div>
-                            <div class="card overflow-unset mt-9 mb-1">
-                                <div class="card-body">
-                                    <div class="avatar-icon text-center">
-                                        <img src="img/tr.jpg" height="128" width="128" alt="Avatar" class="img-circle img-cover card mb-2 ml-auto mr-auto p-1">
-                                    </div>
-                                    <div class="group">
-                                        <label for="numEmplo">Numéro d'employé:</label>
-                                        <input type="text" class="input" placeholder="Numéro d'employé" name="numEmplo">
-                                        <span class="spanErr"><?php echo $errorNumEplo; ?></span>
-                                    </div>
-                                    <div class="group">
-                                        <label for="test2">Mot de passe:</label>
-                                        <input type="password" class="input" placeholder="Mot de passe" name="passwd">
-                                        <span class="spanErr"><?php echo $errorPasswd; ?></span>
-                                    </div>
-                                    <div class="group"></div>
-                                    <div class="group">
-                                        <button class="btn btncolor block btn-lg weight-500 test" type="submit">Se connecter</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-center weight-600 text-gray">
-                                <a href="" class="text-gray">Mot de passe oublié</a> · <a href="" class="text-gray">Besoin d'aide?</a>
-                            </div>
-                        </form>
+                <div>
+                    <div id="container">
+                        Redirection
+                        <div id="circle">
+                            <div class="loader"></div>
+                        </div>
                     </div>
-                </section>
+                    <div id="theForm">
+                        <section class="login-page flex-center-center py-5 bg-light">
+                            <div class="w-100 mx-auto px-2" style="max-width: 400px">
+                                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                                    <div class="text-center text-gray">
+                                        <h2 class="weight-500 mb-1">Connexion</h2>
+                                        <p class="h4 mb-2 weight-300">Veuillez vous connecter pour continuer</p>
+                                    </div>
+                                    <div class="card overflow-unset mt-9 mb-1">
+                                        <div class="card-body">
+                                            <div class="avatar-icon text-center">
+                                                <img src="img/tr.jpg" height="128" width="128" alt="Avatar" class="img-circle img-cover card mb-2 ml-auto mr-auto p-1">
+                                            </div>
+                                            <div class="group">
+                                                <label for="numEmplo">Numéro d'employé:</label>
+                                                <input type="text" class="input" placeholder="Numéro d'employé" name="numEmplo">
+                                                <span class="spanErr"><?php echo $errorNumEplo; ?></span>
+                                            </div>
+                                            <div class="group">
+                                                <label for="test2">Mot de passe:</label>
+                                                <input type="password" class="input" placeholder="Mot de passe" name="passwd">
+                                                <span class="spanErr"><?php echo $errorPasswd; ?></span>
+                                            </div>
+                                            <div class="group"></div>
+                                            <div class="group">
+                                                <button class="btn btncolor block btn-lg weight-500 test" type="submit" onclick="changeLoading()">Se connecter</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center weight-600 text-gray">
+                                        <a href="mail.php" class="text-gray">Mot de passe oublié</a> · <a href="help.php?id=1" class="text-gray">Besoin d'aide?</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                
     <?php
             }
         } else {

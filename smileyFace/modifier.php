@@ -119,6 +119,7 @@ session_start();
                                 <div class="card-body">
                                     <div class="avatar-icon text-center">
                                         <img src="img/tr.jpg" height="128" width="128" alt="Avatar" class="img-circle img-cover card mb-2 ml-auto mr-auto p-1">
+                                        <a href="userBD.php" id="back">&#128281;</a>
                                     </div>
                                     <div class="group">
                                         <label for="nom">Nom de l'évènement</label>
@@ -151,7 +152,7 @@ session_start();
                                 </div>
                             </div>
                             <div class="text-center weight-600 text-gray">
-                                <a href="" class="text-gray">Besoin d'aide?</a>
+                                <a href="help.php?id=3" class="text-gray">Besoin d'aide?</a>
                             </div>
                         </form>
                     </div>
@@ -240,7 +241,6 @@ session_start();
                 <section class="login-page flex-center-center py-5 bg-light">
                     <div class="w-100 mx-auto px-2" style="max-width: 400px">
                         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-
                             <div class="text-center text-gray">
                                 <h2 class="weight-500 mb-1">Modification de l'usager</h2>
                                 <p class="h4 mb-2 weight-300 ">Veuillez modifier les champs à corriger</p>
@@ -249,6 +249,7 @@ session_start();
                                 <div class="card-body">
                                     <div class="avatar-icon text-center">
                                         <img src="https://yt3.ggpht.com/a/AATXAJyBgyVuLbK5tbpbn8yLLYqX2cU0o5GCmDoToA=s900-c-k-c0xffffffff-no-rj-mo" height="128" width="128" alt="Avatar" class="img-circle img-cover card mb-2 ml-auto mr-auto p-1">
+                                        <a href="userBD.php" id="back">&#128281;</a>
                                     </div>
                                     <div class="group">
                                         <label for="numEmplo">Numéro d'employé:</label>
@@ -282,7 +283,7 @@ session_start();
                                 </div>
                             </div>
                             <div class="text-center weight-600 text-gray">
-                                <a href="" class="text-gray">Besoin d'aide?</a>
+                                <a href="help.php?id=4" class="text-gray">Besoin d'aide?</a>
                             </div>
                         </form>
                     </div>

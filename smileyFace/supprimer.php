@@ -23,9 +23,20 @@ session_start();
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         } else {
+
+
             if ($eoU === "1") {
                 $toF = true;
                 $sql = "DELETE FROM user WHERE numEmploye = $id";
+                $result = $conn->query("SELECT prenom, nom FROM user WHERE numEmploye = $id");
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    $nomComplet = $row['prenom'] . " " . $row['nom'];
+                    echo "<script>console.log('$nomComplet');</script>";
+                    if ($nomComplet == $_SESSION["prenom"] . " " . $_SESSION["nom"]) {
+                        header('Location: deconnexion.php');
+                    }
+                }
             } else {
                 $sql = "DELETE FROM satisfaction WHERE idSatisfaction = $id";
 

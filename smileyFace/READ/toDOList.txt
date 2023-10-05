@@ -1,38 +1,15 @@
 ----------------- 29 SEPTEMBRE 23H59 DATE LIMITE REMISE ----------------------------------------------------------------------------------------------------------------------
 
 PROG:
-Le site est réactif pour la partie gestion
-L’esthétique du site est professionnelle et le site est en français
+- Le site est réactif pour la partie gestion
+- L’esthétique du site est professionnelle et le site est en français
+- Petit problème dans connexion quand on entre 1 et 1, mais qu'il ne se trouve pas dans la BD
+- Petit problème dans supprimer dans userBD pour déconnecter le user s'il s'efface lui-même
 
 STYLES:
-- Mettre couleur/background
-- Faire style page création utilisateurs
-- Faire style page création évènements
-- Ajouter à la navbar un Dropdown ou champ pour aller voter
-- Changer couleur de la navbar
-- Petit animation (1.5s) et message significatif avant d'envoyer l'utilisateur à la page newPass.php
-- Style de la page d'évènements
-- Style de la page utilisateurs
+- 
 
------------------ 6 OCTOBRE 23H59 DATE LIMITE REMISE ---------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+----------------- 6 OCTOBRE 23H59 DATE LIMITE REMISE --------------------------------------------------------------------------------------------------------------------
 
 SELECT * FROM smileyFace ORDER BY date ASC
 SELECT * FROM smileyFace ORDER BY date DESC

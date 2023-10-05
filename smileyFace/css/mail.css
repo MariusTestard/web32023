@@ -35,34 +35,6 @@ html, body {
     margin-top: 5px;
 }
 
-input[readonly] {
-    background-color: rgba(205, 204, 204, 0.525);
-}
-
-#circle {
-    margin: 10px;
-	width: 100px;
-    height: 100px;	
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.loader {
-    width: 70%;
-	height: 70%;
-	border: 15px solid #48545F;
-	border-top: 15px solid #30FF06;
-	border-radius: 50%;
-	animation: rotate 1.5s linear infinite;
-}
-
-@keyframes rotate {
-    100% {
-        transform: rotate(360deg);
-    }
-} 
-
 #back {
     font-size: 30px;
     position: absolute;
@@ -70,3 +42,4 @@ input[readonly] {
     left: 1%;
     text-decoration: none;
 }
+

@@ -85,6 +85,7 @@ session_start();
                         <div class="card overflow-unset mt-9 mb-1">
                             <div class="card-body">
                                 <div class="avatar-icon text-center">
+                                    <a href="userBD.php" id="back">&#128281;</a>
                                     <img src="img/tr.jpg" height="128" width="128" alt="Avatar" class="img-circle img-cover card mb-2 ml-auto mr-auto p-1">
                                 </div>
                                 <div class="group">
@@ -114,7 +115,7 @@ session_start();
                             </div>
                         </div>
                         <div class="text-center weight-600 text-gray">
-                            <a href="" class="text-gray">Besoin d'aide?</a>
+                            <a href="help.php?id=5" class="text-gray">Besoin d'aide?</a>
                         </div>
                     </form>
                 </div>
