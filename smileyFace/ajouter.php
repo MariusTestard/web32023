@@ -93,7 +93,7 @@ session_start();
                             <div class="card-body">
                                 <div class="avatar-icon text-center">
                                     <img src="img/tr.jpg" height="128" width="128" alt="Avatar" class="img-circle img-cover card mb-2 ml-auto mr-auto p-1">
-                                    <a href="eventBD.php" id="back">&#128281;</a>
+                                    <a href="eventBD.php" id="back">&#10132;</a>
                                 </div>
                                 <div class="group">
                                     <label for="nom">Nom de l'évènement</label>

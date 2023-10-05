@@ -85,7 +85,7 @@ session_start();
                         <div class="card overflow-unset mt-9 mb-1">
                             <div class="card-body">
                                 <div class="avatar-icon text-center">
-                                    <a href="userBD.php" id="back">&#128281;</a>
+                                    <a href="userBD.php" id="back">&#10132;</a>
                                     <img src="img/tr.jpg" height="128" width="128" alt="Avatar" class="img-circle img-cover card mb-2 ml-auto mr-auto p-1">
                                 </div>
                                 <div class="group">
@@ -95,7 +95,7 @@ session_start();
                                 </div>
                                 <div class="group">
                                     <label for="recoverEmail">Email de récupération</label>
-                                    <input type="text" class="form-control" placeholder="Email de récupération" name="recoverEmail">
+                                    <input type="email" class="form-control" placeholder="Email de récupération" name="recoverEmail">
                                     <span class="spanErr"><?php echo $errorRecoverEmail; ?></span>
                                 </div>
                                 <div class="group">

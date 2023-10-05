@@ -12,6 +12,9 @@ session_start();
 
 <body>
     <?php
+    if (!isset($idCours)) {
+        $idCours = "Nul";
+    }
     if ($_SESSION["connexion"] == true) {
         require("connexionServeur.php");
         $conn = new mysqli($servername, $username, $password, $bd);

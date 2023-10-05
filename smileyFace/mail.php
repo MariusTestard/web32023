@@ -57,14 +57,14 @@
             <div class="w-100 mx-auto px-2" style="max-width: 400px">
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <div class="text-center text-gray">
-                        <h2 class="weight-500 mb-1">Oublie du mot de passe</h2>
+                        <h2 class="weight-500 mb-1">Mot de passe oublié</h2>
                         <p class="h4 mb-2 weight-300 ">Entrez l'email pour envoyez un code</p>
                     </div>
                     <div class="card overflow-unset mt-9 mb-1">
                         <div class="card-body">
                             <div class="avatar-icon text-center">
                                 <img src="img/tr.jpg" height="128" width="128" alt="Avatar" class="img-circle img-cover card mb-2 ml-auto mr-auto p-1">
-                                <a href="userBD.php" id="back">&#128281;</a>
+                                <a href="userBD.php" id="back">&#10132;</a>
                             </div>
                             <div class="group">
                                 <label for="recoverEmail">Email de récupération</label>

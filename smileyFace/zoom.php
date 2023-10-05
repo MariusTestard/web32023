@@ -46,12 +46,10 @@ session_start();
                             <div>
                                     <a href="https://www.cegeptr.qc.ca/">Cégep TR</a>
                                 </div>
-
                                 <div>
-                                    <a href="eventBD.php" class="active">Évènements</a>
+                                    <a href="eventBD.php">Évènements</a>
                                     <a href="userBD.php">Utilisateurs</a>
                                 </div>
-                            
                                 <div class="dropdown">
                                     <button class="dropbtn"><?php echo $_SESSION["prenom"] . " " . $_SESSION["nom"]; ?>
                                         <i class="fa fa-caret-down"></i>

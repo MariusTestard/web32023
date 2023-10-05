@@ -13,6 +13,10 @@ html, body {
     display: none;
 }
 
+a {
+    color: black;
+}
+
 .login-page {
     min-height: 100vh;
 }
@@ -38,8 +42,11 @@ html, body {
 #back {
     font-size: 30px;
     position: absolute;
-    top: 0%;
-    left: 1%;
+    top: 1%;
+    left: 4%;
     text-decoration: none;
+    font-size: 30px;
+    rotate: 180deg;
+    color: black;
 }
 

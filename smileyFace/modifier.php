@@ -119,14 +119,13 @@ session_start();
                                 <div class="card-body">
                                     <div class="avatar-icon text-center">
                                         <img src="img/tr.jpg" height="128" width="128" alt="Avatar" class="img-circle img-cover card mb-2 ml-auto mr-auto p-1">
-                                        <a href="userBD.php" id="back">&#128281;</a>
+                                        <a href="userBD.php" id="back">&#10132;</a>
                                     </div>
                                     <div class="group">
                                         <label for="nom">Nom de l'évènement</label>
                                         <input type="text" class="input" placeholder="Nom de l'événement" name="nom" value="<?php echo $nom ?>">
                                         <span class="spanErr"><?php echo $errorNom; ?></span>
                                     </div>
-
                                     <div class="group">
                                         <label for="departement">Département</label>
                                         <input type="text" class="input" name="departement" value="<?php echo $departement ?>">
@@ -227,6 +226,8 @@ session_start();
                     $conn->query('SET NAMES utf8');
                     if (mysqli_query($conn, $sql)) {
                         echo "Enregistrement réussi";
+                        $_SESSION['prenom'] = $prenom;
+                        $_SESSION['nom'] = $nom;
                     } else {
                         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
                     }
@@ -248,8 +249,8 @@ session_start();
                             <div class="card overflow-unset mt-9 mb-1">
                                 <div class="card-body">
                                     <div class="avatar-icon text-center">
-                                        <img src="https://yt3.ggpht.com/a/AATXAJyBgyVuLbK5tbpbn8yLLYqX2cU0o5GCmDoToA=s900-c-k-c0xffffffff-no-rj-mo" height="128" width="128" alt="Avatar" class="img-circle img-cover card mb-2 ml-auto mr-auto p-1">
-                                        <a href="userBD.php" id="back">&#128281;</a>
+                                        <img src="img/tr.jpg" height="128" width="128" alt="Avatar" class="img-circle img-cover card mb-2 ml-auto mr-auto p-1">
+                                        <a href="userBD.php" id="back">&#10132;</a>
                                     </div>
                                     <div class="group">
                                         <label for="numEmplo">Numéro d'employé:</label>

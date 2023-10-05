@@ -20,7 +20,7 @@ session_start();
     ?>
         <div class="container-fluid h-100">
             <div class="row rows align-items-center text-center">
-                <div class="mainText">L'avis des employeurs nous importe</div>
+                <div class="mainText">L<a href="eventBD.php" id="hidden">'</a>avis des employeurs nous importe</div>
             </div>
             <div class="row rows align-items-center text-center">
                 <div class="col-12 d-flex justify-content-evenly">

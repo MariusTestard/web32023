@@ -15,6 +15,9 @@ session_start();
     if (!isset($_SESSION['enCours'])) {
         $_SESSION['enCours'] = "";
     }
+    if (!isset($idCours)) {
+        $idCours = "Nul";
+    }
     if (!isset($_SESSION['pasEnCours'])) {
         $_SESSION['pasEnCours'] = "";
     }
@@ -294,7 +297,7 @@ session_start();
                                     }
                                 }
                             } else {
-                                echo "Aucun résultats";
+                                
                             }
                             $conn->close();
                             ?>
