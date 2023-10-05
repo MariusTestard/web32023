@@ -28,14 +28,14 @@ session_start();
             if ($eoU === "1") {
                 $toF = true;
                 $sql = "DELETE FROM user WHERE numEmploye = $id";
-                $result = $conn->query("SELECT prenom, nom FROM user WHERE numEmploye = $id");
+                $sql1 = "SELECT prenom, nom FROM user WHERE numEmploye = $id";
+                $result = $conn->query($sql1);
                 if ($result->num_rows > 0) {
                     $row = $result->fetch_assoc();
-                    $nomComplet = $row['prenom'] . " " . $row['nom'];
-                    echo "<script>console.log('$nomComplet');</script>";
-                    if ($nomComplet == $_SESSION["prenom"] . " " . $_SESSION["nom"]) {
-                        header('Location: deconnexion.php');
-                    }
+                    $nomCompletVictim = $row['prenom'] . " " . $row['nom'];
+                    $nomCompletCo = $_SESSION["prenom"] . " " . $_SESSION["nom"];
+                } else {
+                    echo "0 results";
                 }
             } else {
                 $sql = "DELETE FROM satisfaction WHERE idSatisfaction = $id";
@@ -52,7 +52,11 @@ session_start();
                 if ($toF === false) {
                     header("Location: eventBD.php");
                 } else {
-                    header("Location: userBD.php");
+                    if ($nomCompletVictim === $nomCompletCo) {
+                        header("Location: deconnexion.php");
+                    } else {
+                        header("Location: userBD.php");
+                    }
                 }
             } else {
                 echo "Error deleting record: " . $conn->error;

@@ -32,7 +32,7 @@ session_start();
                 $_SESSION['enCours'] = "";
             }
             if ($bool == false) {
-                $sql = "UPDATE event SET Etat = '1' WHERE idEvent = '$id'";
+                $sql = "UPDATE event SET etat = '1' WHERE idEvent = '$id'";
                 if (mysqli_query($conn, $sql)) {
                     header("Location: eventBD.php");
                 }

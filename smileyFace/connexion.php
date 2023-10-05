@@ -1,12 +1,6 @@
 <?php
 session_start();
 ?>
-<?php ini_set('display_errors', 0); ?>
-<!--
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
--->
 <html>
 
 <head>
@@ -24,6 +18,9 @@ session_start();
 
 <body>
     <?php
+    if (!isset($_SESSION["connexion"])) {
+        $_SESSION["connexion"] = false;
+    }
     if ($_SESSION["connexion"] != true) {
         if ($_SERVER["REQUEST_METHOD"] != "POST") {
             $_SESSION["connexion"] = false;
@@ -67,18 +64,16 @@ session_start();
                                 if ($result->num_rows > 0) {
                                     $row = $result->fetch_assoc();
                                     echo "<h1>Connecté</h1>";
-                                    //$_SESSION["ConnectionFirst"] = false;
                                     $_SESSION["connexion"] = true;
-                                    //$_SESSION['EventFirstCo'] = true;
                                     $_SESSION["nom"] = $row['nom'];
                                     $_SESSION["prenom"] = $row['prenom'];
                                     header("Location: eventBD.php");
-                                } else {
-                                    $erreur = true;
-                                    $numEmplo = "";
-                                    $errorPasswd = "Numéro d'employé ou mot de passe invalide";
-                                }
+                                } 
                             }
+                        } else {
+                            $erreur = true;
+                            $numEmplo = "";
+                            $errorPasswd = "Numéro d'employé ou mot de passe invalide";
                         }
                     } else {
                         $passwd = sha1($passwd, false);
@@ -88,9 +83,7 @@ session_start();
                         if ($result->num_rows > 0) {
                             $row = $result->fetch_assoc();
                             echo "<h1>Connecté</h1>";
-                           // $_SESSION["ConnectionFirst"] = false;
                             $_SESSION["connexion"] = true;
-                           // $_SESSION['EventFirstCo'] = true;
                             $_SESSION["nom"] = $row['nom'];
                             $_SESSION["prenom"] = $row['prenom'];
                             header("Location: eventBD.php");

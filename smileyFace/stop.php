@@ -27,6 +27,7 @@ session_start();
                 $row = $result->fetch_assoc();
                 if ($row["etat"] == 1) {
                     $_SESSION['pasEnCours'] = "";
+                    $_SESSION['enCours'] = "";
                     $sql = "UPDATE event SET etat = '0' WHERE idEvent = '$id'";
                     if (mysqli_query($conn, $sql)) {
                         $conn->close();

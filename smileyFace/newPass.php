@@ -72,7 +72,7 @@ session_start();
                 </div>
                 <div class="group">
                   <label for="newPass">Nouveau mot de passe:</label>
-                  <input type="password" class="input" placeholder="Mot de passe" name="newPass">
+                  <input type="password" class="input" placeholder="Nouveau mot de passe" name="newPass">
                   <span class="spanErr"><?php echo $errorPasswd; ?></span>
                 </div>
                 <div class="group"></div>

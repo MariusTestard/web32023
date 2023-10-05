@@ -172,7 +172,7 @@ session_start();
                                                             "highEtu" => "smiley_smidoeuf.png"
                                                         ];
                                                         foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
-                                                            echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
+                                                            echo '<img class="littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
                                                         }
                                                         ?>
                                                     </a>
@@ -182,7 +182,7 @@ session_start();
                                                             "midEtu" => "smiley_mid.png"
                                                         ];
                                                         foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
-                                                            echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
+                                                            echo '<img class="littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
                                                         }
                                                         ?>
                                                     </a>
@@ -192,7 +192,7 @@ session_start();
                                                             "lowEtu" => "smiley_bad.png"
                                                         ];
                                                         foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
-                                                            echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
+                                                            echo '<img class="littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
                                                         }
                                                         ?>
                                                     </a>
@@ -238,7 +238,7 @@ session_start();
                                                             "highEmplo" => "smiley_smidoeuf.png"
                                                         ];
                                                         foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
-                                                            echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
+                                                            echo '<img class="littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
                                                         }
                                                         ?>
                                                     </a>
@@ -248,7 +248,7 @@ session_start();
                                                             "midEmplo" => "smiley_mid.png"
                                                         ];
                                                         foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
-                                                            echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
+                                                            echo '<img class="littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
                                                         }
                                                         ?>
                                                     </a>
@@ -258,7 +258,7 @@ session_start();
                                                             "lowEmplo" => "smiley_bad.png"
                                                         ];
                                                         foreach ($satisfactionValues as $satisfactionKey => $satisfactionImage) {
-                                                            echo '<img class="img-fluid littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
+                                                            echo '<img class="littleSmileys" src="img/' . $satisfactionImage . '" width="20px" height="20px">';
                                                         }
                                                         ?>
                                                     </a>
