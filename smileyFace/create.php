@@ -31,7 +31,7 @@ session_start();
                 $numEmplo = test_input($_POST["numEmplo"]);
             }
             if (empty($_POST['recoverEmail'])) {
-                $errorRecoverEmail = "Email de récupération manquant";
+                $errorRecoverEmail = "Courriel de récupération manquant";
                 $erreur = true;
             } else {
                     $recoverEmail = test_input($_POST["recoverEmail"]);
@@ -94,8 +94,8 @@ session_start();
                                     <span class="spanErr"><?php echo $errorNumEplo; ?></span>
                                 </div>
                                 <div class="group">
-                                    <label for="recoverEmail">Email de récupération</label>
-                                    <input type="email" class="form-control" placeholder="Email de récupération" name="recoverEmail">
+                                    <label for="recoverEmail">Courriel de récupération</label>
+                                    <input type="email" class="form-control" placeholder="Courriel de récupération" name="recoverEmail">
                                     <span class="spanErr"><?php echo $errorRecoverEmail; ?></span>
                                 </div>
                                 <div class="group">

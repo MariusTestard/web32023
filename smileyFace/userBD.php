@@ -88,7 +88,7 @@ session_start();
                                 <th>N° Employé</th>
                                 <th>Prenom</th>
                                 <th>Nom</th>
-                                <th>Email de récupération</th>
+                                <th>Courriel de récupération</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>

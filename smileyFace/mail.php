@@ -22,7 +22,7 @@ session_start();
     $erreur = false;
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST['recoverEmail'])) {
-            $errorRecoverEmail = "Email de récupération manquant";
+            $errorRecoverEmail = "Courriel de récupération manquant";
             $erreur = true;
         } else {
             $recoverEmail = test_input($_POST["recoverEmail"]);
@@ -45,7 +45,7 @@ session_start();
                             $_SESSION["ConnectionFirst"] = true;
                             header("Location: newPass.php?id=$numPlo&choice=1");
                         } else {
-                            $errorRecoverEmail = "Cet email n'est liée à aucun compte";
+                            $errorRecoverEmail = "Ce courriel n'est liée à aucun compte";
                     $erreur = true;
                         }
                     }
@@ -63,7 +63,7 @@ session_start();
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <div class="text-center text-gray">
                         <h2 class="weight-500 mb-1">Mot de passe oublié</h2>
-                        <p class="h4 mb-2 weight-300 ">Entrez l'email pour envoyez un code</p>
+                        <p class="h4 mb-2 weight-300 ">Entrez le courriel pour une redirection</p>
                     </div>
                     <div class="card overflow-unset mt-9 mb-1">
                         <div class="card-body">
@@ -72,8 +72,8 @@ session_start();
                                 <a href="userBD.php" id="back">&#10132;</a>
                             </div>
                             <div class="group">
-                                <label for="recoverEmail">Email de récupération</label>
-                                <input type="email" class="input" placeholder="Email de récupération" name="recoverEmail" value="">
+                                <label for="recoverEmail">Courriel de récupération</label>
+                                <input type="email" class="input" placeholder="Courriel de récupération" name="recoverEmail" value="">
                                 <span class="spanErr"><?php echo $errorRecoverEmail; ?></span>
                             </div>
                             <div class="group">

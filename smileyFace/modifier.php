@@ -26,7 +26,7 @@ session_start();
     } elseif (isset($_POST['eoU'])) {
         $eoU = $_POST['eoU'];
     } else {
-        echo "erreur";
+        $eoU = 1;
     }
     if ($_SESSION["connexion"] == true) {
         if ($eoU == 0) {
@@ -145,7 +145,7 @@ session_start();
                                 </div>
                             </div>
                             <div class="text-center weight-600 text-gray">
-                                <a href="help.php?id=3" class="text-gray">Besoin d'aide?</a>
+                                <a href="help.php?id=3&idEvent=$id" class="text-gray">Besoin d'aide?</a>
                             </div>
                         </form>
                     </div>
@@ -199,7 +199,7 @@ session_start();
                     $nom = test_input($_POST["nom"]);
                 }
                 if (empty($_POST['recoverEmail'])) {
-                    $errorRecoverEmail = "Email de récupération manquant";
+                    $errorRecoverEmail = "Courriel de récupération manquant";
                     $erreur1 = true;
                 } else {
                     $recoverEmail = test_input($_POST["recoverEmail"]);
@@ -257,8 +257,8 @@ session_start();
                                         <span class="spanErr"><?php echo $errorNom; ?></span>
                                     </div>
                                     <div class="group">
-                                        <label for="recoverEmail">Email de récupération:</label>
-                                        <input type="email" class="input" placeholder="Email de récupération" name="recoverEmail" value="<?php echo $recoverEmail ?>">
+                                        <label for="recoverEmail">Courriel de récupération:</label>
+                                        <input type="email" class="input" placeholder="Courriel de récupération" name="recoverEmail" value="<?php echo $recoverEmail ?>">
                                         <span class="spanErr"><?php echo $errorRecoverEmail; ?></span>
                                     </div>
                                     <div class="group">

@@ -14,7 +14,7 @@ session_start();
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/buttercake@3.0.0/dist/css/butterCake.min.css">
   <script src="js/loading.js"></script>
   <link rel="stylesheet" href="css/connexion.css">
-  <title>Password - Cégep de Trois-Rivières</title>
+  <title>Mot de passe - Cégep de Trois-Rivières</title>
 </head>
 
 <body>
