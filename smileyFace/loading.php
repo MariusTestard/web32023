@@ -9,8 +9,17 @@
 
 <body>
         <?php 
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+        } else {
+            $id = 0;
+        }
             sleep(2);
-            header('Location: newPass.php');
+            if ($id == 1) {
+                header('Location: newPass.php');
+            } else {
+                header('Location: connexion.php');
+            }
         ?>
     </script>
 </body>

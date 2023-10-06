@@ -34,7 +34,7 @@ session_start();
                 $errorRecoverEmail = "Email de récupération manquant";
                 $erreur = true;
             } else {
-                $recoverEmail = test_input($_POST["recoverEmail"]);
+                    $recoverEmail = test_input($_POST["recoverEmail"]);
             }
             if (empty($_POST['prenom'])) {
                 $errorPrenom = "Prénom manquant";
@@ -48,12 +48,9 @@ session_start();
             } else {
                 $nom = test_input($_POST["nom"]);
             }
+            
             if ($erreur != true) {
-                $numEmplo = $_POST['numEmplo'];
-                $recoverEmail = $_POST['recoverEmail'];
                 $passwd = $_POST['numEmplo'];
-                $prenom = $_POST['prenom'];
-                $nom = $_POST['nom'];
                 require("connexionServeur.php");
                 $conn = new mysqli($servername, $username, $password, $bd);
                 if ($conn->connect_error) {
@@ -64,10 +61,13 @@ session_start();
                 $conn->query('SET NAMES utf8');
                 if (mysqli_query($conn, $sql)) {
                     echo "Enregistrement réussi";
+                    mysqli_close($conn);
+                    header("Location: userBD.php");
                 } else {
-                    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                    $erreur = true;
+                    $errorRecoverEmail = "Courriel déjà utilisé";
+
                 }
-                header("Location: userBD.php");
                 mysqli_close($conn);
     ?>
             <?php

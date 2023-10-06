@@ -21,7 +21,7 @@ session_start();
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         } else {
-            $sql = "SELECT numEmploye, password, prenom, nom, recoverEmail FROM user";
+            $sql = "SELECT numEmploye, password, prenom, nom, recoverEmail FROM user ORDER BY prenom, nom";
             $conn->query('SET NAMES utf8');
             $result = $conn->query($sql);
             $sqlEvent = "SELECT idEvent, nom, departement, etat FROM event";

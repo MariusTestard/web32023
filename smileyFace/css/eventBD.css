@@ -93,6 +93,11 @@ body {
     float: right;
     display: block;
   }
+
+  .smallButtons {
+    font-size: 3vw !important;
+    margin: 0px !important;
+  } 
 }
 
 @media screen and (max-width: 600px) {
@@ -187,8 +192,9 @@ body {
     width: max-content;
     font-size: 2vw;
     text-decoration: none;
-    width: 2.5vw;
-    width: 2.5vh;
+    width: 2vw;
+    width: 2vh;
+    display: flex;
 }
 
 .col-11 {
@@ -242,7 +248,7 @@ a {
 }
 
 .statusIconI {
-  width: 50%;
+  width: fit-content;
   border-radius: 5px;
   background-color: #5a6268;
   color: white;

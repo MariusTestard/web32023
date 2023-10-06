@@ -51,8 +51,8 @@ input[readonly] {
 .loader {
     width: 70%;
 	height: 70%;
-	border: 15px solid #48545F;
-	border-top: 15px solid #30FF06;
+	border: 15px solid lightgray;
+	border-top: 15px solid #2ca114;
 	border-radius: 50%;
 	animation: rotate 1.5s linear infinite;
 }

@@ -16,6 +16,7 @@ session_start();
     if ($_SESSION["connexion"] == true) {
         $id = $_GET['id'];
         $bool = false;
+        $_SESSION['pasEnCours'] = "";
         if ($_SERVER["REQUEST_METHOD"] != "POST") {
             require("connexionServeur.php");
             $conn = new mysqli($servername, $username, $password, $bd);
@@ -34,6 +35,7 @@ session_start();
             if ($bool == false) {
                 $sql = "UPDATE event SET etat = '1' WHERE idEvent = '$id'";
                 if (mysqli_query($conn, $sql)) {
+                    $_SESSION['pasEnCours'] = "";
                     header("Location: eventBD.php");
                 }
             }

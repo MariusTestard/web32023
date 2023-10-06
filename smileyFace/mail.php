@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/buttercake@3.0.0/dist/css/butterCake.min.css">
     <link rel="stylesheet" href="css/mail.css">
-    <title>mail</title>
+    <title>Mot de passe oublié - Cégep de Trois-Rivières</title>
 </head>
 
 <body>
@@ -26,19 +29,21 @@
         }
 
         if ($erreur != true) {
-            $recoverEmail = $_POST['recoverEmail'];
             require("connexionServeur.php");
             $conn = new mysqli($servername, $username, $password, $bd);
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             } else {
-                $sql = "SELECT recoverEmail FROM user";
+                $sql = "SELECT numEmploye, recoverEmail FROM user";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         if ($row["recoverEmail"] == $recoverEmail) {
+                            $_SESSION['numPlo'] = $row["numEmploye"];
+                            $numPlo = $_SESSION['numPlo'];
                             $errorRecoverEmail = "";
-                            header("Location: connexion.php");
+                            $_SESSION["ConnectionFirst"] = true;
+                            header("Location: newPass.php?id=$numPlo&choice=1");
                         } else {
                             $errorRecoverEmail = "Cet email n'est liée à aucun compte";
                     $erreur = true;

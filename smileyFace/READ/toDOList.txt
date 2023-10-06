@@ -1,13 +1,13 @@
------------------ 29 SEPTEMBRE 23H59 DATE LIMITE REMISE ----------------------------------------------------------------------------------------------------------------------
+----------------- 6 OCTOBRE 23H59 DATE LIMITE REMISE ----------------------------------------------------------------------------------------------------------------------
 
 PROG:
-- Le site est réactif pour la partie gestion
-- L’esthétique du site est professionnelle et le site est en français
-- Petit problème dans connexion quand on entre 1 et 1, mais qu'il ne se trouve pas dans la BD
-- Petit problème dans supprimer dans userBD pour déconnecter le user s'il s'efface lui-même
+Besoin d'aide avec mot de passe oublié, on retourne pas au bon endroit
+CREATE v
+AJOUTER v
+CONNEXION v
+PREMIERE CONNEXION v
+MOT DE PASSE OUBLIÉ f
 
-STYLES:
-- 
 
 ----------------- 6 OCTOBRE 23H59 DATE LIMITE REMISE --------------------------------------------------------------------------------------------------------------------
 
@@ -15,5 +15,3 @@ SELECT * FROM smileyFace ORDER BY date ASC
 SELECT * FROM smileyFace ORDER BY date DESC
 SELECT * FROM smileyFace ORDER BY departement ASC
 SELECT * FROM smileyFace ORDER BY departement DESC
-
-Faire une navbar (Dropdown)

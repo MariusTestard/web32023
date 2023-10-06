@@ -55,7 +55,7 @@ session_start();
                             if ($numEmplo == $rowNum['password']) {
                                 $_SESSION["ConnectionFirst"] = true;
                                 $_SESSION['numPlo'] = $rowNum['numEmploye'];
-                                header("Location: loading.php");
+                                header("Location: loading.php?id=1");
                             } else {
                                 $passwd = sha1($passwd, false);
                                 $sql = "SELECT * FROM user WHERE numEmploye = '$numEmplo' AND password = '$passwd'";
@@ -100,7 +100,6 @@ session_start();
             }
             if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
                 ?>
-                <div>
                     <div id="container">
                         Redirection
                         <div id="circle">
@@ -143,8 +142,6 @@ session_start();
                             </div>
                         </section>
                     </div>
-                </div>
-                
     <?php
             }
         } else {

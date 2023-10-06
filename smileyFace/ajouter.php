@@ -49,17 +49,13 @@ session_start();
                 $date = test_input($_POST["date"]);
             }
             if ($erreur != true) {
-                $nom = $_POST['nom'];
-                $departement = $_POST['departement'];
-                $lieu = $_POST['lieu'];
-                $date = $_POST['date'];
                 require("connexionServeur.php");
                 $conn = new mysqli($servername, $username, $password, $bd);
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
                 }
                 $sql = "INSERT INTO event (idEvent, nom, departement, lieu, date)
-                VALUES (NULL" . ",'" . $_POST['nom'] . "','" . $_POST['departement'] . "','" . $_POST['lieu'] . "','" . $_POST['date'] . "')";
+                VALUES (NULL" . ",'" . $nom . "','" . $departement . "','" . $lieu . "','" . $date . "')";
                 $conn->query('SET NAMES utf8');
                 if (mysqli_query($conn, $sql)) {
                     echo "Enregistrement réussi";

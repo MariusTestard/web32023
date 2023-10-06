@@ -13,8 +13,13 @@ session_start();
 
 <body>
     <?php
-    if ($_SERVER['REQUEST_METHOD'] == $_GET) {
+    if (isset($_GET['id'])) {
         $id = $_GET['id'];
+        $location = "Refresh:0";
+    } else {
+        $id = 0;
+    }
+    if ($_SERVER['REQUEST_METHOD'] != $_GET) {
         switch ($id) {
             case 1:
                 $location = 'connexion.php';
@@ -34,15 +39,13 @@ session_start();
                 $location = 'create.php';
                 break;
             case 6:
-                $location = 'newPass.php';
-                break;
-            case 7:
                 $location = 'mail.php';
                 break;
+            case 7:
+                $location = 'newPass.php?choice=1';
+                break;
         }
-    } else {
-        $location = 'connexion.php';
-    }
+    } 
     ?>
     <div>
         <div class="topnav" id="myTopnav">

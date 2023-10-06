@@ -81,19 +81,13 @@ session_start();
                 } else {
                     $date = test_input($_POST["date"]);
                 }
-
                 if ($erreur != true) {
                     require("connexionServeur.php");
                     $conn = new mysqli($servername, $username, $password, $bd);
-                    $nom = $_POST['nom'];
-                    $departement = $_POST['departement'];
-                    $lieu = $_POST['lieu'];
-                    $date = $_POST['date'];
-
                     if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                     }
-                    $sql = "UPDATE event SET nom = '$nom', departement = '$departement', date = '$date' WHERE idEvent = '$id'";
+                    $sql = "UPDATE event SET nom = '$nom', departement = '$departement', lieu = '$lieu',date = '$date' WHERE idEvent = '$id'";
                     $conn->query('SET NAMES utf8');
                     if (mysqli_query($conn, $sql)) {
                         echo "Enregistrement réussi";
@@ -214,11 +208,6 @@ session_start();
                 if ($erreur1 != true) {
                     require("connexionServeur.php");
                     $conn = new mysqli($servername, $username, $password, $bd);
-                    $numEmplo = $_POST['numEmplo'];
-                    $prenom = $_POST['prenom'];
-                    $nom = $_POST['nom'];
-                    $recoverEmail = $_POST['recoverEmail'];
-
                     if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                     }
@@ -276,11 +265,9 @@ session_start();
                                         <input type="hidden" class="form-control field left" name="id" value="<?php echo $id; ?>" readonly>
                                         <input type="hidden" class="form-control field left" name="eoU" value="<?php echo $eoU; ?>" readonly>
                                     </div>
-
                                     <div class="group">
                                         <button class="btn btncolor block btn-lg weight-500" type="submit">Modifier</button>
                                     </div>
-
                                 </div>
                             </div>
                             <div class="text-center weight-600 text-gray">
