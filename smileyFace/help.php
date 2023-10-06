@@ -59,13 +59,19 @@ session_start();
         </div>
         <div class="bigContainer">
             <div id="container">
+            <div class="para">
+                    <h1>Première connexion</h1>
+                    <p>
+                        Si c'est la première fois que vous vous connectez, le mot de passe sera votre numéro d'employé. Vous serez
+                        ensuite amené à une page pour modifier votre mot de passe. Si vous voulez gardez le même mot de passe, entrez simplement le même dans le champ en question.
+                        Veuillez cliquer sur revenir pour retourner où vous étiez.
+                    </p>
+                </div>
                 <div class="para">
                     <h1>Connexion</h1>
                     <p>
                         Si vous êtes parvenu sur la page de connexion, cela veut probablement dire que vous êtes un administrateur. Pour vous connecter, veuillez entrez
-                        votre numéro d'employé ainsi que votre mot de passe. Si vous voulez gardez le même mot de passe, entrez simplement le même dans le champ en question.
-                        Veuillez cliquer sur revenir pour retourner où vous étiez. * Si c'est la première fois que vous vous connectez, le mot de passe sera votre numéro d'employé. Vous serez
-                        ensuite amené à une page pour modifier votre mot de passe. *
+                        votre numéro d'employé ainsi que votre mot de passe. 
                     </p>
                 </div>
                 <div class="para">
@@ -91,10 +97,10 @@ session_start();
                     </p>
                 </div>
                 <div class="para">
-                    <h1>Modification de l'usager</h1>
+                    <h1>Mot de passe oublié</h1>
                     <p>
-                        Pour modifier un utilisateur, c'est le même principe que pour la modification d'un évènement. Vous allez pouvoir voir les données actuelles de l'utilisateur et vous aurez choix de changer le numéro d'employé, le courriel pour l'oublie du mot de passe,
-                        le prénom ainsi que le nom de l'employé. N'oubliez pas de prendre soin de remplir tous les champs et de ne pas en laisser des vides. Veuillez cliquer sur revenir pour retourner où vous étiez.
+                        Si vous avez oublié votre mot de passe, veuillez simplement entrez le courriel de récupération lié à votre compte. Vous serez redirigé vers une autre page permettant
+                        de modifier le mot de passe.
                     </p>
                 </div>
             </div>
